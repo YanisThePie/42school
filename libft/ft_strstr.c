@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-
 char *ft_strstr (char *str, char *tofind)
 {
   int a;
@@ -24,22 +21,13 @@ char *ft_strstr (char *str, char *tofind)
 	}
       while (tofind[cpt2] == str[cpt])
 	{
-	  {
-	    if (tofind[cpt2] == '\0')
-	      {
-		return (str + b);
-		cpt++;
-		cpt2++;
-	      }
-	  }
+	  cpt2++;
+	  cpt++;
+	  if (tofind[cpt2] == '\0')
+	    {
+	      return (str + b);
+	    }
 	}
     }
   return (0);
-}
-
-int main (void)
-{
-  char *c;
-  c = ft_strstr ("michel", "che");
-  printf ("%s", c);
 }
