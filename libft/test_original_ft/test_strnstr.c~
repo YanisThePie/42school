@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_ft_strcat.c                                   :+:      :+:    :+:   */
+/*   test_strnstr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 15:51:46 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 15:51:47 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/26 20:57:36 by yismail           #+#    #+#             */
+/*   Updated: 2015/11/26 21:05:42 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 #include <stdio.h>
+#include <stdlib.h>
+#include <libc.h>
 
 int main (void)
 {
-  char dest[50] = "bonjur";
-  char src[50] = "ses";
-
-  ft_strcat (dest, src);
-  printf ("%s", dest);
+    char *c;
+    c = strnstr ("michade", "ad", 5);
+    printf ("%s", c);
 }

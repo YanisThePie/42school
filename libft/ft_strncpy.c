@@ -1,23 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_ft_strcat.c                                   :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 15:51:46 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 15:51:47 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/26 18:20:19 by yismail           #+#    #+#             */
+/*   Updated: 2015/11/26 20:29:21 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-#include <stdio.h>
-
-int main (void)
+int ft_strlen (char *c)
 {
-  char dest[50] = "bonjur";
-  char src[50] = "ses";
+	int cpt;
+  
+	cpt = 0;
+	while (*c != '\0')
+    {
+		c++;
+		cpt++;
+    }
+	return (cpt);
+}
 
-  ft_strcat (dest, src);
-  printf ("%s", dest);
+char *ft_strncpy (char *dest, char *src, size_t n)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = ft_strlen(src);
+	  while (src[i] != '\0' && i <= n && i <= j)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	  while (src[i] == '\0' && dest[i])
+      {
+        dest[i] = '\0';
+          i++;
+      }
+	  return(dest);
 }

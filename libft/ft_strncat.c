@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_ft_strcat.c                                   :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 15:51:46 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 15:51:47 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/26 15:41:07 by yismail           #+#    #+#             */
+/*   Updated: 2015/11/26 15:51:15 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-#include <stdio.h>
-
-int main (void)
+char *ft_strncat (char *dest, char *src, size_t n)
 {
-  char dest[50] = "bonjur";
-  char src[50] = "ses";
+	int i;
+	int j;
 
-  ft_strcat (dest, src);
-  printf ("%s", dest);
+	i = 0;
+	while (dest[i] != '\0')
+		i++;
+
+	j = 0;
+	while (src[j] != '\0' && j <= n)
+    {
+		dest[i + j] = src[j];
+		j++;
+    }
+	dest[i + j] = '\0';
+	return(dest);
 }
