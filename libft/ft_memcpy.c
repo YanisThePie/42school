@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 15:19:40 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/28 15:19:41 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/28 19:51:29 by yismail           #+#    #+#             */
+/*   Updated: 2015/11/28 20:02:42 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <string.h>
 
-char *ft_strchr ( char *s, int c)
+void *ft_memcpy(void *dest, const void *src, size_t n)
 {
-  int i;
-  
-  i = 0;
-  while (s[i] != '\0' && s[i] != c)
-    i++;
+	char *str;
+	char *str2;
+	size_t i;
 
-  if (s[i] == c)
-    return (i + s);
-  return (0);
+	i = 0;
+	str = (char *)src;
+	str2 = (char *)dest;
+	while (str && i < n)
+	{
+		str2[i] = str[i] ;
+		i++;
+	}
+	return (dest);
 }

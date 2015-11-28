@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 15:19:40 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/28 15:19:41 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/26 15:53:11 by yismail           #+#    #+#             */
+/*   Updated: 2015/11/28 15:44:57 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *ft_strchr ( char *s, int c)
+char	*ft_strcat(char *dest, char *src)
 {
-  int i;
-  
-  i = 0;
-  while (s[i] != '\0' && s[i] != c)
-    i++;
+	int	i;
+	int	j;
 
-  if (s[i] == c)
-    return (i + s);
-  return (0);
+	i = 0;
+	while (dest[i] != '\0')
+		i++;
+	j = 0;
+	while (src[j] != '\0')
+	{
+		dest[i + j] = src[j];
+		j++;
+	}
+	dest[i + j] = '\0';
+	return (dest);
 }

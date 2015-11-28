@@ -1,46 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 20:49:45 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/28 18:09:31 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/28 15:17:52 by yismail           #+#    #+#             */
+/*   Updated: 2015/11/28 16:45:40 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<string.h>
 
-char *ft_strnstr (char *str, char *tofind, size_t n)
+int		ft_isdigit(int c)
 {
-	int a;
-	int b;
-	int c;
-	size_t cpt;
-	int cpt2;
-
-	a = 0;
-	b = 0;
-	c = 0;
-	cpt = 0;
-	cpt2 = 0;
-
-	while (str[cpt] != '\0' && cpt < n)
-    {
-		if (tofind[cpt2] != str[cpt])
-		{
-			cpt++;
-			b++;
-		}
-		while (tofind[cpt2] == str[cpt] && cpt < n)
-		{
-			cpt2++;
-			cpt++;
-			if (tofind[cpt2] == '\0')
-			{
-				return (str + b);
-			}
-		}
-    }
+	if (c >= 48 && c <= 57)
+		return (1);
+	if (c < 48 && c > 57)
+		return (0);
 	return (0);
 }

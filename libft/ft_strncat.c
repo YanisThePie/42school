@@ -6,13 +6,15 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 15:41:07 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 15:51:15 by yismail          ###   ########.fr       */
+/*   Updated: 2015/11/28 18:05:58 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <string.h>
+
 char *ft_strncat (char *dest, char *src, size_t n)
 {
-	int i;
-	int j;
+	size_t i;
+	size_t j;
 
 	i = 0;
 	while (dest[i] != '\0')

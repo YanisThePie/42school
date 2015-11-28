@@ -1,46 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 20:49:45 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/28 18:09:31 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/28 20:47:29 by yismail           #+#    #+#             */
+/*   Updated: 2015/11/28 20:53:42 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<string.h>
 
-char *ft_strnstr (char *str, char *tofind, size_t n)
+#include <string.h>
+#include <stdlib.h>
+
+void *ft_memchr(const void *s, int c, size_t n)
 {
-	int a;
-	int b;
-	int c;
-	size_t cpt;
-	int cpt2;
+    char *str;
+    char *str2;
+    size_t i;
 
-	a = 0;
-	b = 0;
-	c = 0;
-	cpt = 0;
-	cpt2 = 0;
-
-	while (str[cpt] != '\0' && cpt < n)
+    i = 0;
+    str = (char *)s;
+    while (str && i < n)
     {
-		if (tofind[cpt2] != str[cpt])
-		{
-			cpt++;
-			b++;
-		}
-		while (tofind[cpt2] == str[cpt] && cpt < n)
-		{
-			cpt2++;
-			cpt++;
-			if (tofind[cpt2] == '\0')
-			{
-				return (str + b);
-			}
-		}
+		if (str[i] == c)
+			return (str + i);
+			i++;
     }
-	return (0);
+    return (NULL);
 }

@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 15:19:40 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/28 15:19:41 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/28 17:32:05 by yismail           #+#    #+#             */
+/*   Updated: 2015/11/28 20:04:53 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *ft_strchr ( char *s, int c)
-{
-  int i;
-  
-  i = 0;
-  while (s[i] != '\0' && s[i] != c)
-    i++;
 
-  if (s[i] == c)
-    return (i + s);
-  return (0);
+#include <string.h>
+
+void *ft_memset(void *b, int c, size_t len)
+{
+	char *str;
+	size_t i;
+
+	i = 0;
+	str = (char *) b;
+	while (str && i < len)
+	{
+		str[i] = c;
+		i++;
+	}
+		return (b);
 }

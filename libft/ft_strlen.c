@@ -13,13 +13,12 @@
 
 int ft_strlen (char *c)
 {
-  int cpt;
-  
-  cpt = 0;
-  while (*c != '\0')
+    int cpt;
+    
+    cpt = 0;
+    while (c[cpt] != '\0')
     {
-      c++;
-      cpt++;
+        cpt++;
     }
-  return (cpt);
+    return (cpt);
 }
