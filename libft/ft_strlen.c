@@ -6,19 +6,20 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 15:52:22 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 15:52:23 by yismail          ###   ########.fr       */
+/*   Updated: 2015/11/29 18:22:06 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-int ft_strlen (char *c)
+size_t		ft_strlen(char *c)
 {
-    int cpt;
-    
-    cpt = 0;
-    while (c[cpt] != '\0')
-    {
-        cpt++;
-    }
-    return (cpt);
+	int cpt;
+
+	cpt = 0;
+	while (c[cpt] != '\0')
+	{
+		cpt++;
+	}
+	return (cpt);
 }

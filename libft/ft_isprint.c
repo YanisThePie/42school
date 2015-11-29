@@ -6,14 +6,16 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 18:16:55 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/28 18:20:32 by yismail          ###   ########.fr       */
+/*   Updated: 2015/11/29 17:30:39 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int isprint (int c)
+#include "libft.h"
+
+int		ft_isprint(int c)
 {
-	if (c >= 32 && c <= 126);
-	{	
+	if (c >= 32 && c <= 126)
+	{
 		return (1);
 	}
 	return (0);

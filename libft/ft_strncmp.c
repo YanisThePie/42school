@@ -6,24 +6,24 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 15:20:17 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/28 18:06:46 by yismail          ###   ########.fr       */
+/*   Updated: 2015/11/29 17:49:43 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <string.h>
 
-int ft_strncmp(char *s1, char *s2, size_t n)
+#include "libft.h"
+
+int		ft_strncmp(char *s1, char *s2, size_t n)
 {
-  size_t i;
-  int j;
-  
-  i = 0;
-  j = 0;
-  if (n == 0)
-    return (j);
-  while (s1[i] == s2[i] && s1[i] && i < (n - 1))
-    if (i < (n - 1))
-      i++;
+	size_t	i;
+	int		j;
 
-  j = (s1[i] - s2[i]);
-  return (j);
+	i = 0;
+	j = 0;
+	if (n == 0)
+		return (j);
+	while (s1[i] == s2[i] && s1[i] && i < (n - 1))
+		if (i < (n - 1))
+			i++;
+	j = (s1[i] - s2[i]);
+	return (j);
 }

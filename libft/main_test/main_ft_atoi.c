@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   main_ft_atoi.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 15:53:11 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/28 15:44:57 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/29 19:33:35 by yismail           #+#    #+#             */
+/*   Updated: 2015/11/29 19:34:00 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcat(char *dest, char *src)
-{
-	int	i;
-	int	j;
+#include <stdio.h>
 
-	i = 0;
-	while (dest[i] != '\0')
-		i++;
-	j = 0;
-	while (src[j] != '\0')
-	{
-		dest[i + j] = src[j];
-		j++;
-	}
-	dest[i + j] = '\0';
-	return (dest);
+int main (void)
+{
+    int a;
+    int b;
+
+    a = ft_atoi("    -48");
+    b = atoi("    -48");
+    printf("%d\n", a);
+    printf("%d\n", b);
+    return(0);
 }

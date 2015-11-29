@@ -6,19 +6,21 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 15:19:22 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/28 15:19:24 by yismail          ###   ########.fr       */
+/*   Updated: 2015/11/29 17:40:24 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_strcmp(char *s1, char *s2)
+#include "libft.h"
+
+int		ft_strcmp(char *s1, char *s2)
 {
-  int i;
-  int j;
-  
-  i = 0;
-  j = 0;
-  while (s1[i] == s2[i] && s1[i])
-    i++;
-  j = (s1[i] - s2[i]);
-  return (j);
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (s1[i] == s2[i] && s1[i])
+		i++;
+	j = (s1[i] - s2[i]);
+	return (j);
 }

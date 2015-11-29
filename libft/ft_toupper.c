@@ -6,15 +6,17 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 18:30:19 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/28 18:34:43 by yismail          ###   ########.fr       */
+/*   Updated: 2015/11/29 18:17:48 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int toupper (int c)
+#include "libft.h"
+
+int		ft_toupper(int c)
 {
 	if (c >= 97 && c <= 122)
 		return (c - 32);
-	else 
+	else
 		return (c);
 	return (0);
 }

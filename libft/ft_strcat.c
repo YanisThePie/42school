@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 15:28:33 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/28 15:33:07 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/26 15:53:11 by yismail           #+#    #+#             */
+/*   Updated: 2015/11/29 17:34:34 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isalpha(int c)
+#include "libft.h"
+
+char	*ft_strcat(char *dest, char *src)
 {
-	if (c >= 65 && c <= 90)
-		return (1);
-	if (c >= 97 && c <= 122)
-		return (1);
-	return (0);
+	int	i;
+	int	j;
+
+	i = 0;
+	while (dest[i] != '\0')
+		i++;
+	j = 0;
+	while (src[j] != '\0')
+	{
+		dest[i + j] = src[j];
+		j++;
+	}
+	dest[i + j] = '\0';
+	return (dest);
 }

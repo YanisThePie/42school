@@ -6,27 +6,23 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 20:49:45 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/28 18:09:31 by yismail          ###   ########.fr       */
+/*   Updated: 2015/11/29 17:50:55 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<string.h>
 
-char *ft_strnstr (char *str, char *tofind, size_t n)
+#include "libft.h"
+
+char	*ft_strnstr(char *str, char *tofind, size_t n)
 {
-	int a;
-	int b;
-	int c;
-	size_t cpt;
-	int cpt2;
+	int		b;
+	size_t	cpt;
+	int		cpt2;
 
-	a = 0;
 	b = 0;
-	c = 0;
 	cpt = 0;
 	cpt2 = 0;
-
 	while (str[cpt] != '\0' && cpt < n)
-    {
+	{
 		if (tofind[cpt2] != str[cpt])
 		{
 			cpt++;
@@ -37,10 +33,8 @@ char *ft_strnstr (char *str, char *tofind, size_t n)
 			cpt2++;
 			cpt++;
 			if (tofind[cpt2] == '\0')
-			{
 				return (str + b);
-			}
 		}
-    }
+	}
 	return (0);
 }

@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/29 13:54:17 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/29 17:44:25 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/29 18:47:24 by yismail           #+#    #+#             */
+/*   Updated: 2015/11/29 19:36:25 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(char *str)
+int		ft_atoi(const char *str)
 {
-	int		j;
 	int		i;
-	char	*cpy;
+	int		nbr;
+	int		sign;
+	char	*str1;
 
+	if (!str)
+		return (0);
+	sign = 1;
+	nbr = 0;
 	i = 0;
-	j = ft_strlen(str);
-	cpy = (char *)malloc(j * sizeof(*str));
-	while (i < j && str[i] != '\0')
+	str1 = (char*)str;
+	while (str1[i] == ' ')
+		i++;
+	if (str1[i] == '-')
 	{
-		cpy[i] = str[i];
+		sign = -1;
+		nbr = (nbr * 10);
 		i++;
 	}
-	return (cpy);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nbr = (nbr * 10) + (str[i] - 48);
+		i++;
+	}
+	return (sign * nbr);
 }
