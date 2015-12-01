@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 17:13:04 by yismail           #+#    #+#             */
-/*   Updated: 2015/12/01 15:12:00 by yismail          ###   ########.fr       */
+/*   Updated: 2015/12/01 18:04:01 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 #define LIBFT_H
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 
+void    ft_putendl_fd(char const *s, int fd)
+void	ft_putchar (char c);
 int		ft_atoi(const char *str);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void    ft_bzero(void *s, size_t n);
@@ -51,4 +54,16 @@ void	ft_strdel (char **as);
 void	ft_strclr(char *s);
 void    ft_striter(char *s, void (*f)(char*));
 void	ft_striteri(char *s, void(*f)(unsigned int, char *));
+char	*ft_strmap(char const *s, char (*f)(char));
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+int		ft_strequ (char const *s1, char const *s2);
+int     ft_strnequ (char const *s1, char const *s2, size_t n);
+char	*ft_strsub(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin (char const *s1, char const *s2);
+char	*ft_strtrim(char const *s);
+void	ft_putstr(char const *s);
+void	ft_putendl (char const *s);
+void	ft_putchar_fd (char c, int fd);
+void	ft_putstr_fd(char const*s, int fd)
+
 #endif
