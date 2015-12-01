@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_ft_isalnum.c                                  :+:      :+:    :+:   */
+/*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 17:24:37 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/28 17:25:02 by yismail          ###   ########.fr       */
+/*   Created: 2015/12/01 13:48:40 by yismail           #+#    #+#             */
+/*   Updated: 2015/12/01 13:53:03 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 
-int main (void)
+#include "libft.h"
+
+void ft_strclr(char *s)
 {
-    int i;
+	int i;
+	int j;
 
-    i = ft_isalnum ('%');
-    printf ("%d", i);
-	return (0);
+	i = 0;
+	j = ft_strlen (s);
+	if (s != NULL)
+	{	
+		while (i < j)
+		{
+			if (s[i] != '\0')
+				s[i] = '\0';
+			i++;
+		}
+	}
 }

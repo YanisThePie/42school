@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 17:13:04 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/29 19:31:24 by yismail          ###   ########.fr       */
+/*   Updated: 2015/12/01 15:12:00 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,11 @@ char    *ft_strstr(char *str, char *tofind);
 int     ft_tolower(int c);
 int     ft_toupper(int c);
 char	*ft_strncpy(char *dest, char *src, size_t n);
-
+void	ft_memdel (void **ap);
+void    *ft_memalloc(size_t size);
+char    *ft_strnew(size_t size);
+void	ft_strdel (char **as);
+void	ft_strclr(char *s);
+void    ft_striter(char *s, void (*f)(char*));
+void	ft_striteri(char *s, void(*f)(unsigned int, char *));
 #endif

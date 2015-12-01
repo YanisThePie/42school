@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_strnstr.c                                     :+:      :+:    :+:   */
+/*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 20:57:36 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 21:05:42 by yismail          ###   ########.fr       */
+/*   Created: 2015/12/01 13:59:16 by yismail           #+#    #+#             */
+/*   Updated: 2015/12/01 14:08:23 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <stdlib.h>
-#include <libc.h>
 
-int main (void)
+#include "libft.h"
+
+void	ft_striter(char *s, void (*f)(char*))
 {
-    char *c;
-    c = strnstr ("michade", "ad", 5);
-    printf ("%s", c);
+	int i;
+
+	i = 0;
+	if (s != NULL && f != NULL)
+		{
+			while (s[i] != '\0')
+			{
+				f (s + i);
+				i++;
+			}
+		}
 }

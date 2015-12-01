@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_strncpy.c                                     :+:      :+:    :+:   */
+/*   ft_strnew.c.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 20:18:52 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 20:23:30 by yismail          ###   ########.fr       */
+/*   Created: 2015/12/01 13:26:26 by yismail           #+#    #+#             */
+/*   Updated: 2015/12/01 13:41:05 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <string.h>
-#include <stdio.h>
 
-int main (void)
+#include "libft.h"
+
+char	*ft_strnew(size_t size)
 {
-    char dest[9] = "bonjour";
-    char src[50] = "aur";
-    strncpy (dest, src, 5);
+	char *str;
+	int i;
 
-    printf ("%s", dest);
-
+	i = 0;
+	str = (char*)malloc(sizeof(char) * size);
+	if (str == NULL)
+		return (NULL);
+	while (i < size)
+	{	
+		str[i] = '\0';
+		i++;
+	}
+	return (str);
 }

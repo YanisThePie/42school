@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_ft_strstr.c                                   :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 15:52:03 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 15:52:04 by yismail          ###   ########.fr       */
+/*   Created: 2015/12/01 13:43:14 by yismail           #+#    #+#             */
+/*   Updated: 2015/12/01 13:47:09 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include <stdio.h>
-
-int main (void)
+void ft_strdel (char **as)
 {
-  char *c;
-  c = ft_strstr ("michad", "miche");
-  printf ("%s", c);
+	if (*as != NULL)
+	{	
+		free (*as);
+		*as = NULL;
+	}
 }

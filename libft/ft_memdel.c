@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_ft_strcat.c                                   :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 15:51:46 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 15:51:47 by yismail          ###   ########.fr       */
+/*   Created: 2015/12/01 13:08:28 by yismail           #+#    #+#             */
+/*   Updated: 2015/12/01 13:44:26 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include <stdio.h>
-
-int main (void)
+void ft_memdel (void **ap)
 {
-  char dest[50] = "bonjur";
-  char src[50] = "ses";
-
-  ft_strcat (dest, src);
-  printf ("%s", dest);
+	if (*ap != NULL)
+	{	
+		free (*ap);
+		*ap = NULL;
+	}
 }

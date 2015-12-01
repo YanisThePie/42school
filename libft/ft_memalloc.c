@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_ft_strncpy.c                                  :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 20:27:55 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 20:28:47 by yismail          ###   ########.fr       */
+/*   Created: 2015/12/01 13:19:10 by yismail           #+#    #+#             */
+/*   Updated: 2015/12/01 13:31:22 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <stdlib.h>
 
-int main (void)
-{
-    char dest[9] = "bonjour";
-    char src[50] = "aur";
-    ft_strncpy (dest, src, 5);
+#include "libft.h"
 
-    printf ("%s", dest);
+void	*ft_memalloc(size_t size)
+{	
+	void *mem;
 
+	mem = malloc(size);
+	if (mem == NULL)
+		return (NULL);
+
+	ft_memset (mem, 0, size);
+	return (mem);
 }

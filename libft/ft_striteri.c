@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_ft_strdup.c                                   :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 16:30:37 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/28 16:30:44 by yismail          ###   ########.fr       */
+/*   Created: 2015/12/01 15:07:50 by yismail           #+#    #+#             */
+/*   Updated: 2015/12/01 15:10:25 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main (void)
+#include "libft.h"
+
+void	ft_striteri (char *s, void (*f)(unsigned int, char *))
 {
-    char s [50] = "bonjourmonsieurpolochon";
-    char *str;
-    str = ft_strdup (s);
-    printf ("%s", str);
-    return (0);
+	int index;
+
+	if (s && f)
+	{
+		index = 0;
+		while (*s)
+		{
+			f(index,s);
+			index++;
+			s++;
+		}
+	}
 }
