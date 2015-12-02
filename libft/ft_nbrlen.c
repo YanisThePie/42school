@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_ft_isalnum.c                                  :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 17:24:37 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/28 17:25:02 by yismail          ###   ########.fr       */
+/*   Created: 2015/12/02 13:12:20 by yismail           #+#    #+#             */
+/*   Updated: 2015/12/02 13:14:14 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 
-int main (void)
+#include "libft.h"
+
+size_t ft_nbrlen (int n)
 {
-    int i;
+	int size;
 
-    i = ft_isalnum ('%');
-    printf ("%d", i);
-	return (0);
+	size = 0;
+	if (n < 0)
+		size ++;
+	while (n / 10 != 0)
+	{
+		n = n / 10;
+		size++;
+	}
+	size++;
+	return (size);
 }

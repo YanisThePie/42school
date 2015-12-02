@@ -6,13 +6,13 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 15:52:22 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/29 18:22:06 by yismail          ###   ########.fr       */
+/*   Updated: 2015/12/02 15:30:02 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlen(char *c)
+size_t		ft_strlen(const char *c)
 {
 	int cpt;
 

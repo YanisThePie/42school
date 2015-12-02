@@ -1,23 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_ft_strncpy.c                                  :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 20:27:55 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 20:28:47 by yismail          ###   ########.fr       */
+/*   Created: 2015/12/02 12:45:25 by yismail           #+#    #+#             */
+/*   Updated: 2015/12/02 12:46:22 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <stdlib.h>
+ #include "libft.h"
 
-int main (void)
+void	ft_putnbr(int n)
 {
-    char dest[9] = "bonjour";
-    char src[50] = "aur";
-    ft_strncpy (dest, src, 5);
-
-    printf ("%s", dest);
-
+	ft_putnbr_fd(n, 1);
 }

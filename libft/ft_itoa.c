@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_strncpy.c                                     :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 20:18:52 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 20:23:30 by yismail          ###   ########.fr       */
+/*   Created: 2015/12/02 13:15:21 by yismail           #+#    #+#             */
+/*   Updated: 2015/12/02 15:06:01 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <string.h>
-#include <stdio.h>
 
-int main (void)
+#include "libft.h"
+
+char	*ft_itoa(int n)
 {
-    char dest[9] = "bonjour";
-    char src[50] = "aur";
-    strncpy (dest, src, 5);
+	char *str;
+	size_t len;
 
-    printf ("%s", dest);
-
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	len = ft_nbrlen(n);
+	if (!(str = (char *)malloc((len + 1) * sizeof (*str))))
+		return (NULL);
+	if (n < 0)
+	{
+		str[0] = '-';
+		n = n * (-1);
+	}
+	str[len] = '\0';
+	while (n >= 10)
+	{	
+		str[len - 1] = n % 10 + '0';
+		n = (n / 10);
+		len--;
+	}
+	str[len - 1] = n + '0';
+	return (str);
 }

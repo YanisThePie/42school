@@ -6,13 +6,13 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 15:53:11 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/29 17:34:34 by yismail          ###   ########.fr       */
+/*   Updated: 2015/12/02 15:33:39 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcat(char *dest, char *src)
+char	*ft_strcat(char *dest, const char *src)
 {
 	int	i;
 	int	j;

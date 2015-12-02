@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 16:00:02 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/29 17:45:37 by yismail          ###   ########.fr       */
+/*   Updated: 2015/12/02 15:16:58 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	ft_strlcat(char *dest, char *src, size_t n)
 	while (dest[i] != '\0')
 		i++;
 	j = 0;
-	while (src[j] != '\0' && src[j] < n)
+	while (src[j] != '\0' && j < (n - i - 1))
 	{
 		dest[i + j] = src[j];
 		j++;

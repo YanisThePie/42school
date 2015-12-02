@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_ft_strcat.c                                   :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 15:51:46 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 15:51:47 by yismail          ###   ########.fr       */
+/*   Created: 2015/12/02 12:19:18 by yismail           #+#    #+#             */
+/*   Updated: 2015/12/02 15:50:31 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include <stdio.h>
-
-int main (void)
+void ft_putrecursive_fd(int n, int fd)
 {
-  char dest[50] = "bonjur";
-  char src[50] = "ses";
+	if (n / 10 > 0)
+		ft_putrecursive_fd( n / 10, fd);
+	ft_putchar_fd((n % 10) + '0', fd);
+}
 
-  ft_strcat (dest, src);
-  printf ("%s", dest);
+void ft_putnbr_fd(int n, int fd)
+{
+	if (n == -2147483648)
+	{
+		ft_putstr_fd("-2147483648", fd);
+		return ;
+	}
+
+	if (n < 0 && (n = -n))
+		ft_putchar_fd('-', fd);
+	ft_putrecursive_fd(n, fd);
 }
