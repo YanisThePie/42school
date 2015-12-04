@@ -19,7 +19,6 @@ SRCS = ft_itoa.c \
     ft_atoi.c \
 	ft_memcmp.c \
 	ft_bzero.c \
-	ft_isdigit.c \
 	ft_isalpha.c \
 	ft_isalnum.c \
 	ft_isascii.c \
@@ -74,7 +73,6 @@ OBJECTS = ft_itoa.o \
     ft_atoi.o \
     ft_memcmp.o \
     ft_bzero.o \
-    ft_isdigit.o \
     ft_isalpha.o \
     ft_isalnum.o \
     ft_isascii.o \

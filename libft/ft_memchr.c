@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_strncpy.c                                     :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 20:18:52 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 20:23:30 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/28 20:47:29 by yismail           #+#    #+#             */
+/*   Updated: 2015/11/29 18:04:36 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <string.h>
-#include <stdio.h>
 
-int main (void)
+#include "libft.h"
+
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-    char dest[9] = "bonjour";
-    char src[50] = "aur";
-    strncpy (dest, src, 5);
+	char	*str;
+	size_t	i;
 
-    printf ("%s", dest);
-
+	if (!(str = (char *)s))
+	  return (NULL);
+	i = 0;
+	while (i < n)
+	{
+	  if ((char)c == str[0])
+		  return ((void*)str);
+		i++;
+		str++;
+	}
+	return (NULL);
 }

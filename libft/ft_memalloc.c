@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_ft_strcat.c                                   :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 15:51:46 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 15:51:47 by yismail          ###   ########.fr       */
+/*   Created: 2015/12/01 13:19:10 by yismail           #+#    #+#             */
+/*   Updated: 2015/12/02 17:02:01 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include <stdio.h>
-
-int main (void)
+void	*ft_memalloc(size_t size)
 {
-  char dest[50] = "bonjur";
-  char src[50] = "ses";
+	void *mem;
 
-  ft_strcat (dest, src);
-  printf ("%s", dest);
+	mem = malloc(size);
+	if (mem == NULL || size == 0)
+		return (NULL);
+	ft_memset(mem, 0, size);
+	return (mem);
 }

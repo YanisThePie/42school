@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_ft_strncpy.c                                  :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 20:27:55 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 20:28:47 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/28 20:08:13 by yismail           #+#    #+#             */
+/*   Updated: 2015/11/29 17:25:11 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <stdlib.h>
 
-int main (void)
+#include "libft.h"
+
+void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
-    char dest[9] = "bonjour";
-    char src[50] = "aur";
-    ft_strncpy (dest, src, 5);
+	char	*str;
+	char	*str2;
+	size_t	i;
 
-    printf ("%s", dest);
-
+	if (!src || !dest)
+	  return (NULL);
+	i = 0;
+	str = (char *)src;
+	str2 = (char *)dest;
+	while (i < n)
+	{
+		str2[i] = str[i];
+		if ((char)c == str2[i])
+		  return ((void*)&str2[i + 1]);
+		i++;
+	}
+	return (NULL);
 }

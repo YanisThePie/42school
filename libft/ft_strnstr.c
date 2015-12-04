@@ -1,21 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_ft_isalnum.c                                  :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 17:24:37 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/28 17:25:02 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/26 20:49:45 by yismail           #+#    #+#             */
+/*   Updated: 2015/11/29 17:50:55 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 
-int main (void)
+#include "libft.h"
+
+char	*ft_strnstr(char *str, char *tofind, size_t n)
 {
-    int i;
+	int		b;
+	size_t	cpt;
+	int		cpt2;
 
-    i = ft_isalnum ('%');
-    printf ("%d", i);
+	b = 0;
+	cpt = 0;
+	cpt2 = 0;
+	if (*tofind == '\0')
+	  return ((char*)str);
+	while (str[cpt] != '\0' && cpt < n)
+	{
+		if (tofind[cpt2] != str[cpt])
+		{
+			cpt++;
+			b++;
+		}
+		while (tofind[cpt2] == str[cpt] && cpt < n)
+		{
+			cpt2++;
+			cpt++;
+			if (tofind[cpt2] == '\0')
+				return (str + b);
+		}
+	}
 	return (0);
 }

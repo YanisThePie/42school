@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_ft_strstr.c                                   :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 15:52:03 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/26 15:52:04 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/26 16:00:02 by yismail           #+#    #+#             */
+/*   Updated: 2015/12/02 15:16:58 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include <stdio.h>
-
-int main (void)
+size_t	ft_strlcat(char *dest, char *src, size_t n)
 {
-  char *c;
-  c = ft_strstr ("michad", "miche");
-  printf ("%s", c);
+	size_t	i;
+	size_t	j;
+	size_t	k;
+
+	k = 0;
+	i = 0;
+	while (dest[i] && i < n)
+		i++;
+	j = i;
+	while (src[i - j] != '\0' && i < (n - 1))
+	{
+		dest[i] = src[i - j];
+		i++;
+	}
+	if (j < n)
+	  dest[i] = '\0';
+	k = (j + ft_strlen(src));
+	return (k);
 }

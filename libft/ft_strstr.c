@@ -1,42 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strrchr.c                                          :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 15:18:52 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/29 17:52:09 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/26 15:53:32 by yismail           #+#    #+#             */
+/*   Updated: 2015/11/29 17:53:57 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(char *s, int c)
+char	*ft_strstr(char *str, char *tofind)
 {
-	int		i;
-	int		j;
-	int		k;
-	char	*str;
+	int		b;
+	int		cpt;
+	int		cpt2;
 
-	j = ft_strlen(s);
-	str = (char*)malloc(sizeof(*s) * j);
-	i = 0;
-	k = 0;
-	while (s)
+	b = 0;
+	cpt = 0;
+	cpt2 = 0;
+	
+	if (*tofind == '\0')
+	  return ((char*)str);
+	if (str == NULL || tofind == NULL)
+	  return (NULL);
+	while (str[cpt] != '\0')
 	{
-		while (s[i] != '\0')
+		if (tofind[cpt2] != str[cpt])
 		{
-			i++;
-			if (s[i] == c)
-			{
-				str = (i + s);
-			}
+			cpt++;
+			b++;
 		}
-		if (str[k] != '\0')
-			return (str);
-		else
-			return (0);
+		while (tofind[cpt2] == str[cpt])
+		{
+			cpt2++;
+			cpt++;
+			if (tofind[cpt2] == '\0')
+				return (str + b);
+		}
 	}
 	return (0);
 }
