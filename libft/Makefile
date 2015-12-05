@@ -127,7 +127,6 @@ $(NAME) :
 
 clean :
 	rm -f $(OBJECTS)
-	rm -f *~
 
 fclean : clean
 	rm -f $(NAME)

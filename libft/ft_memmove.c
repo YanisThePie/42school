@@ -23,7 +23,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	i = 0;
 	str = (char*)src;
 	j = ft_strlen(str);
-	str2 = (char*)malloc(j * sizeof(*str));
+	str2 = (char*)malloc(n * sizeof(*str));
 	while (str && i < n)
 	{
 		str2[i] = str[i];
