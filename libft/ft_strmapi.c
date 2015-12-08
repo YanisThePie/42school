@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/01 15:27:40 by yismail           #+#    #+#             */
-/*   Updated: 2015/12/02 17:43:01 by yismail          ###   ########.fr       */
+/*   Updated: 2015/12/08 18:04:11 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	if (s && f)
 	{
-		str = ft_strnew(strlen(s));
+		str = ft_strnew(ft_strlen(s));
 		i = 0;
 		index = 0;
 		while (s[i] != '\0')

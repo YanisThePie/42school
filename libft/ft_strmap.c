@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/01 15:17:17 by yismail           #+#    #+#             */
-/*   Updated: 2015/12/02 17:35:42 by yismail          ###   ########.fr       */
+/*   Updated: 2015/12/08 18:04:03 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strmap(char const *s, char (*f)(char))
 
 	if (s && f)
 	{
-		str = ft_strnew(strlen(s));
+		str = ft_strnew(ft_strlen(s));
 		i = 0;
 		while (s[i] != '\0')
 		{

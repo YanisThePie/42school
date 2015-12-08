@@ -6,11 +6,12 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 20:49:45 by yismail           #+#    #+#             */
-/*   Updated: 2015/12/08 16:06:12 by yismail          ###   ########.fr       */
+/*   Updated: 2015/12/08 18:13:42 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 char	*ft_strnstr(char *str, char *tofind, size_t n)
 {
