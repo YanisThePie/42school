@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 15:18:52 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/29 17:52:09 by yismail          ###   ########.fr       */
+/*   Updated: 2015/12/08 16:05:40 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ char	*ft_strrchr(char *s, int c)
 	k = 0;
 	while (--j)
 	{
-	  if (s[j] == (char)c)
-	    return((char*)s + j);
+		if (s[j] == (char)c)
+			return ((char*)s + j);
 	}
 	if (s[j] == (char)c)
-	  return ((char*)s + j);
+		return ((char*)s + j);
 	return (NULL);
 }

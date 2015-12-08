@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 16:00:02 by yismail           #+#    #+#             */
-/*   Updated: 2015/12/02 15:16:58 by yismail          ###   ########.fr       */
+/*   Updated: 2015/12/08 16:04:10 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t	ft_strlcat(char *dest, char *src, size_t n)
 		i++;
 	}
 	if (j < n)
-	  dest[i] = '\0';
+		dest[i] = '\0';
 	k = (j + ft_strlen(src));
 	return (k);
 }

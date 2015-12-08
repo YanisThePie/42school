@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/01 15:33:22 by yismail           #+#    #+#             */
-/*   Updated: 2015/12/02 17:31:05 by yismail          ###   ########.fr       */
+/*   Updated: 2015/12/08 16:02:23 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_strequ(char const *s1, char const *s2)
 {
-  if (s1 == NULL || s2 == NULL)
-    return (0);
-  return (!(ft_strcmp(s1, s2)));
+	if (s1 == NULL || s2 == NULL)
+		return (0);
+	return (!(ft_strcmp(s1, s2)));
 }

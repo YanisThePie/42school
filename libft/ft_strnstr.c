@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 20:49:45 by yismail           #+#    #+#             */
-/*   Updated: 2015/11/29 17:50:55 by yismail          ###   ########.fr       */
+/*   Updated: 2015/12/08 16:06:12 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strnstr(char *str, char *tofind, size_t n)
 	cpt = 0;
 	cpt2 = 0;
 	if (*tofind == '\0')
-	  return ((char*)str);
+		return ((char*)str);
 	while (str[cpt] != '\0' && cpt < n)
 	{
 		if (tofind[cpt2] != str[cpt])
