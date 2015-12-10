@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 12:19:18 by yismail           #+#    #+#             */
-/*   Updated: 2015/12/02 17:27:57 by yismail          ###   ########.fr       */
+/*   Updated: 2015/12/10 19:21:41 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_putrecursive_fd(int n, int fd)
 	ft_putchar_fd((n % 10) + '0', fd);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+void		ft_putnbr_fd(int n, int fd)
 {
 	if (n == -2147483648)
 	{

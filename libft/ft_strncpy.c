@@ -15,22 +15,21 @@
 char	*ft_strncpy(char *dest, const char *src, size_t n)
 {
 	char	*d;
-	int		i;
+	size_t	i;
 
 	i = 0;
 	if (!n)
 		return (dest);
 	d = dest;
-	while (src[i] != '\0' && n)
+	while (src[i] != '\0' && i < n)
 	{
 		dest[i] = src[i];
 		i++;
-		n--;
 	}
-	while (n)
+	while (i < n)
 	{
 		dest[i] = '\0';
-		n--;
+		i++;
 	}
 	return (d);
 }
