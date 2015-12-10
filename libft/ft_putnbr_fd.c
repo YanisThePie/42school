@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	ft_putrecursive_fd(int n, int fd)
+static void	ft_putrecursive_fd(int n, int fd)
 {
 	if (n / 10 > 0)
 		ft_putrecursive_fd(n / 10, fd);
