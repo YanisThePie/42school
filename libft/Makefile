@@ -6,13 +6,19 @@
 #    By: yismail <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/02 13:28:30 by yismail           #+#    #+#              #
-#    Updated: 2015/12/02 18:38:31 by yismail          ###   ########.fr        #
+#    Updated: 2015/12/15 16:54:53 by yismail          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = libft.a
 
 SRCS = ft_itoa.c \
+	ft_lstnew.c\
+	ft_lstdelone.c\
+	ft_lstdel.c\
+	ft_lstadd.c\
+	ft_lstiter.c\
+	ft_listisempty.c\
 	ft_nbrlen.c \
 	ft_putendl_fd.c \
     ft_putchar.c \
@@ -68,6 +74,12 @@ SRCS = ft_itoa.c \
 
 OBJECTS = ft_itoa.o \
     ft_nbrlen.o \
+	ft_lstadd.o\
+	ft_lstdelone.o\
+	ft_lstdel.o\
+	ft_lstiter.o\
+	ft_lstnew.o\
+	ft_listisempty.o\
     ft_putendl_fd.o \
     ft_putchar.o \
     ft_atoi.o \

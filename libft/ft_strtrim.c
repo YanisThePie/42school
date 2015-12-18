@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/01 17:18:20 by yismail           #+#    #+#             */
-/*   Updated: 2015/12/08 16:18:55 by yismail          ###   ########.fr       */
+/*   Updated: 2015/12/15 17:24:58 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char	*ft_strtrim(char const *s)
 
 	if (s == NULL)
 		return (NULL);
-	while ((*s != '\0' && *s == '\t') || *s == '\n' || *s == ' ')
+	while ((*s != '\0' && *s == '\t') || *s == '\n' || *s == ' '
+	|| *s == '\v' || *s == '\f' || *s == 'r')
 		s++;
 	len = ft_strlen(s);
 	while (len > 0 && (s[len - 1] == ' ' || s[len - 1] == '\n' ||
