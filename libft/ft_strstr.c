@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 15:53:32 by yismail           #+#    #+#             */
-/*   Updated: 2015/12/10 19:20:21 by yismail          ###   ########.fr       */
+/*   Updated: 2015/12/18 15:07:39 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*ft_strstr(char *str, char *tofind)
 			return (s1);
 		while (s1[cpt])
 		{
+			cpt2 = 0;
 			while (tofind[cpt2] == s1[cpt + cpt2])
 			{
 				if (!(tofind[cpt2 + 1]))
