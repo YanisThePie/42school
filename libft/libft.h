@@ -81,5 +81,6 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const*s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putnbr(int n);
+t_list			*ft_lstmap(t_list *lst, t_list * (*f)(t_list *elem));
 
 #endif

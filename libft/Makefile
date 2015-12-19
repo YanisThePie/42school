@@ -15,6 +15,7 @@ NAME = libft.a
 SRCS = ft_itoa.c \
 	ft_lstnew.c\
 	ft_lstdelone.c\
+	ft_lstmap.c\
 	ft_lstdel.c\
 	ft_lstadd.c\
 	ft_lstiter.c\
@@ -84,6 +85,7 @@ OBJECTS = ft_itoa.o \
     ft_putchar.o \
     ft_atoi.o \
     ft_memcmp.o \
+	ft_lstmap.o\
     ft_bzero.o \
     ft_isalpha.o \
     ft_isalnum.o \
