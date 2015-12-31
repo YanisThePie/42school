@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/22 13:00:06 by yismail           #+#    #+#             */
-/*   Updated: 2015/12/22 13:01:32 by yismail          ###   ########.fr       */
+/*   Created: 2015/12/31 01:39:21 by yismail           #+#    #+#             */
+/*   Updated: 2015/12/31 01:52:15 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+char	*ft_strndup(char *str, size_t n)
 {
-	t_list	*tmp;
-	t_list	*tmp2;
-	t_list	*ret;
+	int		j;
+	char	*cpy;
 
-	if (!lst || !f)
+	cpy = (char *)malloc(sizeof(char) * (n + 1));
+	if (!cpy)
 		return (NULL);
-	tmp2 = f(lst);
-	if ((ret = ft_lstnew(tmp2->content, tmp2->content_size)))
+	j = 0;
+	while (j < n)
 	{
-		tmp = ret;
-		lst = lst->next;
-		while (lst)
-		{
-			tmp2 = f(lst);
-			if (!(tmp->next = ft_lstnew(tmp2->content, tmp2->content_size)))
-				return (NULL);
-			tmp = tmp->next;
-			lst = lst->next;
-		}
+		cpy[j] = str[j];
+		j++;
 	}
-	return (ret);
+	cpy[j] = '\0';
+	return (cpy);
 }
