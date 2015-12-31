@@ -15,7 +15,6 @@
 #include <unistd.h>
 #include "fillit.h"
 
-
 int print_tab (char **tab)
 {
   int i;
@@ -90,6 +89,7 @@ int create_tab(char *piece)
   int col;
   int i;
   d_list **tempor;
+  static char e = 'A';
 	
   i = 0;
   lin = 0;
@@ -107,6 +107,8 @@ int create_tab(char *piece)
       col = 0;
       while (col < 4)
 	{
+	   if (piece[i] == '#')
+	    piece[i] = e;
 	  tab[lin][col] = piece[i];
 	  col++;
 	  i++;
@@ -115,6 +117,7 @@ int create_tab(char *piece)
       lin++;
     }
   create_list(tab);
+  e++;
   return (0);
 }
 
@@ -146,7 +149,7 @@ int main (void)
 {
   char *str;
   
-  str = ft_strdup("..#.\n..#.\n...#\n...#\n\n..#.\n...#\n..#.\n..#.\n\n.#..\n#...\n.#..\n.#..\n\n..#.\n.#..\n.#..\n#...\n\n");
+  str = ft_strdup("...#\n..#.\n..#.\n...#\n\n..#.\n...#\n..#.\n..#.\n\n.#..\n#...\n.#..\n.#..\n\n..#.\n.#..\n.#..\n#...\n\n");
   take (str);
   return (0);
 }
