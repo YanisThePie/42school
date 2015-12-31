@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 01:39:21 by yismail           #+#    #+#             */
-/*   Updated: 2015/12/31 01:52:15 by yismail          ###   ########.fr       */
+/*   Updated: 2015/12/31 01:57:01 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strndup(char *str, size_t n)
 {
-	int		j;
+	size_t	j;
 	char	*cpy;
 
 	cpy = (char *)malloc(sizeof(char) * (n + 1));
