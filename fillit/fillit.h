@@ -6,7 +6,7 @@
 /*   By: jaustry <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 17:30:32 by jaustry           #+#    #+#             */
-/*   Updated: 2015/12/30 17:31:00 by jaustry          ###   ########.fr       */
+/*   Updated: 2016/01/02 20:09:51 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,24 @@
 # include <stdio.h>
 # define ERROR { printf("Error in %s, at line %d\n", __FILE__, __LINE__); exit(EXIT_FAILURE); }
 
-typedef struct	dlist
-{
-  void		*content;
-  size_t	content_size;
-  struct dlist	*prev;
-  struct dlist *next;
-}		d_list;
 
-int		get_pieces(int fd);
+typedef struct	s_dlist
+{
+  void			*content;
+  size_t		content_size;
+  struct s_dlist	*prev;
+  struct s_dlist	*next;
+}				t_dlist;
+
+int			get_pieces(int fd);
 void		verify_piece(char *buf);
 void		verify_n(char *buf);
 void		verify_link(char *buf);
+int 		print_tab (char **tab);
+t_dlist 		*ft_dlstnew(void const *content, size_t content_size);
+void 		create_list (char **tab);
+int 		create_tab(char *piece);
+void 		take (char *buf);
+
 
 #endif

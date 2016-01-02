@@ -6,42 +6,40 @@
 /*   By: jaustry <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 17:14:38 by jaustry           #+#    #+#             */
-/*   Updated: 2015/12/30 17:20:09 by jaustry          ###   ########.fr       */
+/*   Updated: 2016/01/02 19:44:55 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		main(int argc, char **argv)
-{
-	int		fd;
-	int		pieces;
-
-	if (argc != 2)
-		ERROR;
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		ERROR;
-	pieces = get_pieces(fd);
-
-	return (0);
-}
+/*char *get_buffer_read
 
 int		get_pieces(int fd)
 {
 	char	buf[21];
 	ssize_t	r;
+	char	*string;
+	int		i;
+	int		n;
+	char	*tmp;
 
-	while (r = (read(fd, buf, 21)))
+	n = 0;
+	i = 0;
+	//ft_strclr (string);
+	while ((r = read(fd, buf, 21)))
 	{
 		verify_piece(buf);
 		verify_n(buf);
 		verify_link(buf);
+		//tmp = buf;
+		//string = ft_strjoin(string, tmp);
+		//n++;
+		//printf ("%s", string);
 	}
 	printf("%s\n", "super");
 	return (0);
 }
-
+*/
 void		verify_piece(char *buf)
 {
 	int a;
@@ -109,8 +107,24 @@ void		verify_link(char *buf)
 		  }	
 		n++;
 	}
-	printf("%s\n", "3");
+  printf("%s\n", "3");
 	if (j < 6)
 		ERROR;
 }
 
+int		main(int argc, char **argv)
+{
+	int		fd;
+//	int		pieces;
+
+	if (argc != 2)
+		ERROR;
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		ERROR;
+//	get_buffer_read(void);
+//	pieces = get_pieces(fd);
+
+
+	return (0);
+}
