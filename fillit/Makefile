@@ -6,13 +6,14 @@
 #    By: jaustry <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 22:12:34 by jaustry           #+#    #+#              #
-#    Updated: 2016/01/02 20:11:59 by yismail          ###   ########.fr        #
+#    Updated: 2016/01/03 21:45:12 by yismail          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = execut
 CC = gcc
-SRCS = create_chain.c
+SRCS = create_chain.c \
+	main.c 
 CFLAGS = -Wall -Wextra -Werror
 OBJS = $(SRCS:.c=.o)
 

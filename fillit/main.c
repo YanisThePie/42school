@@ -6,40 +6,36 @@
 /*   By: jaustry <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 17:14:38 by jaustry           #+#    #+#             */
-/*   Updated: 2016/01/02 19:44:55 by yismail          ###   ########.fr       */
+/*   Updated: 2016/01/03 21:15:34 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-/*char *get_buffer_read
 
 int		get_pieces(int fd)
 {
 	char	buf[21];
 	ssize_t	r;
-	char	*string;
 	int		i;
 	int		n;
-	char	*tmp;
+	char	alpha;
 
 	n = 0;
 	i = 0;
-	//ft_strclr (string);
+	alpha = 'A';
 	while ((r = read(fd, buf, 21)))
 	{
 		verify_piece(buf);
 		verify_n(buf);
 		verify_link(buf);
-		//tmp = buf;
-		//string = ft_strjoin(string, tmp);
-		//n++;
-		//printf ("%s", string);
+		main_creation(buf, alpha);
+		alpha++;
+		
 	}
 	printf("%s\n", "super");
 	return (0);
 }
-*/
 void		verify_piece(char *buf)
 {
 	int a;
@@ -67,7 +63,6 @@ void		verify_piece(char *buf)
 		ERROR;
 	//if ((n != 5) || (n != 4))
 	//	ERROR;
-	printf("%s\n", "1");
 }
 
 void		verify_n(char *buf)
@@ -81,7 +76,6 @@ void		verify_n(char *buf)
 			ERROR;
 		a++;
 	}
-	printf("%s\n", "2");
 }
 
 void		verify_link(char *buf)
@@ -107,7 +101,6 @@ void		verify_link(char *buf)
 		  }	
 		n++;
 	}
-  printf("%s\n", "3");
 	if (j < 6)
 		ERROR;
 }
@@ -115,15 +108,14 @@ void		verify_link(char *buf)
 int		main(int argc, char **argv)
 {
 	int		fd;
-//	int		pieces;
+	int		pieces;
 
 	if (argc != 2)
 		ERROR;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		ERROR;
-//	get_buffer_read(void);
-//	pieces = get_pieces(fd);
+	pieces = get_pieces(fd);
 
 
 	return (0);
