@@ -6,15 +6,15 @@
 #    By: jaustry <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 22:12:34 by jaustry           #+#    #+#              #
-#    Updated: 2016/01/03 21:45:12 by yismail          ###   ########.fr        #
+#    Updated: 2016/01/06 19:32:53 by yismail          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = execut
 CC = gcc
-SRCS = create_chain.c \
+SRCS = create_tab.c \
 	main.c 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -ggdb
 OBJS = $(SRCS:.c=.o)
 
 .PHONY: all clean fclean re
@@ -22,7 +22,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 	
 $(NAME): $(OBJS)
-	$(CC) -o $(NAME) $^ ../libft/libft.a
+	$(CC) $(CFLAGS) -o  $(NAME) $^ ../libft/libft.a
 
 clean:
 	rm $(OBJS)

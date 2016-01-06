@@ -6,7 +6,7 @@
 #    By: yismail <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/02 13:28:30 by yismail           #+#    #+#              #
-#    Updated: 2015/12/31 01:53:07 by yismail          ###   ########.fr        #
+#    Updated: 2016/01/06 19:34:21 by yismail          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -142,7 +142,7 @@ OBJECTS = ft_itoa.o \
 all: $(NAME)
 
 $(NAME) :
-	gcc -Wall -Wextra -Werror -c $(SRCS)
+	gcc -Wall -Wextra -Werror -g -c $(SRCS)
 	ar rc $(NAME) $(OBJECTS)
 
 clean :

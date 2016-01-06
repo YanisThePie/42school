@@ -6,35 +6,99 @@
 /*   By: jaustry <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 17:14:38 by jaustry           #+#    #+#             */
-/*   Updated: 2016/01/03 21:15:34 by yismail          ###   ########.fr       */
+/*   Updated: 2016/01/06 20:10:48 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-
-int		get_pieces(int fd)
+int  print_list (t_dlist *lst)
 {
-	char	buf[21];
-	ssize_t	r;
-	int		i;
-	int		n;
-	char	alpha;
+	int i;
 
-	n = 0;
-	i = 0;
+    while (lst !=  NULL)
+    {
+		i = 0;
+		while (i < 4)
+		{
+			ft_putstr (lst->content[i]);
+			ft_putchar('\n');
+			i++;
+		}
+        lst = lst->next;
+    }
+
+    return (0);
+}
+
+t_dlist *ft_dlstnew(char **content, size_t content_size)
+{
+    t_dlist*new;
+
+    if ((new = (t_dlist*)malloc(sizeof(t_dlist))) == NULL)
+        return (NULL);
+    new->next = NULL;
+    if (content == NULL)
+    {
+        new->content = NULL;
+        new->content_size = 0;
+    }
+    else
+    {
+//        new->content = malloc(content_size);
+		//       if (new->content == NULL)
+        //{
+		//   free(new);
+		//   return (NULL);
+        //}
+        //ft_memcpy(new->content, content, content_size);
+		new->content = content;
+        new->content_size = content_size;
+    }
+    return(new);
+}
+
+t_dlist *ft_lstpushback(t_dlist *first, char **tab)
+{
+	t_dlist		*tmp;
+
+	if (first == NULL)
+		first = ft_dlstnew(tab, sizeof(tab));
+	else
+	{
+		tmp = first;
+		while (tmp->next != NULL)
+		{
+			tmp = tmp->next;
+		}
+		tmp->next = ft_dlstnew(tab, sizeof(tab));
+	}
+	return (first);
+}
+
+# define SIZE_OF_TETRIMINOS     (21 * sizeof(char))
+t_dlist		*get_pieces(int fd)
+{
+	char	buf[21 +1];
+	ssize_t	r;
+	char	alpha;
+	char	**tab;
+	t_dlist	*first;
+
 	alpha = 'A';
+	first = NULL;
 	while ((r = read(fd, buf, 21)))
 	{
+		buf[r] = '\0';
 		verify_piece(buf);
 		verify_n(buf);
 		verify_link(buf);
-		main_creation(buf, alpha);
+		tab = main_creation(buf, alpha);
+		first = ft_lstpushback (first, tab);
 		alpha++;
-		
 	}
 	printf("%s\n", "super");
-	return (0);
+	return (first);
 }
 void		verify_piece(char *buf)
 {
@@ -108,14 +172,15 @@ void		verify_link(char *buf)
 int		main(int argc, char **argv)
 {
 	int		fd;
-	int		pieces;
+	t_dlist	*list;
 
 	if (argc != 2)
 		ERROR;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		ERROR;
-	pieces = get_pieces(fd);
+	list = get_pieces(fd);
+	print_list (list);
 
 
 	return (0);

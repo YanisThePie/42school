@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 20:19:48 by yismail           #+#    #+#             */
-/*   Updated: 2016/01/03 22:18:01 by yismail          ###   ########.fr       */
+/*   Updated: 2016/01/06 17:59:50 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -27,32 +27,6 @@ int  print_tab (char **tab)
 		i++;
 	}
 	return (0);
-}
-
-t_dlist *ft_dlstnew(void const *content, size_t content_size)
-{
-	t_dlist*new;
-
-	if ((new = (t_dlist*)malloc(sizeof(t_dlist))) == NULL)
-		return (NULL);
-	new->next = NULL;
-	if (content == NULL)
-	{
-		new->content = NULL;
-		new->content_size = 0;
-	}
-	else
-	{
-		new->content = malloc(content_size);
-		if (new->content == NULL)
-		{
-			free(new);
-			return (NULL);
-		}
-		ft_memcpy(new->content, content, content_size);
-		new->content_size = content_size;
-	}
-	return(new);
 }
 
 void create_list (char **tab)
@@ -91,7 +65,7 @@ void create_list (char **tab)
 
 //	prev->next = maillon
 }
-void create_tab_bis(char *piece, char e)
+char  **create_tab_bis(char *piece, char e)
 {
 	char **tab;
 	int		i;
@@ -105,14 +79,16 @@ void create_tab_bis(char *piece, char e)
 	}
 	i = 0;
 	tab = ft_strsplit (piece, '\n');
-	create_list (tab);
+	//create_list (tab);
+	return (tab);
 }
-void take (char *buf, char alpha)
+char **take (char *buf, char alpha)
 {
 	int i;
 	int j;
 	char *tmp;
 	static int n;
+	char **tab;
 
 	i = 0;
 	j = 0;
@@ -120,12 +96,16 @@ void take (char *buf, char alpha)
 	tmp = malloc(sizeof(char) * (21 + 1));
 	tmp = ft_strcpy (tmp, buf);
 	tmp[20] = '\0';
-	create_tab_bis(tmp, alpha);
+	tab = create_tab_bis(tmp, alpha);
 	n++;
+	return (tab);
 }
 
-int main_creation (char *buffer, char alpha)
+char ** main_creation (char *buffer, char alpha)
 {
-	take (buffer, alpha);
-	return (0);
+	char **tableau;
+	tableau = take (buffer, alpha);
+	
+	
+	return (tableau);
 }
