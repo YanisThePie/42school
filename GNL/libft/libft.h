@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 17:13:04 by yismail           #+#    #+#             */
-/*   Updated: 2015/12/31 01:54:22 by yismail          ###   ########.fr       */
+/*   Updated: 2016/01/09 14:58:02 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
 void				ft_lstiter (t_list *lst, void (*f)(t_list *elem));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstdel(t_list **alst, void (*del)(void*, size_t));

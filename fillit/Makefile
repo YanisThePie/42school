@@ -6,7 +6,7 @@
 #    By: jaustry <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 22:12:34 by jaustry           #+#    #+#              #
-#    Updated: 2016/01/06 19:32:53 by yismail          ###   ########.fr        #
+#    Updated: 2016/01/09 15:28:36 by yismail          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 	
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o  $(NAME) $^ ../libft/libft.a
+	$(CC) $(CFLAGS) -o  $(NAME) $^ ./libft/libft.a
 
 clean:
 	rm $(OBJS)

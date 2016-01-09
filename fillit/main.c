@@ -6,7 +6,7 @@
 /*   By: jaustry <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 17:14:38 by jaustry           #+#    #+#             */
-/*   Updated: 2016/01/06 20:10:48 by yismail          ###   ########.fr       */
+/*   Updated: 2016/01/09 15:41:41 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,4 +175,10 @@ int		main(int argc, char **argv)
 
 
 	return (0);
+}
+while (list->content[i][j] !='\0')
+{
+	while (list->content[i][j] !='\n')
+		i++;
+	j++;
 }

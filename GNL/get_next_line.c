@@ -1,4 +1,4 @@
-#define BUFF_SIZE 21
+#define BUFF_SIZE 2
 #include "get_next_line.h"
 #include <stdio.h>
 #include <unistd.h>
@@ -17,8 +17,8 @@ int get_next_line(int const fd, char **line)
 
   while ((r = read (fd, buf, BUFF_SIZE)))
   {
-       printf ("%s\n", buf);
-       buf[r] = '\0';
+	 ft_putnbr (fd);
+       //buf[r] = '\0';
        if (r == -1)
 	 return (0);
        /*          if (buf[i] == '\n')
