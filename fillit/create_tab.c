@@ -42,7 +42,6 @@ void create_list (char **tab)
 	new = ft_dlstnew(tab, (sizeof(char) * 20));
 	printf("%d\n", 3);
 	new->content = tab;
-	//new->next = NULL;
 	printf("%d\n", 4);
 	if(*alst == NULL)
 	{	
@@ -50,20 +49,9 @@ void create_list (char **tab)
 	}
 	printf("%d\n", 5);
 	temp = new;
-	//while (temp->next != NULL)
-		//	printf ("yo\n");
-		//temp = temp -> next;
-		//}
-		//printf("%d\n", 6);
-		//temp ->next = new; 
-		//printf("%d\n", 7);
 	temp = *alst;
-	print_tab ((char**)new->content);
-	//print_tab((char**)temp->next);
+	//print_tab ((char**)new->content);
 
-
-
-//	prev->next = maillon
 }
 char  **create_tab_bis(char *piece, char e)
 {
@@ -79,7 +67,6 @@ char  **create_tab_bis(char *piece, char e)
 	}
 	i = 0;
 	tab = ft_strsplit (piece, '\n');
-	//create_list (tab);
 	return (tab);
 }
 char **take (char *buf, char alpha)
@@ -105,7 +92,5 @@ char ** main_creation (char *buffer, char alpha)
 {
 	char **tableau;
 	tableau = take (buffer, alpha);
-	
-	
 	return (tableau);
 }

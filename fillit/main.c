@@ -45,15 +45,8 @@ t_dlist *ft_dlstnew(char **content, size_t content_size)
     }
     else
     {
-//        new->content = malloc(content_size);
-		//       if (new->content == NULL)
-        //{
-		//   free(new);
-		//   return (NULL);
-        //}
-        //ft_memcpy(new->content, content, content_size);
-		new->content = content;
-        new->content_size = content_size;
+      new->content = content;
+      new->content_size = content_size;
     }
     return(new);
 }
@@ -125,8 +118,6 @@ void		verify_piece(char *buf)
 		ERROR;
 	if (p != 12)
 		ERROR;
-	//if ((n != 5) || (n != 4))
-	//	ERROR;
 }
 
 void		verify_n(char *buf)

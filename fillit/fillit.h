@@ -18,7 +18,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
-# include "../libft/libft.h"
+# include "./libft/libft.h"
 # include <stdio.h>
 # define ERROR { printf("Error in %s, at line %d\n", __FILE__, __LINE__); exit(EXIT_FAILURE); }
 
