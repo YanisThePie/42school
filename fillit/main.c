@@ -6,38 +6,77 @@
 /*   By: jaustry <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 17:14:38 by jaustry           #+#    #+#             */
-/*   Updated: 2016/01/09 15:41:41 by yismail          ###   ########.fr       */
+/*   Updated: 2016/01/11 07:12:43 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int  print_list (t_dlist *lst)
+/*int  print_list (t_dlist *lst)
 {
 	int i;
+	int j;
 
-    while (lst !=  NULL)
+    j = 0;
+	while (lst !=  NULL && j == 0)
     {
 		i = 0;
 		while (i < 4)
 		{
 			ft_putstr (lst->content[i]);
+			ft_putchar(lst->alpha);
 			ft_putchar('\n');
 			i++;
 		}
-        lst = lst->next;
+		if (lst->next != NULL)
+			lst = lst->next;
+		else
+			j = 1;
     }
-
-    return (0);
+//	lst = lst->prev;
+	j = 0;
+    while (lst != NULL && j == 0)
+	{
+        i = 0;
+        while (i < 4)
+        {
+            ft_putstr (lst->content[i]);
+			ft_putchar(lst->alpha);
+            ft_putchar('\n');
+            i++;
+        }
+		if (lst->prev != NULL)
+			lst = lst->prev;
+		else
+			j = 1;
+	}
+	return (0);
 }
-
-t_dlist *ft_dlstnew(char **content, size_t content_size)
+	while (lst->next != NULL)
+		lst = lst->next;
+	while (lst != NULL)
+	{
+		i = 0;
+		while (i < 4)
+		{
+			ft_putstr(lst->content[i]);
+			ft_putchar(lst->alpha);
+			ft_putchar('\n');
+			ft_putnbr(i);
+			i++;
+		}
+		lst = lst->prev;
+	}
+	return (0);
+	}*/
+t_dlist *ft_dlstnew(char **content, size_t content_size, t_dlist *tmp)
 {
     t_dlist*new;
 
     if ((new = (t_dlist*)malloc(sizeof(t_dlist))) == NULL)
         return (NULL);
     new->next = NULL;
+	//new->prev = NULL;
     if (content == NULL)
     {
         new->content = NULL;
@@ -47,16 +86,26 @@ t_dlist *ft_dlstnew(char **content, size_t content_size)
     {
       new->content = content;
       new->content_size = content_size;
+	  if (tmp)
+		  new->prev = tmp;
+	  if (new->prev)
+	  new->alpha = new->prev->alpha + 1;
     }
     return(new);
 }
 
-t_dlist *ft_lstpushback(t_dlist *first, char **tab)
+t_dlist *ft_lstpushback(t_dlist *first, char **tab, t_dlist *prev)
 {
-	t_dlist		*tmp;
+	t_dlist			*tmp;
 
+	prev = NULL;//a retirer?
+	tmp = NULL;
 	if (first == NULL)
-		first = ft_dlstnew(tab, sizeof(tab));
+	{
+		first = ft_dlstnew(tab, sizeof(tab), tmp);
+		first->alpha = 'A';
+		first->prev = NULL;
+	}
 	else
 	{
 		tmp = first;
@@ -64,7 +113,12 @@ t_dlist *ft_lstpushback(t_dlist *first, char **tab)
 		{
 			tmp = tmp->next;
 		}
-		tmp->next = ft_dlstnew(tab, sizeof(tab));
+		tmp->next = ft_dlstnew(tab, sizeof(tab), tmp);
+		tmp->next->prev = tmp;
+		//if (prev != NULL)
+        //{
+		//  tmp->next->prev = prev;
+        //}
 	}
 	return (first);
 }
@@ -74,21 +128,20 @@ t_dlist		*get_pieces(int fd)
 {
 	char	buf[21 +1];
 	ssize_t	r;
-	char	alpha;
 	char	**tab;
 	t_dlist	*first;
+	static t_dlist *prev;
 
-	alpha = 'A';
 	first = NULL;
+	prev = NULL;
 	while ((r = read(fd, buf, 21)))
 	{
 		buf[r] = '\0';
 		verify_piece(buf);
 		verify_n(buf);
 		verify_link(buf);
-		tab = main_creation(buf, alpha);
-		first = ft_lstpushback (first, tab);
-		alpha++;
+		tab = main_creation(buf);
+		first = ft_lstpushback (first, tab, prev);
 	}
 	printf("%s\n", "super");
 	return (first);
@@ -171,14 +224,8 @@ int		main(int argc, char **argv)
 	if (fd == -1)
 		ERROR;
 	list = get_pieces(fd);
-	print_list (list);
+	place_in_square (list);
 
 
 	return (0);
-}
-while (list->content[i][j] !='\0')
-{
-	while (list->content[i][j] !='\n')
-		i++;
-	j++;
 }

@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/02 16:50:13 by yismail           #+#    #+#             */
-/*   Updated: 2016/01/09 15:08:59 by yismail          ###   ########.fr       */
+/*   Updated: 2016/01/09 17:46:45 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,4 +131,9 @@ int             resolve(t_dlist *list, unsigned int *square)
       if (!list)
 	return (a);
     }
+}
+
+
+int algo (list)
+{
 }
