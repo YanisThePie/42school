@@ -52,11 +52,28 @@ char **malloc_square (size_t size)
 	return (square);		
 }
 
-int is_right (char **square, int lin, int col,int size)
+int place_tetri(char point, char **tab, int i, int j)
 {
-  if (n > 0)
-	  return (0);
-  if (square[lin][col] == '\0')
+	if (tab[i][j] == '\0')
+		return(0);
+	while (tab[i][j] != '#')
+	{
+		j++;
+	}
+	if (tab[i][j] == '#')
+	{
+		point = tab[i][j];
+		return (1);
+	}
+	if (tab[i][j] == '\n')
+		return(place_tetri(point, tab, i+1, 0));
+	return (0);
+}
+
+int is_right (char **square, int lin, int col,int size, int n, t_dlist *list)
+{
+  if (square[lin][col] == '\0' && n == 0)
+	  print_it(square);
 	  return (1);
   //if (col == size)
   //{
@@ -66,20 +83,24 @@ int is_right (char **square, int lin, int col,int size)
   //	lin = lin + 1;
   //	col = -1;
   //}
+	  print_it(square);
+  if (n > 0 && square[lin][col] == '\0')
+	  return (0);
   if(square[lin][col] == '.' && (col < size))
   {
-      if((verif_tetri(square[lin][col], list->content)) == 1)
+	  if(place_tetri(square[lin][col], list->content, 0,0) == 1)
 		  n--;
-      return (is_right(square, lin, col+1, size));
+      return (is_right(square, lin, col+1, size, n, list));
   }
   else
   {
       if (lin < size)
 	  {
 		  col = -1;
-		  return (is_right(square, lin + 1, col + 1, size));
+		  return (is_right(square, lin + 1, col + 1, size, n, list));
 	  }
   }
+  print_it(square);
   return (0);
 }
 
@@ -89,11 +110,10 @@ int place_in_square (t_dlist *list)
 	int size;
 	int result;
 	
-	list = NULL;//a retirer
 	size = 2;
 	square = malloc_square(size);
-	result = is_right(square, 0, 0, size);
-	//ft_putnbr (result);
-	print_it (square);
+	result = is_right(square, 0, 0, size, 4, list);
+	ft_putnbr (result);
+	//print_it (square);
 	return (0);
 }
