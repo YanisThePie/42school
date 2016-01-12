@@ -1,0 +1,45 @@
+;; ========== Line by line scrolling ========== 
+
+;; This makes the buffer scroll by only a single line when the up or
+;; down cursor keys push the cursor (tool-bar-mode) outside the
+;; buffer. The standard emacs behaviour is to reposition the cursor in
+;; the center of the screen, but this can make the scrolling confusing
+
+(setq scroll-step 1)
+;; ========== Support Wheel Mouse Scrolling ==========
+
+(mouse-wheel-mode t)
+;; ========== Place Backup Files in Specific Directory ==========
+
+;; Enable backup files.
+(setq make-backup-files t)
+
+;; Enable versioning with default values (keep five last versions, I think!)
+(setq version-control t)
+
+;; Save all backup file in this directory.
+(setq backup-directory-alist (quote ((".*" . "~/.emacs_backups/"))))
+;; ========== Enable Line and Column Numbering ==========
+
+;; Show line-number in the mode line
+(line-number-mode 1)
+
+;; Show column-number in the mode line
+(column-number-mode 1)
+
+;; ==================== Thor Configuration =========================
+; Set default emacs configuration
+(set-language-environment "UTF-8")
+(setq-default font-lock-global-modes nil)
+(setq-default line-number-mode nil)
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode t)
+(global-set-key (kbd "DEL") 'backward-delete-char)
+(setq-default c-backspace-function 'backward-delete-char)
+(setq-default c-basic-offset 4)
+(setq-default c-default-style "linux")
+(setq-default tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60
+                             64 68 72 76 80 84 88 92 96 100 104 108 112 116 120))
+
+;;============================ My Configuration ================================================
+(global-set-key "\C-m" 'newline-and-indent)
