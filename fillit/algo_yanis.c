@@ -17,11 +17,12 @@ void print_it (char **tab)
 	int i;
 	
 	i = 0;
-	ft_putstr (tab[i]);
-	i++;
-	ft_putstr (tab[i]);
-	i++;
-	ft_putstr (tab[i]);
+	while (tab[i])
+	{
+		ft_putstr(tab[i]);
+		ft_putchar ('\n');
+		i++;
+	}
 }
 
 char **malloc_square (size_t size)
@@ -46,74 +47,134 @@ char **malloc_square (size_t size)
 			square[i][j] = '.';
 			j++;
 		}
-      square[i][j] = '\n';
-      i++;
+		square[i][j] = '\n';
+		i++;
     }
 	return (square);		
 }
 
-int place_tetri(char point, char **tab, int i, int j)
+int place_others_tetri(char ***pointed_square, int lin, int col, char **tab, int first_tmp_i, int first_tmp_j, int n)
 {
-	if (tab[i][j] == '\0')
-		return(0);
+	int i;
+	int j;
+	char **square;
+
+	//ft_putstr("tmp");
+	//ft_putchar('\n');
+	//ft_putnbr(first_tmp_i);
+	square = *pointed_square;
+	i = first_tmp_i;
+	j = first_tmp_j + 1;
+
+	//print_it(square);
+	//ft_putnbr(j);
+	ft_putchar('\n');
+
+		while (tab[i][j] != '#' && i < 4 && j < 4)
+		{
+			ft_putnbr(j);
+			ft_putchar('\n');
+			if (j == '\n')
+			{
+				i++;
+				//j = -1;
+			}
+			j++;
+		}
+	if (tab[i][j] == '#')
+	{
+		lin = lin + (i - first_tmp_i);
+		col = col + (j - first_tmp_j);
+		square[lin][col] = '#';
+	}
+	first_tmp_i = i;
+	first_tmp_j = j;
+	n--;
+	if (n > 0)
+		return(place_others_tetri(&square, lin, col, tab, first_tmp_i, first_tmp_j, n));
+	if (n == 0)
+		return (1);
+	return (0);
+}
+int place_first_tetri_diese(char ***pointed_square, int lin, int col, char **tab, int i, int j)
+{
+	int first_tmp_i;
+	int first_tmp_j;
+	char **square;
+
+	
+	square = *pointed_square;
 	while (tab[i][j] != '#')
 	{
 		j++;
 	}
 	if (tab[i][j] == '#')
 	{
-		point = tab[i][j];
-		return (1);
+		first_tmp_i = i;
+		first_tmp_j = j;
+		square[lin][col] = tab[i][j];
+		if((place_others_tetri(&square, lin, col, tab, first_tmp_i, first_tmp_j, 3)) == 1)
+		{
+
+			return(1);
+		}
 	}
 	if (tab[i][j] == '\n')
-		return(place_tetri(point, tab, i+1, 0));
+		return(place_first_tetri_diese(&square, lin, col, tab, i+1, 0));
 	return (0);
 }
 
 int is_right (char **square, int lin, int col,int size, int n, t_dlist *list)
 {
-  if (square[lin][col] == '\0' && n == 0)
-	  print_it(square);
-	  return (1);
-  //if (col == size)
-  //{
-  //ft_putnbr(lin);
-  //ft_putchar('L');
-  //ft_putchar ('\n');
-  //	lin = lin + 1;
-  //	col = -1;
-  //}
-	  print_it(square);
-  if (n > 0 && square[lin][col] == '\0')
-	  return (0);
-  if(square[lin][col] == '.' && (col < size))
-  {
-	  if(place_tetri(square[lin][col], list->content, 0,0) == 1)
-		  n--;
-      return (is_right(square, lin, col+1, size, n, list));
-  }
-  else
-  {
-      if (lin < size)
-	  {
-		  col = -1;
-		  return (is_right(square, lin + 1, col + 1, size, n, list));
-	  }
-  }
-  print_it(square);
-  return (0);
+	//print_it(square);
+	if (square[lin][col] == '\0' && n == 0)
+	{
+		return (1);
+	}
+	//if (col == size)
+	//{
+	//ft_putnbr(lin);
+	//ft_putchar('L');
+	//ft_putchar ('\n');
+	//	lin = lin + 1;
+	//	col = -1;
+	//}
+	if (n > 0 && square[lin][col] == '\0')
+		return (0);
+	if(square[lin][col] == '.' && (col < size))
+	{
+		if((place_first_tetri_diese(&square, lin, col,  list->content, 0,0) == 1))
+		{
+			//print_it(square);
+			return (1);
+		}
+		return (is_right(square, lin, col+1, size, n, list));
+	}
+	else
+	{
+		if (lin < size)
+		{
+			col = -1;
+			return (is_right(square, lin + 1, col + 1, size, n, list));
+		}
+	}
+	return (0);
 }
 
 int place_in_square (t_dlist *list)
 {
 	char **square;
 	int size;
-	int result;
 	
 	size = 2;
 	square = malloc_square(size);
-	result = is_right(square, 0, 0, size, 4, list);
-	ft_putnbr (result);
+	//print_it(square);
+	while(is_right(square, 0, 0, size, 4, list) == 0)
+	{
+		size = size + 1;
+		square = malloc_square(size);
+	}
+	//ft_putnbr (result);
 	//print_it (square);
 	return (0);
 }
