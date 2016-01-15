@@ -20,7 +20,7 @@ void print_it (char **tab)
 	while (tab[i])
 	{
 		ft_putstr(tab[i]);
-		ft_putchar ('\n');
+		//ft_putchar('\n');
 		i++;
 	}
 }
@@ -32,7 +32,7 @@ char **malloc_square (size_t size)
 	size_t j;
 	i = 0;
 	j = 0;
-	square = (char**)malloc (sizeof(char*) * (size * size) + 1);
+	square = (char**)malloc (sizeof(char*) * (size * size)+ 1);
 	while (i <= size)
 	{	
 		square[i] = (char*)malloc(sizeof(char) * (size) + 1);
@@ -53,128 +53,150 @@ char **malloc_square (size_t size)
 	return (square);		
 }
 
-int place_others_tetri(char ***pointed_square, int lin, int col, char **tab, int first_tmp_i, int first_tmp_j, int n)
+int place_others_tetri(char ***pointed_square, int line_in_square, int col_in_square, char **tetri, int tmp_line_tetri, int tmp_col_tetri, int n, int size)
 {
-	int i;
-	int j;
+	int line_tetri;
+	int col_tetri;
 	char **square;
 
-	//ft_putstr("tmp");
-	//ft_putchar('\n');
-	//ft_putnbr(first_tmp_i);
 	square = *pointed_square;
-	i = first_tmp_i;
-	j = first_tmp_j + 1;
-
-	//print_it(square);
-	//ft_putnbr(j);
-	ft_putchar('\n');
-
-		while (tab[i][j] != '#' && i < 4 && j < 4)
-		{
-			ft_putnbr(j);
-			ft_putchar('\n');
-			if (j == '\n')
-			{
-				i++;
-				//j = -1;
-			}
-			j++;
-		}
-	if (tab[i][j] == '#')
+	line_tetri = tmp_line_tetri;
+	col_tetri = tmp_col_tetri + 1;
+	while (tetri[line_tetri][col_tetri] != '#' && line_tetri < 4)
 	{
-		lin = lin + (i - first_tmp_i);
-		col = col + (j - first_tmp_j);
-		square[lin][col] = '#';
+		while (tetri[line_tetri][col_tetri] != '#' && col_tetri < 4)
+		{
+			col_tetri++;
+		}
+		if (col_tetri == 4 && line_tetri < 4)
+		{
+			line_tetri++;
+			col_tetri = 0;
+		}
 	}
-	first_tmp_i = i;
-	first_tmp_j = j;
-	n--;
+	if (tetri[line_tetri][col_tetri] == '#')
+	{
+		line_in_square = line_in_square + (line_tetri - tmp_line_tetri);
+		col_in_square = col_in_square + (col_tetri - tmp_col_tetri);
+		//ft_putnbr(line_in_square);
+		//ft_putchar('\n');
+		//ft_putnbr(col_in_square);
+		//ft_putchar('\n');
+		
+		if (line_in_square < size && col_in_square < size)
+		{
+			square[line_in_square][col_in_square] = '#';
+			n--;
+		}
+	}
+	tmp_line_tetri = line_tetri;
+	tmp_col_tetri = col_tetri;
 	if (n > 0)
-		return(place_others_tetri(&square, lin, col, tab, first_tmp_i, first_tmp_j, n));
+	{
+		if (line_in_square >= size || col_in_square >= size)
+			return(0);
+		else
+			return(place_others_tetri(&square, line_in_square, col_in_square, tetri, tmp_line_tetri, tmp_col_tetri, n, size));
+	}
 	if (n == 0)
 		return (1);
 	return (0);
 }
-int place_first_tetri_diese(char ***pointed_square, int lin, int col, char **tab, int i, int j)
+int place_first_tetri_diese(char ***pointed_square, int line_in_square, int col_in_square, char **tetri, int line_tetri, int col_tetri, int size)
 {
-	int first_tmp_i;
-	int first_tmp_j;
+	int tmp_line_tetri;
+	int tmp_col_tetri;
 	char **square;
 
-	
 	square = *pointed_square;
-	while (tab[i][j] != '#')
+	while (tetri[line_tetri][col_tetri] == '.' && tetri[line_tetri][col_tetri] != '\n'  && col_tetri < 4)
 	{
-		j++;
+		col_tetri++;
 	}
-	if (tab[i][j] == '#')
+	if (tetri[line_tetri][col_tetri] == '#')
 	{
-		first_tmp_i = i;
-		first_tmp_j = j;
-		square[lin][col] = tab[i][j];
-		if((place_others_tetri(&square, lin, col, tab, first_tmp_i, first_tmp_j, 3)) == 1)
-		{
-
+		tmp_line_tetri = line_tetri;
+		tmp_col_tetri = col_tetri;
+		square[line_in_square][col_in_square] = tetri[line_tetri][col_tetri];
+		if((place_others_tetri(&square, line_in_square, col_in_square, tetri, tmp_line_tetri, tmp_col_tetri, 3, size)) == 1)
 			return(1);
-		}
+		else 
+		return(0);
+			
 	}
-	if (tab[i][j] == '\n')
-		return(place_first_tetri_diese(&square, lin, col, tab, i+1, 0));
-	return (0);
+	if (col_tetri == 4 && tetri[line_tetri][col_tetri] != '#')
+	{
+		return(place_first_tetri_diese(&square, line_in_square, col_in_square, tetri, line_tetri+1, 0, size));
+	}
+	return(0);
 }
-
 int is_right (char **square, int lin, int col,int size, int n, t_dlist *list)
 {
-	//print_it(square);
-	if (square[lin][col] == '\0' && n == 0)
-	{
-		return (1);
-	}
-	//if (col == size)
-	//{
-	//ft_putnbr(lin);
-	//ft_putchar('L');
-	//ft_putchar ('\n');
-	//	lin = lin + 1;
-	//	col = -1;
-	//}
 	if (n > 0 && square[lin][col] == '\0')
 		return (0);
 	if(square[lin][col] == '.' && (col < size))
 	{
-		if((place_first_tetri_diese(&square, lin, col,  list->content, 0,0) == 1))
+		if((place_first_tetri_diese(&square, lin, col,  list->content, 0,0, size) == 1))
 		{
-			//print_it(square);
 			return (1);
 		}
-		return (is_right(square, lin, col+1, size, n, list));
+		else
+			return (is_right(square, lin, col+1, size, n, list));
 	}
-	else
-	{
-		if (lin < size)
-		{
-			col = -1;
-			return (is_right(square, lin + 1, col + 1, size, n, list));
-		}
-	}
-	return (0);
+	
+		if (col == size && lin < size)
+			return (is_right(square, lin + 1, 0, size, n, list));
+		//if (col == size && lin == size && list->next != NULL)
+		//{
+		//list = list->next;
+		//isright(square, 0,
+		//}
+		return (0);
 }
 
+int list_recursive(t_dlist *list, t_dlist *first, char **square, int size)
+{
+	int result;
+
+	result = 0;
+	result = result + (is_right(square, 0, 0, size, 4, list));
+
+	if (result == 0 && result -> next != NULL)
+	{
+		list = list->next;
+		list_recursive(list, first, square, size);
+	}
+	if (result == 1)
+		alpha_tmp = list->alpha;
+	if (list == NULL && result != result_to_have)
+	{
+		list = first;
+		while (list-> alpha != alpha_tmp);
+		{
+			if (place_in_square(list) == 1)
+				list = list->next;
+		}
+		if
+	}
+}
 int place_in_square (t_dlist *list)
 {
 	char **square;
-	int size;
-	
+	static t_dlist *first;
+	static int size;
+	int result;
+
+	first = list;
 	size = 2;
 	square = malloc_square(size);
-	//print_it(square);
-	while(is_right(square, 0, 0, size, 4, list) == 0)
+	result = list_recursive(list, first, square, size);
+	if (result = 0);
 	{
 		size = size + 1;
-		square = malloc_square(size);
+		list = first;
+		place_in_square(list, size + 1);
 	}
-	//ft_putnbr (result);
-	//print_it (square);
-	return (0);
+}
+return (0);
+// partie a revoir, au niveau de la recursivite des listes.
 }

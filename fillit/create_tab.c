@@ -21,7 +21,6 @@ char  **create_tab_bis(char *piece)
 	int		i;
 
 	i = 0;
-	
 	tab = ft_strsplit (piece, '\n');
 	return (tab);
 }
@@ -30,7 +29,7 @@ char **take (char *buf)
 	char *tmp;
 	char **tab;
 
-	tmp = malloc(sizeof(char) * (21 + 1));
+	tmp = malloc(sizeof(char) * (21));//21 + 1
 	tmp = ft_strcpy (tmp, buf);
 	tmp[21] = '\0';
 	tab = create_tab_bis(tmp);

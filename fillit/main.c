@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-/*int  print_list (t_dlist *lst)
+int  print_list (t_dlist *lst)
 {
 	int i;
 	int j;
@@ -52,7 +52,7 @@
 	}
 	return (0);
 }
-	while (lst->next != NULL)
+/*while (lst->next != NULL)
 		lst = lst->next;
 	while (lst != NULL)
 	{
@@ -76,7 +76,6 @@ t_dlist *ft_dlstnew(char **content, size_t content_size, t_dlist *tmp)
     if ((new = (t_dlist*)malloc(sizeof(t_dlist))) == NULL)
         return (NULL);
     new->next = NULL;
-	//new->prev = NULL;
     if (content == NULL)
     {
         new->content = NULL;
@@ -224,6 +223,7 @@ int		main(int argc, char **argv)
 	if (fd == -1)
 		ERROR;
 	list = get_pieces(fd);
+	//print_list(list);
 	place_in_square (list);
 
 
