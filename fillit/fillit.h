@@ -38,7 +38,7 @@ int         print_tab (char **tab);
 t_dlist     *ft_dlstnew(char **content, size_t content_size, t_dlist *tmp);
 char        **take (char *buf);
 char         **main_creation (char *buffer);
-int			place_in_square(t_dlist *list);
+int			place_in_square(t_dlist *list, int size);
 void		verify_n(char *buf);
 void		verify_link(char *buf);
 int 		print_tab (char **tab);

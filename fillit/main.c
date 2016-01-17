@@ -224,7 +224,7 @@ int		main(int argc, char **argv)
 		ERROR;
 	list = get_pieces(fd);
 	//print_list(list);
-	place_in_square (list);
+	place_in_square (list, 2);
 
 
 	return (0);
