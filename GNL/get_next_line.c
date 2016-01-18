@@ -17,7 +17,7 @@ void  print_str(char *buf, int i)
 	}
 }
 
-int check_for_new_line (char *str_buf, int i)
+char * check_for_new_line (char *str_buf, int i)
 {
 	char *str_tmp;
 	int cpt;
@@ -26,37 +26,27 @@ int check_for_new_line (char *str_buf, int i)
 	cpt = 0;
 	j = 0;
 	str_tmp = NULL;
-	if (i >= BUFF_SIZE)
-		return (0);
+	while (str_buf[i] != '\n' && str_buf != '\0')
+		i++;
 	if (str_buf[i] == '\n')
 	{
-		str_tmp = malloc(sizeof BUFF_SIZE);
-		while (j < i)
+		while (cpt < i)
 		{
-			str_tmp[cpt] = str_buf[j];
+			str_tmp[cpt] = str_buf[cpt];
 			cpt++;
-			j ++;
 		}
-		ft_putstr(str_tmp);
-		free(str_tmp);
-		return (1);
 	}
-	else if (i < BUFF_SIZE)
-		check_for_new_line(str_buf, i + 1);
-	//si pas de newline?
-	return(0);
+	return(str_tmp);
 }
 
-int get_next_line(int const fd, char **line)
+int get_the_buffer(int const fd, char **line)
 {
   char buf[BUFF_SIZE + 1];
   (void)line;
   int r;
   int cpt;
   int i;
-  int ret;
   static char *str_tmp;
-  char *membuffer;
 
   cpt = 0;
   i = 0;
@@ -66,27 +56,36 @@ int get_next_line(int const fd, char **line)
   {
 	  if (r == -1)
 		  return (-1);
-	  ret = check_for_new_line(buf, 0);
-	  if (ret == 1)
-		  ft_putstr("stop");
+	  membuffer = ft_strjoin (membuffer, buf);
+	  if (check_for_new_line(membuffer, 0) == 1)
+		  return(1);
   }
-	 return (0);
+  return (0);
 }
-int main (int argc, char **argv)
+int get_next_line (int const fd, char **line)
 {
-  char **send;
-  int fd;
-  int ret;
-  argc = 1;
-
-  send = NULL;
-  fd = open(argv[1], O_RDONLY);
-  ret = get_next_line (fd, send);
-   ret = get_next_line (fd, send);
+	int ret;
+	char *membuffer;
+	char *str_to_print;
+	char *str_tmp;
+	
+  ret = get_the_buffer (fd, send);
+  str_tmp = keep_str_tmp(membuffer);
+  str_to_print = ft_strjoin(str_tmp, membuffer);
   return (0);
 }
 
 
+int main (int argc, char **argv)
+{
+	char **send;
+	int fd;
+	argc = 1;
+
+	send = NULL;
+	fd = open(argv[1], O_RDONLY);
+	
+	
 /*
 while ((r = read (fd, buf, BUFF_SIZE)))
 {
