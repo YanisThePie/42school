@@ -20,6 +20,7 @@ void print_it (char **tab)
 	while (tab[i])
 	{
 		ft_putstr(tab[i]);
+		//ft_putchar('\n');
 		i++;
 	}
 }
@@ -119,67 +120,96 @@ int place_first_tetri_diese(char ***pointed_square, int line_in_square, int col_
 		return(place_first_tetri_diese(&square, line_in_square, col_in_square, tetri, line_tetri+1, 0, size));
 	return(0);
 }
-int is_right (char **square, int *lin, int *col,int size, t_dlist *list)
+int is_right (char ***pointed_square, int *lin_tmp, int *col_tmp,int size, t_dlist *list)
 {
-	if (square[*lin][*col] == '\0')
+	char **square;
+	int lin;
+	int col;
+
+	lin = *lin_tmp;
+	col = *col_tmp;
+
+	square = *pointed_square;
+	if (square[lin][col] == '\0')
 		return (0);
-	if(square[*lin][*col] == '.' && (*col < size))
+	if(square[lin][col] == '.' && (col < size))
 	{
-		if((place_first_tetri_diese(&square, *lin, *col,  list->content, 0,0, size) == 1))
+		if((place_first_tetri_diese(&square, lin, col,  list->content, 0,0, size) == 1))
 			return (1);
 		else
-			return (is_right(square, lin, col+1, size, list));
+			return (is_right(&square, &lin, &col+1, size, list));
 	}
 	
-		if (*col == size && *lin < size)
-			return (is_right(square, lin + 1, 0, size, list));
+		if (col == size && lin < size)
+			return (is_right(&square, &lin + 1, 0, size, list));
 		return (0);
 }
 
-int list_recursive(t_dlist *list, t_dlist *first, char **square, int size, int tmp_lin, int tmp_col)
+int list_recursive(t_dlist *list, t_dlist *first, char ***pointed_square, int size, int tmp_lin, int tmp_col)
 {
 	int result;
 	int lin;
 	int col;
-	
+	char **square;
+
+	square = *pointed_square;
+	(void)first;
 	lin = 0;
 	col = 0;
-	result = (is_right(square, &lin, &col, size, list));
-
-	if (result == 1 && list -> next != NULL)
+	result = (is_right(&square, &lin, &col, size, list));
+	print_it(list->content);
+	ft_putnbr(result);
+	/*if (result == 1 && list-> next != NULL)
 	{
 		tmp_lin = lin;
 		tmp_col = col;
 		list = list -> next;
 		list_recursive (list, first, square, size, tmp_lin, tmp_col);
-	}
-	if (result == 0 && list -> prev != NULL)
+		}*/
+	ft_putstr("salut");
+	if (result == 0 && list->prev != NULL)
 	{
 		list = list -> prev;
-		is_right (square, &lin, &col, size, list);
+		malloc_square(size);
+		ft_putchar('M');
+		result = is_right (&square, &tmp_lin +1, &tmp_col + 1, size, list);
+		print_it(list->content);
+		ft_putnbr(result);
 	}
-	if (result == 0 && list -> prev == NULL)
+	if (result == 1 && list-> next != NULL)
+	{
+		ft_putstr("post_M");
+		tmp_lin = lin;
+		tmp_col = col;
+		list = list -> next;
+		list_recursive (list, first, &square, size, tmp_lin, tmp_col);
+	}
+	if (result == 0 && list->prev  == NULL)
+	{
+		ft_putstr("yolo");
 		return (0);
-	if (result == 1 && list -> next == NULL)
+	}
+	if (result == 1 && list->next  == NULL)
+	{
+		ft_putnbr(8);
 		return (1);
+	}
 	return (0);
 }
-int place_in_square (t_dlist *list, int size)
+int place_in_square (t_dlist *list, int size, t_dlist *first)
 {
 	char **square;
-	static t_dlist *first;
 	int result;
 
-	first = list;
 	square = malloc_square(size);
-	result = list_recursive(list, first, square, size, 0 , 0);
+	result = list_recursive(list, first, &square, size, 0 , 0);
 	if (result == 0)
 	{
+		ft_putchar('v');
 		list = first;
-		place_in_square(list, size + 1);
+		place_in_square(list, size + 1, first);
 	}
-	if (result == 1)
-		print_it (square);
-return (0);
-// partie a revoir, au niveau de la recursivite des listes.
+	return (0);
 }
+// partie a revoir, au niveau de la recursivite des listes.
+

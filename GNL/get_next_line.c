@@ -1,5 +1,5 @@
 
-#define BUFF_SIZE 100
+#define BUFF_SIZE 10
 #include "get_next_line.h"
 #include <stdio.h>
 #include <unistd.h>
@@ -41,7 +41,7 @@ int check_for_new_line (char *str_buf, int i)
 		free(str_tmp);
 		return (1);
 	}
-	else
+	else if (i < BUFF_SIZE)
 		check_for_new_line(str_buf, i + 1);
 	//si pas de newline?
 	return(0);

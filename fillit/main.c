@@ -216,6 +216,7 @@ int		main(int argc, char **argv)
 {
 	int		fd;
 	t_dlist	*list;
+	t_dlist *first;
 
 	if (argc != 2)
 		ERROR;
@@ -223,8 +224,9 @@ int		main(int argc, char **argv)
 	if (fd == -1)
 		ERROR;
 	list = get_pieces(fd);
+	first = list;
 	//print_list(list);
-	place_in_square (list, 2);
+	place_in_square (list, 2, first);
 
 
 	return (0);
