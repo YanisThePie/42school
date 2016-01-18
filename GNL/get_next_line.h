@@ -4,7 +4,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
-
+/*
 typedef struct	s_gnl {
 	char		*s;
 	int			fd;
@@ -21,3 +21,4 @@ ptr->next = NULL;
 
 ((t_gnl *)ptr->content)->fd = fd;
 ((t_gnl *)ptr->content)->s = "rien";
+*/
