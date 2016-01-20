@@ -6,10 +6,9 @@
 # include <unistd.h>
 /*
 typedef struct	s_gnl {
-	char		*s;
+	char		*str_to_keep;
 	int			fd;
 }				t_gnl;
-
 t_list	*ptr;
 
 

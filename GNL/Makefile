@@ -13,7 +13,7 @@
 NAME = execut
 CC = gcc
 SRCS = get_next_line.c
-CFLAGS = -Wall -Wextra -Werror -ggdb
+CFLAGS = -Wall -Wextra -Werror -ggdb -g
 OBJS = $(SRCS:.c=.o)
 
 .PHONY: all clean fclean re
