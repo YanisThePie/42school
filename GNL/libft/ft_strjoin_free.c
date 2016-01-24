@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 15:53:11 by yismail           #+#    #+#             */
-/*   Updated: 2015/12/02 15:33:39 by yismail          ###   ########.fr       */
+/*   Created: 2015/12/01 15:59:42 by yismail           #+#    #+#             */
+/*   Updated: 2015/12/08 16:03:42 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcat(char *dest, const char *src)
+char    *ft_strjoin_free(char const *s1, char const *s2)
 {
-	int	i;
-	int	j;
+	char    *str;
+	size_t  len;
 
-	i = 0;
-	while (dest[i] != '\0')
-		i++;
-	j = 0;
-	while (src[j] != '\0')
-[	{
-		dest[i + j] = src[j];
-		j++;
+	str = NULL;
+	if (s1 && s2)
+	{
+		len = ft_strlen(s1) + ft_strlen(s2);
+		str = (char*)malloc(sizeof(char) * (len + 1));
+		if (str)
+		{
+			ft_strcpy(str, s1);
+			ft_strcat(str, s2);
+		}
 	}
-	dest[i + j] = '\0';
-	return (dest);
+	return (str);
 }
