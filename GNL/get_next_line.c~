@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/03 13:24:01 by yismail           #+#    #+#             */
-/*   Updated: 2016/02/03 14:52:14 by yismail          ###   ########.fr       */
+/*   Updated: 2016/02/03 18:32:12 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ char * check_for_new_line (char *str_buf, int *j)
 		i++;
 	if (str_buf[i] == '\n')
 	{
-		str_tmp = malloc (sizeof(char) * i);
+		str_tmp = malloc (sizeof(char) * (i + 1));
 		ft_strncpy(str_tmp, str_buf, i);
+		ft_memdel((void **)&str_buf);
 		str_tmp[i] = '\0';
 		while (i < BUFF_SIZE)
 		{
@@ -70,13 +71,14 @@ int get_the_buffer(int const fd, char **line, char **membuffer_true, int *j)
   
   i = *j;
   newline = NULL;
-  membuffer = ft_strnew(BUFF_SIZE);
+  membuffer = ft_strnew(1);
+  membuffer[0] = '\0';
   while ((r = read (fd, buf, BUFF_SIZE)))
   {
 	  if (r == -1)
 		  return (-1);
 	  buf[r] = '\0';
-	  membuffer = ft_strjoin (membuffer, buf);
+	  membuffer = ft_strjoin(membuffer, buf);
 	  newline = check_for_new_line(membuffer, &i);
 	  if (  newline != NULL)
 	  {
@@ -97,17 +99,18 @@ int get_next_line (int const fd, char **line)
 
 	i = 0;
 	membuffer = ft_strnew(1);
+	membuffer[0] = '\0';
 	*line = ft_strnew(1);
+	*line[0] = '\0';
 	ret = get_the_buffer(fd, line, &membuffer, &i);
 	if (str_to_keep)
 	{
-		*line = ft_strcat (str_to_keep, *line); // segfault
-		//printf("\nconte nu de line %s\n", *line);
-		ft_putstr(membuffer);
+		*line = ft_strcat (str_to_keep, *line);
 		str_to_keep = NULL;
 	}
 	else
 		str_to_keep = keep_str_tmp(membuffer, *line);
+	free(membuffer);
 	return (1);
 
 }
@@ -120,34 +123,12 @@ int main (int argc, char **argv)
 	send = NULL;
 	fd = open(argv[1], O_RDONLY);
 	get_next_line(fd, &send);
-	//printf("%s",send);
+	ft_putstr(send);
 	get_next_line(fd, &send);
-	//printf("%s",send);
-	get_next_line(fd, &send);
-	//printf("%s",send);
-	get_next_line(fd, &send);
-	//ft_putstr(send);
-	get_next_line(fd, &send);
-	//ft_putstr(send);
-	get_next_line(fd, &send);
-	//ft_putstr(send);
-	get_next_line(fd, &send);
-	//ft_putstr(send);
-	get_next_line(fd, &send);
-	//ft_putstr(send);
-	get_next_line(fd, &send);
-	//ft_putstr(send);
-	get_next_line(fd, &send);
-	//ft_putstr(send);
-	get_next_line(fd, &send);
-	//ft_putstr(send);
-	get_next_line(fd, &send);
-	//ft_putstr(send);
-	get_next_line(fd, &send);
-	//ft_putstr(send);
-	get_next_line(fd, &send);
-	//ft_putstr(send);
-	get_next_line(fd, &send);
-	//ft_putstr(send);
+    ft_putstr(send);
+    get_next_line(fd, &send);
+    ft_putstr(send);
+    get_next_line(fd, &send);
+    ft_putstr(send);
 	return (0);
 }
