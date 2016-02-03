@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/03 13:24:01 by yismail           #+#    #+#             */
-/*   Updated: 2016/02/03 16:32:31 by yismail          ###   ########.fr       */
+/*   Updated: 2016/02/03 14:52:14 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ char * check_for_new_line (char *str_buf, int *j)
 			i++;
 			cpt++;
 		}
-		ft_putstr(str_buf);
 		*j = (i - cpt);
 	}
 	return (str_tmp);
@@ -102,12 +101,13 @@ int get_next_line (int const fd, char **line)
 	ret = get_the_buffer(fd, line, &membuffer, &i);
 	if (str_to_keep)
 	{
-		*line = ft_strcat (str_to_keep, *line);
+		*line = ft_strcat (str_to_keep, *line); // segfault
+		//printf("\nconte nu de line %s\n", *line);
+		ft_putstr(membuffer);
 		str_to_keep = NULL;
 	}
 	else
 		str_to_keep = keep_str_tmp(membuffer, *line);
-	free(membuffer);
 	return (1);
 
 }
@@ -125,5 +125,29 @@ int main (int argc, char **argv)
 	//printf("%s",send);
 	get_next_line(fd, &send);
 	//printf("%s",send);
+	get_next_line(fd, &send);
+	//ft_putstr(send);
+	get_next_line(fd, &send);
+	//ft_putstr(send);
+	get_next_line(fd, &send);
+	//ft_putstr(send);
+	get_next_line(fd, &send);
+	//ft_putstr(send);
+	get_next_line(fd, &send);
+	//ft_putstr(send);
+	get_next_line(fd, &send);
+	//ft_putstr(send);
+	get_next_line(fd, &send);
+	//ft_putstr(send);
+	get_next_line(fd, &send);
+	//ft_putstr(send);
+	get_next_line(fd, &send);
+	//ft_putstr(send);
+	get_next_line(fd, &send);
+	//ft_putstr(send);
+	get_next_line(fd, &send);
+	//ft_putstr(send);
+	get_next_line(fd, &send);
+	//ft_putstr(send);
 	return (0);
 }
