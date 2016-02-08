@@ -4,20 +4,8 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
-/*
-typedef struct	s_gnl {
-	char		*str_to_keep;
-	int			fd;
-}				t_gnl;
-t_list	*ptr;
 
-
-ptr = malloc(sizeof(t_list));
-
-ptr->content_size = sizeof(struct s_gnl);
-ptr->content = malloc(ptr->content_size);
-ptr->next = NULL;
-
-((t_gnl *)ptr->content)->fd = fd;
-((t_gnl *)ptr->content)->s = "rien";
-*/
+int get_next_line (int const fd, char **line);
+int get_the_buffer(int const fd, char **line, char **membuffer_true, int *j);
+char * check_for_new_line (char *str_buf, int *j);
+char *keep_str_tmp (char *str, char *str2);
