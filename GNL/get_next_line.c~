@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:56:55 by yismail           #+#    #+#             */
-/*   Updated: 2016/02/10 21:50:11 by yismail          ###   ########.fr       */
+/*   Updated: 2016/02/10 21:35:07 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,11 @@ int get_next_line (int const fd, char **line)
 		if (ft_strchr(buf, '\n'))
 		{
 			str_to_keep = (ft_strchr(buf, '\n') + 1);
-			*line = 
 			//*line = ft_strsub(buf, 0, ft_strlen(buf) - ft_strlen(str_to_keep));
 			//*line = ft_strjoin (str_to_keep, buf);
+			//ft_putstr(*line);
 		}
-		if(str_to_keep)
-			*line = ft_strjoin(str_to_keep, buf);
-		else
-			*line = buf;
-		ft_putstr(*line); 
+		membuffer = ft_strjoin_free(membuffer, buf); 
 		free(buf);
 		buf = ft_strnew(BUFF_SIZE + 1);
 	}
@@ -56,7 +52,7 @@ int main (int argc, char **argv)
     fd = open(argv[1], O_RDONLY);
 
     get_next_line(fd, &send);
-	ft_putstr(send);
+	//ft_putstr(send);
     //get_next_line(fd, &send);
     //ft_putstr(send);
 	return (0);
