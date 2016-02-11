@@ -6,10 +6,9 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:56:55 by yismail           #+#    #+#             */
-/*   Updated: 2016/02/11 18:01:12 by yismail          ###   ########.fr       */
+/*   Updated: 2016/02/11 19:26:24 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "get_next_line.h"
 
 int check_fd(int fd)
@@ -33,12 +32,10 @@ int get_next_line (int const fd, char **line)
 	int ret;
 	int size;
 	char *buf;
-	char *newline;
 	static char *str_to_keep;
 
 	if (check_fd(fd) == -1)
 		return (-1);
-	newline = ft_strnew(0);
 	buf = ft_strnew(BUFF_SIZE);
 	size = 0;
 	if (str_to_keep)	
@@ -49,6 +46,7 @@ int get_next_line (int const fd, char **line)
 			size = how_long_for_n (str_to_keep);
 			*line = ft_strdup(ft_strjoin(*line, ft_strsub(str_to_keep, 0, size)));
 			str_to_keep = ft_strdup(ft_strchr(str_to_keep, '\n') + 1);
+			free(buf);
 			return (1);
 		}
 		else
@@ -79,32 +77,6 @@ int get_next_line (int const fd, char **line)
 		free(buf);
 		buf = ft_strnew(BUFF_SIZE + 1);
 	}
+	free(buf);
 	return (ret);
 }
-/*
-int main (int argc, char **argv)
-{
-    char *send;
-    int fd;
-    int i;
-
-    argc = 1;
-    i = 0;
-
-    send = NULL;
-    fd = open(argv[1], O_RDONLY);
-
-    while(get_next_line(fd, &send) > 0)
-	{
-		if (send != NULL)
-		{	
-			ft_putendl(send);
-			free(send);
-			send = NULL;
-		}
-	}
-//	get_next_line(fd, &send);
-	//   ft_putendl(send);
-	return (0);
-}
-*/
