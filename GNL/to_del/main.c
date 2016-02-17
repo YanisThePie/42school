@@ -6,7 +6,7 @@ int main (int argc, char **argv)
     int fd;
     int i;
 
-    argc = 1;
+/*    argc = 1;
     i = 0;
 
     send = NULL;
@@ -21,5 +21,25 @@ int main (int argc, char **argv)
             send = NULL;
         }
     }
-    return (0);
+    while (1)
+	{
+	}
+}
+*/
+	i = 0;
+	argc = 1;
+	fd = open (argv[1], O_RDONLY);
+	send = NULL;
+
+	get_next_line(fd, &send);
+	if (send != NULL)
+	{
+		ft_putendl(send);
+		free(send);
+		send = NULL;
+	}
+	while (1)
+	{
+	}
+	return (0);
 }
