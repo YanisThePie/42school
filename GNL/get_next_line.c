@@ -24,6 +24,8 @@ int		how_long_for_n(char *str)
 
 int		to_keep(char ***line, char **str_to_keep, char **buf, int *size)
 {
+	char *the_sub;
+	
 	*buf = ft_strnew(BUFF_SIZE);
 	*size = 0;
 	if (*str_to_keep)
@@ -32,8 +34,10 @@ int		to_keep(char ***line, char **str_to_keep, char **buf, int *size)
 		if (ft_strchr(*str_to_keep, '\n'))
 		{
 			*size = how_long_for_n(*str_to_keep);
-			**line = ft_strdup(ft_strjoin_free(**line, ft_strsub(*str_to_keep, 0, *size)));
+			the_sub = ft_strsub(*str_to_keep, 0, *size);
+			**line = ft_strdup(ft_strjoin_free(**line, the_sub));
 			*str_to_keep = ft_strdup(ft_strchr(*str_to_keep, '\n') + 1);
+			free(the_sub);
 			free(*buf);
 			return (1);
 		}
@@ -93,7 +97,7 @@ int		get_next_line(int const fd, char **line)
 		if (to_do != 0)
 			return (to_do);
 		free(buf);
-		buf = ft_strnew(BUFF_SIZE + 1);
+		buf = ft_strnew(BUFF_SIZE); //+ 1);
 	}
 	if (ret == 0 && str_to_keep == NULL)
 		free(str_to_keep);

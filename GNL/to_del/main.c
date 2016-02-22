@@ -6,7 +6,7 @@ int main (int argc, char **argv)
     int fd;
     int i;
 
-/*    argc = 1;
+    argc = 1;
     i = 0;
 
     send = NULL;
@@ -20,13 +20,14 @@ int main (int argc, char **argv)
             free(send);
             send = NULL;
         }
+		i++;
     }
     while (1)
 	{
 	}
 }
-*/
-	i = 0;
+
+/*	i = 0;
 	argc = 1;
 	fd = open (argv[1], O_RDONLY);
 	send = NULL;
@@ -38,8 +39,12 @@ int main (int argc, char **argv)
 		free(send);
 		send = NULL;
 	}
+	if (send == NULL)
+		ft_putendl ("NULL");
 	while (1)
 	{
 	}
 	return (0);
 }
+	
+*/
