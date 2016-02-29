@@ -6,18 +6,19 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 17:56:55 by yismail           #+#    #+#             */
-/*   Updated: 2016/02/17 23:05:40 by yismail          ###   ########.fr       */
+/*   Updated: 2016/02/29 19:14:24 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
-int		how_long_for_n(char *str)
+int		how_long_for_n(char *str, char c)
 {
 	int		i;
 
 	i = 0;
-	while (str[i] != '\n')
+	while (str[i] != c)
 		i++;
 	return (i);
 }
@@ -33,12 +34,11 @@ int		to_keep(char ***line, char **str_to_keep, char **buf, int *size)
 		**line = ft_strnew(0);
 		if (ft_strchr(*str_to_keep, '\n'))
 		{
-			*size = how_long_for_n(*str_to_keep);
+			*size = how_long_for_n(*str_to_keep, '\n');
 			the_sub = ft_strsub(*str_to_keep, 0, *size);
 			**line = ft_strdup(ft_strjoin_free(**line, the_sub));
 			*str_to_keep = ft_strdup(ft_strchr(*str_to_keep, '\n') + 1);
 			free(the_sub);
-			free(*buf);
 			return (1);
 		}
 		else
@@ -52,10 +52,19 @@ int		to_keep(char ***line, char **str_to_keep, char **buf, int *size)
 int what_to_do (int *ret, char **str_to_keep, char **buf, char ***line) 
 {
 	int size;
+	
+	ft_putnbr(7);
+	size = how_long_for_n(*buf, '\0');
+	if (ft_strchr(*buf, '\0') && size != BUFF_SIZE)
+	{	
+		ft_putnbr(1);
+		*buf = ft_strdup(ft_strjoin_free(*buf, "\n"));
+	}
 
 	if (ft_strchr(*buf, '\n'))
 	{
-		size = how_long_for_n(*buf);
+		ft_putnbr(2);
+		size = how_long_for_n(*buf, '\n');
 		if (**line)
 			**line = ft_strjoin_free(**line, ft_strsub(*buf, 0, size));
 		else
@@ -66,6 +75,8 @@ int what_to_do (int *ret, char **str_to_keep, char **buf, char ***line)
 	}
 	else
 	{
+		ft_putendl(*buf);
+		ft_putnbr(3);
 		if (**line == NULL)
 			**line = ft_strnew(1);
 		if (**line != NULL)
@@ -97,7 +108,7 @@ int		get_next_line(int const fd, char **line)
 		if (to_do != 0)
 			return (to_do);
 		free(buf);
-		buf = ft_strnew(BUFF_SIZE); //+ 1);
+		buf = ft_strnew(BUFF_SIZE + 1);
 	}
 	if (ret == 0 && str_to_keep == NULL)
 		free(str_to_keep);

@@ -22,9 +22,6 @@ int main (int argc, char **argv)
         }
 		i++;
     }
-    while (1)
-	{
-	}
 }
 
 /*	i = 0;
