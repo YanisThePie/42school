@@ -26,7 +26,7 @@ int		how_long_for_n(char *str, char c)
 int		to_keep(char ***line, char **str_to_keep, char **buf, int *size)
 {
 	char *the_sub;
-	
+
 	*buf = ft_strnew(BUFF_SIZE);
 	*size = 0;
 	if (*str_to_keep)
@@ -52,18 +52,12 @@ int		to_keep(char ***line, char **str_to_keep, char **buf, int *size)
 int what_to_do (int *ret, char **str_to_keep, char **buf, char ***line) 
 {
 	int size;
-	
-	ft_putnbr(7);
+
 	size = how_long_for_n(*buf, '\0');
 	if (ft_strchr(*buf, '\0') && size != BUFF_SIZE)
-	{	
-		ft_putnbr(1);
 		*buf = ft_strdup(ft_strjoin_free(*buf, "\n"));
-	}
-
 	if (ft_strchr(*buf, '\n'))
 	{
-		ft_putnbr(2);
 		size = how_long_for_n(*buf, '\n');
 		if (**line)
 			**line = ft_strjoin_free(**line, ft_strsub(*buf, 0, size));
@@ -75,8 +69,6 @@ int what_to_do (int *ret, char **str_to_keep, char **buf, char ***line)
 	}
 	else
 	{
-		ft_putendl(*buf);
-		ft_putnbr(3);
 		if (**line == NULL)
 			**line = ft_strnew(1);
 		if (**line != NULL)
@@ -98,20 +90,25 @@ int		get_next_line(int const fd, char **line)
 	ret = to_keep(&line, &str_to_keep, &buf, &size);
 	if (ret != 0)
 	{
+		ft_putnbr(8);
 		free(buf);
 		return (ret);
 	}
+	ft_putnbr(9);
 	ret = 0;
 	while ((ret = (read(fd, buf, BUFF_SIZE) > 0)))
 	{
 		to_do = what_to_do(&ret, &str_to_keep, &buf, &line);
+		//ft_putnbr(to_do);
 		if (to_do != 0)
 			return (to_do);
 		free(buf);
-		buf = ft_strnew(BUFF_SIZE + 1);
+		buf = ft_strnew(BUFF_SIZE);
 	}
 	if (ret == 0 && str_to_keep == NULL)
 		free(str_to_keep);
 	free(buf);
+	ft_putstr("ret");
+	ft_putnbr(ret);
 	return (ret);
 }

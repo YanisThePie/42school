@@ -2,46 +2,24 @@
 
 int main (int argc, char **argv)
 {
-    char *send;
-    int fd;
-    int i;
+		char *send;
+		int fd;
+		int i;
+		int this;
 
-    argc = 1;
-    i = 0;
+		argc = 1;
+		i = 0;
 
-    send = NULL;
-    fd = open(argv[1], O_RDONLY);
-
-    while(get_next_line(fd, &send) > 0)
-    {
-        if (send != NULL)
-        {
-            ft_putendl(send);
-            free(send);
-            send = NULL;
-        }
-		i++;
-    }
-}
-
-/*	i = 0;
-	argc = 1;
-	fd = open (argv[1], O_RDONLY);
-	send = NULL;
-
-	get_next_line(fd, &send);
-	if (send != NULL)
-	{
-		ft_putendl(send);
-		free(send);
 		send = NULL;
-	}
-	if (send == NULL)
-		ft_putendl ("NULL");
-	while (1)
-	{
-	}
-	return (0);
+		fd = open(argv[1], O_RDONLY);
+
+		while((this = get_next_line(fd, &send)))
+		{
+			ft_putstr("this");
+			ft_putnbr(this);
+			ft_putendl(send);
+			free(send);
+			send = NULL;
+			i++;
+		}
 }
-	
-*/
