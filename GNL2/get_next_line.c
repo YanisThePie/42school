@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/06 18:00:22 by yismail           #+#    #+#             */
-/*   Updated: 2016/03/07 14:10:25 by yismail          ###   ########.fr       */
+/*   Updated: 2016/03/10 22:05:51 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ int     how_long_for(char *str, char c)
     int     i;
 
     i = 0;
-    while (str[i] != c)
-        i++;
+    while (str[i] != c && str[i] != '\0')
+    {   
+		i++;
+	}
+		
     return (i);
 }
 
@@ -37,7 +40,6 @@ char *str_to_keep (char *after_n)
 			size = how_long_for (str_to_keep, '\n');
 			to_send = ft_strsub(str_to_keep, 0, size); // if \n in str_to_keep, send until it, and keep the rest.
 			str_to_keep = ft_strdup(ft_strchr(str_to_keep, '\n') + 1);
-			free(to_send);
 			return (to_send);
 		}
 		else
@@ -49,41 +51,44 @@ char *str_to_keep (char *after_n)
 	}
 	else
 	{
-		//str_to_keep = ft_strnew (0); // strdup alloue deja?
 		str_to_keep = ft_strdup (after_n);
 		return (str_to_keep);
 	}
 }
-
 char *read_the_buffer(int fd, char **after_n)
 {
 	char *buf;
 	char *buf_joined;
 	int size;
+	int i;
 
 	buf = ft_strnew(BUFF_SIZE);
-	while (read(fd, buf, BUFF_SIZE) > 0)
+	buf_joined = ft_strnew(BUFF_SIZE);
+	while ((i = read(fd, buf, BUFF_SIZE)) > 0)
 	{
-		//ft_putstr(buf);
+		//ft_putendl(buf_joined);
+		size = how_long_for (buf, '\n');
+		buf_joined = ft_strjoin(buf_joined, ft_strsub(buf, 0, i));
 		if (ft_strchr(buf_joined, '\n'))// if we found a \n, send all the rest to gnl and stop the read.
 		{
 			*after_n = ft_strdup(strchr(buf_joined, '\n') + 1);
-			size = how_long_for (buf, '\n');
-			buf_joined = ft_strjoin_free(buf_joined, ft_strsub(buf, 0, size));
+			//ft_putstr(*after_n);
+			//size = how_long_for (buf_joined, '\n');
+			//buf_joined = ft_strjoin_free(buf_joined, ft_strsub(buf, 0, size));
 			return (buf_joined);
 		}
 		else
 		{
 			buf_joined = (buf_joined == NULL) ? ft_strnew(0) : buf_joined;
-			buf_joined = ft_strjoin(buf_joined, buf);// we join buffers, or we create one if doesnt exist.
-			//ft_putstr(buf_joined);
+			//buf_joined = ft_strjoin(buf_joined, buf);// we join buffers, or we create one if doesnt exist.
 		}
 	}
+	//ft_putstr(buf_joined);
 	return (buf_joined);// If Read is over, return the buffer.
 }
 int get_next_line(int const fd, char **line)
 {
-	char *tmp;
+	static char *tmp;
 	char *buffer;
 	char *after_n;
 
@@ -91,7 +96,15 @@ int get_next_line(int const fd, char **line)
 	if (fd < 0 || line == NULL)
 		return (-1);
 	buffer = read_the_buffer(fd, &after_n);
-	tmp = ft_strdup(str_to_keep (after_n));
-	*line = ft_strjoin_free(tmp, buffer);
+	if (tmp == NULL)
+	{	
+		tmp = ft_strdup(str_to_keep (after_n));
+		*line = buffer;
+	}
+	else
+	{	
+		*line = ft_strjoin_free(tmp, buffer);
+		ft_bzero(tmp, ft_strlen(tmp));
+	}
 	return (0);
 }
