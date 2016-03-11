@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/01 15:59:42 by yismail           #+#    #+#             */
-/*   Updated: 2016/03/10 23:52:36 by yismail          ###   ########.fr       */
+/*   Updated: 2016/03/11 02:01:18 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char    *ft_strjoin_free(char *s1, char const *s2)
 			ft_strcpy(str, s1);
 			ft_strcat(str, s2);
 		}
-		//ft_strdel(&s1);
+		ft_strdel(&s1);
 	}
 	return (str);
 }

@@ -1,24 +1,17 @@
 #include "../get_next_line.h"
+#include <stdio.h>
 
 int main (int argc, char **argv)
 {
-		char *send;
-		int fd;
-		int i;
-		int ret;
-
-		argc = 1;
-		i = 0;
-
-		send = NULL;
-		fd = open(argv[1], O_RDONLY);
-
-		ret = get_next_line (fd, &send);
-		ft_putendl(send);
-		free(send);
-		ft_putnbr(ret);
-		//get_next_line (fd, &send);
-        //ft_putendl(send);
-		//get_next_line (fd, &send);
-        //ft_putendl(send);
+	(void)argv;
+	(void)argc;
+	char *line;
+	int fd = 0;
+	
+	while(get_next_line(fd, &line) == 1)
+	{
+		printf("%s\n", line);
+		ft_strdel(&line);
+	}
+	return (0);
 }
