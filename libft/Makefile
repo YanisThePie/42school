@@ -73,6 +73,9 @@ SRCS = ft_itoa.c \
 	ft_putendl.c \
 	ft_putchar_fd.c \
 	ft_putstr_fd.c \
+	ft_strcat_free.c \
+	ft_strjoin_free.c \
+	ft_strcpy_free.c \
 	ft_putnbr_fd.c \
 	ft_putnbr.c
 
@@ -87,6 +90,9 @@ OBJECTS = ft_itoa.o \
 	ft_islow.o \
 	ft_isupp.o \
 	ft_strndup.o \
+    ft_strcat_free.o \
+    ft_strjoin_free.o \
+    ft_strcpy_free.o \
     ft_putendl_fd.o \
     ft_putchar.o \
     ft_atoi.o \

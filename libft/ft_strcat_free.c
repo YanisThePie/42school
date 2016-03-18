@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/18 01:58:15 by yismail           #+#    #+#             */
-/*   Updated: 2016/03/18 03:13:47 by yismail          ###   ########.fr       */
+/*   Created: 2015/11/26 15:53:11 by yismail           #+#    #+#             */
+/*   Updated: 2016/03/16 12:59:32 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int main ()
+char	*ft_strcat_free(char *dest, const char *src)
 {
-	void *content;
+	int i;
+	int j;
 
-	list = NULL;
-	list = ft_lstnew(content, sizeof(content))
-	ft_parsing (argc, argv, &list);
+	i = 0;
+	while (dest[i] != '\0')
+		i++;
+	j = 0;
+	while (src[j] != '\0')
+	{
+		dest[i + j] = src[j];
+		j++;
+	}
+	dest[i + j] = '\0';
+	free((char *)src);
+	return (dest);
 }
