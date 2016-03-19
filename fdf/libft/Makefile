@@ -17,6 +17,7 @@ SRCS = ft_itoa.c \
 	ft_lstdelone.c\
 	ft_lstmap.c\
 	ft_lstdel.c\
+	get_next_line.c\
 	ft_lstadd.c\
 	ft_lstiter.c\
 	ft_listisempty.c\
@@ -90,6 +91,7 @@ OBJECTS = ft_itoa.o \
 	ft_islow.o \
 	ft_isupp.o \
 	ft_strndup.o \
+	get_next_line.o\
     ft_strcat_free.o \
     ft_strjoin_free.o \
     ft_strcpy_free.o \

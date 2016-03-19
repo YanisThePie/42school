@@ -15,6 +15,11 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# define BUFF_SIZE 5000
 
 typedef struct		s_list
 {
@@ -23,6 +28,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+int					get_next_line (int const fd, char **line);
 void				ft_lstiter (t_list *lst, void (*f)(t_list *elem));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstdel(t_list **alst, void (*del)(void*, size_t));
