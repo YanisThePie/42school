@@ -1,6 +1,6 @@
 #include "./libft/libft.h"
 #include "./minilibx_macos/mlx.h"
-
+#include "fdf.h"
 int my_key_funct(int keycode, void *param)
 {
 	(void)param;
@@ -12,25 +12,27 @@ int my_key_funct(int keycode, void *param)
 	return(0);
 }
 
-int ft_pixel_put ()
+int ft_pixel_put (t_list const *lst)
 {
 	void	*mlx;
 	void	*win;
-	int		x;
-	int		y;
+	t_list const *tmp;
 	
 	mlx = mlx_init ();
 	win = mlx_new_window(mlx, 600, 600, "mlx 42");
-	x = 50;
-	while (y < 300)
+	tmp = lst;
+	while ((tmp = tmp->next) != NULL)
 	{
-		y = 50;
-		while (x < 300)
-		{
-			mlx_pixel_put(mlx, win, y, x, 0x00FFFFFF);
-			x++;
-		}
-		y++;
+		int xo,yo,zo, xn,yn;
+
+ 		xo = ((structure *)tmp->content)->coord_x;
+ 		yo = ((structure *)tmp->content)->coord_y;
+ 		zo = ((structure *)tmp->content)->height;
+		xn = 4 * xo + 4 * yo + 1 * zo;
+		yn = 2 * xo - 4 * yo - 4 * zo;
+		xn += 200;
+		yn += 200;
+		mlx_pixel_put(mlx, win, yn, xn, 255);
 	}
 	mlx_key_hook(win, my_key_funct, 0);
 	mlx_loop(mlx);

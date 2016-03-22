@@ -1,7 +1,8 @@
 NAME = execut
 CC = gcc
 SRCS = main.c \
-	listing.c
+	listing.c \
+	window.c 
 CFLAGS = -Wall -Wextra -Werror -ggdb -g
 FLAGS = -framework OpenGL -framework AppKit -L ./libft -lft -L minilibx_macos -lmlx
 OBJS = $(SRCS:.c=.o)

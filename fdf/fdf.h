@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 00:05:57 by yismail           #+#    #+#             */
-/*   Updated: 2016/03/18 04:32:29 by yismail          ###   ########.fr       */
+/*   Updated: 2016/03/22 19:59:09 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ typedef struct		s_list
 }					t_list;
 */
 int ft_parsing (int argc, char **argv, t_list **list);
-
-
+void ft_putlist(t_list *elem);
+int ft_pixel_put (t_list const *lst);
 #endif
