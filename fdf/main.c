@@ -35,6 +35,6 @@ int main (int argc, char **argv)
 	first = list; // ah bon?
 	ft_parsing (argc, argv, &list);
 	//ft_lstiter(first->next, &ft_putlist);
-	ft_pixel_put(first);
+	ft_window(first);
 	return (0);
 }

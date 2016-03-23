@@ -37,5 +37,5 @@ typedef struct		s_list
 */
 int ft_parsing (int argc, char **argv, t_list **list);
 void ft_putlist(t_list *elem);
-int ft_pixel_put (t_list const *lst);
+int ft_window (t_list const *lst);
 #endif
