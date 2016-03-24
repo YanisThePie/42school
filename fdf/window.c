@@ -12,6 +12,36 @@ int my_key_funct(int keycode, void *param)
 	return(0);
 }
 
+void ft_bresenham(int x0, int y0, int x1, int y1, void *mlx, void *win)
+{
+	int dx;
+	int dy;
+	int sx;
+	int sy;
+	int err;
+	int e2;
+
+	dx = abs(x1-x0);
+	dy = abs(y1-y0);
+	sx = x0 < x1 ? 1 : -1;
+	sy = y0 < y1 ? 1 : -1;
+	err = (dx > dy ? dx : -dy) / 2;
+	while (x0 <= x1 && y0 <= y1)
+	{
+		mlx_pixel_put(mlx, win, x0, y0, 0x00ffffff);
+		e2 = err;
+		if (e2 > -dx)
+		{	
+			err -= dy;
+			x0 += sx;
+		}
+		if (e2 < dy)
+		{
+			err += dx;
+			y0 += sy;
+		}
+	}
+}
 int ft_pixel_put (t_list const *tmp, void *mlx, void *win)
 {
 	int xo,yo,zo, xn,yn, xno, yno;
@@ -24,21 +54,14 @@ int ft_pixel_put (t_list const *tmp, void *mlx, void *win)
 		xo = ((structure *)tmp->content)->coord_x;
 		yo = ((structure *)tmp->content)->coord_y;
 		zo = ((structure *)tmp->content)->height;
-		xn = 4 * xo + 4 * yo + 1 * zo;
-		yn = 2 * xo - 4 * yo - 4 * zo;
+		xn = 16 * xo + 16 * yo + 4 * zo;
+		yn = 8 * xo - 16 * yo - 16 * zo;
 		xn += 20;
 		yn += 500;
-		if (yno != 0)
-		{
-			//ytemp = yno;
-			while (yno <= yn)
-			{
-				mlx_pixel_put(mlx, win, yno, xn, 0x00ffffff);
-				yno++;
-				//xno++;
-			}
-		}
-		mlx_pixel_put(mlx, win, yn, xn, 0x00ffffff);
+		if (yno != 0 && xno != 0)
+			ft_bresenham(yno, xno, yn, xn, mlx, win);
+		if (yno != 0 && xno != 0)
+            ft_bresenham(yno, xno, yn, xn, mlx, win);
 		xno = xn;
 		yno = yn;
 	}
