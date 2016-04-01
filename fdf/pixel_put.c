@@ -49,15 +49,25 @@ int ft_pixel_put_v(t_list const *lst, proj_dots spc, void *mlx, void *win)
 		tmp = tmp->next;
 	}
 	tmp = lst;
-	while (tmp != NULL && i < x_max)
+	while (tmp != NULL && i <= x_max)
 	{
-		tmp = tmp->next;
 		i++;
+		tmp = tmp->next;
 	}
 	spc.x0 = spc.x1;
 	spc.y0 = spc.y1;
-	spc.x1 = ((((structure *)tmp->content)->coord_x));
-	spc.y1 = ((((structure *)tmp->content)->coord_y));
+	if (tmp != NULL)
+	{
+		spc.xo = ((structure *)tmp->content)->coord_x;
+		spc.yo = ((structure *)tmp->content)->coord_y;
+		spc.zo = ((structure *)tmp->content)->height;
+	}
+	spc.y1 = 16 * spc.xo + 16 * spc.yo + 4 * spc.zo;
+	spc.x1 = 8 * spc.xo - 16 * spc.yo - 16 * spc.zo;
+	spc.x1 += 500;
+	spc.y1 += 50;
+	if (spc.y0 != 0 && spc.x0 != 0)
+		ft_bresenham(spc, mlx, win);
 	cpt++;
 	return(0);
 }
