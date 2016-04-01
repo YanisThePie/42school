@@ -76,6 +76,7 @@ int ft_parsing (int argc, char **argv, t_list **list)
 		ft_split(line, coord_y, list);
 		coord_y++;
 	}
+	
 	if (ret < 0)
 		return (-1);
 // gerer les valeurs d'int trop hautes et les negatifs dansune fonction d'erreur.

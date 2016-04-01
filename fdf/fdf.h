@@ -27,6 +27,17 @@ typedef struct
 	int				height;
 }					structure;
 
+typedef struct
+{
+	int xo; 
+	int yo;
+	int zo;
+	int x1;
+	int y1;
+	int x0;
+	int y0; 
+}					proj_dots;
+
 /*
 typedef struct		s_list
 {
@@ -38,4 +49,5 @@ typedef struct		s_list
 int ft_parsing (int argc, char **argv, t_list **list);
 void ft_putlist(t_list *elem);
 int ft_window (t_list const *lst);
+int ft_pixel_put_h (t_list const *lst, void *mlx, void *win);
 #endif
