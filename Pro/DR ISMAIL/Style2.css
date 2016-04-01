@@ -1,0 +1,93 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light.woff2'), url(http://fonts.gstatic.com/s/roboto/v15/0eC6fl06luXEYWpBSJvXCIX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
+}
+.all
+{
+	margin-left: 4%;
+	margin-right: 4%;
+}
+
+body
+{
+	height: 100%;
+	background-color: white;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+header
+{
+	border-radius: 5px;
+	box-shadow: 0px 2px 2px #1c1a19;
+	position: fixed;
+	left: 0; right: 0; top: 0;
+	z-index: 2;
+	height: 150px;
+	background-color: white;
+}
+
+.head_img
+{
+	border-radius: 5px;
+	left: 2%;
+	padding-bottom: 0px;
+	position: relative;
+}
+.list_head
+{
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+.list_head a
+{
+	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	text-decoration: none;
+	margin-right: 2%;
+	font-size: 1.0em;
+	margin-left: 9%;
+	color: black;
+} 
+
+.list_head a:hover{color: grey;}
+
+.content 
+{ 
+	height : 100%;
+	min-height: 100%;
+  	padding-top: 100px;
+  	position: relative;
+  	z-index: 1;
+  	overflow: scroll; 
+ }
+
+.img_top
+{
+	display: block;
+	width: 65%;
+	position: relative;
+	left: 15%;
+}
+
+.div_img_top
+{
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	background-color: #92d5d6;
+	opacity: 0.9;
+}
+
+p{font-size: 1em; font-family: 'Roboto',Arial,sans-serif; }
+
+nav
+{
+	margin-top: 10px;
+	display: inline-block;
+	width: 60%;
+}
