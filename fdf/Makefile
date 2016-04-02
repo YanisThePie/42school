@@ -3,7 +3,8 @@ CC = gcc
 SRCS = main.c \
 	listing.c \
 	window.c  \
-	pixel_put.c
+	pixel_put.c\
+	bresenham.c
 CFLAGS = -Wall -Wextra -Werror -ggdb -g
 FLAGS = -framework OpenGL -framework AppKit -L ./libft -lft -L minilibx_macos -lmlx
 OBJS = $(SRCS:.c=.o)

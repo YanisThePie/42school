@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 00:05:57 by yismail           #+#    #+#             */
-/*   Updated: 2016/03/22 19:59:09 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/02 15:12:29 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <sys/uio.h>
 # include <unistd.h>
 # include "./libft/libft.h"
+#include <math.h>
+#include <stdio.h>
 #include "./minilibx_macos/mlx.h"
 
 typedef struct
@@ -48,6 +50,7 @@ typedef struct		s_list
 */
 int ft_parsing (int argc, char **argv, t_list **list);
 void ft_putlist(t_list *elem);
+void ligne(int xi,int yi,int xf,int yf, void *mlx, void *win);//
 int ft_window (t_list const *lst);
 int ft_pixel_put_h (t_list const *lst, void *mlx, void *win);
 #endif
