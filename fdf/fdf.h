@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 00:05:57 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/02 15:12:29 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/02 17:28:32 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,25 @@ typedef struct
 	int y0; 
 }					proj_dots;
 
+typedef struct
+{
+    int dx;
+    int dy;
+    int i;
+    int xinc;
+    int yinc;
+    int cumul;
+    int x;
+	int y;
+}                   bresen;
+
+typedef struct
+{
+    int zoom;
+	int alt;
+	int move;
+	int rotate;
+}                   str_cmd;
 /*
 typedef struct		s_list
 {
@@ -50,7 +69,7 @@ typedef struct		s_list
 */
 int ft_parsing (int argc, char **argv, t_list **list);
 void ft_putlist(t_list *elem);
-void ligne(int xi,int yi,int xf,int yf, void *mlx, void *win);//
+void ligne(proj_dots spc, void *mlx, void *win);//
 int ft_window (t_list const *lst);
-int ft_pixel_put_h (t_list const *lst, void *mlx, void *win);
+int ft_pixel_put_h (t_list const *lst, void *mlx, void *win, str_cmd event);
 #endif

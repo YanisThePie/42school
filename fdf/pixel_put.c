@@ -19,7 +19,6 @@ t_list const *lst_pos_max (t_list const *lst)
 	tmp = lst;
 	while (tmp != NULL && i <= x_max)
 	{
-		//ft_putnbr(x_max);
 		i++;
 		tmp = tmp->next;
 	}
@@ -27,7 +26,7 @@ t_list const *lst_pos_max (t_list const *lst)
 	return (tmp);
 }
 
-int ft_pixel_put_v(t_list const *lst, proj_dots spc, void *mlx, void *win)
+int ft_pixel_put_v(t_list const *lst, proj_dots spc, void *mlx, void *win, str_cmd event)
 {
 	t_list const        *tmp;
 	int i;
@@ -43,19 +42,22 @@ int ft_pixel_put_v(t_list const *lst, proj_dots spc, void *mlx, void *win)
 		spc.zo = ((structure *)tmp->content)->height;
 	}
 	spc.x1 = ((0.71) * (spc.xo - spc.yo) * 20);
-	spc.y1 = (((0.41) * (spc.xo + spc.yo) + 0.82 * spc.zo) * 20);
+	spc.y1 = (((0.41) * (spc.xo + spc.yo) + 0.82 * -spc.zo) * (event.zoom *20));
 	spc.x1 += 500;
-	spc.y1 += 50;
-	ligne(spc.x0, spc.y0, spc.x1, spc.y1, mlx, win);
+	spc.y1 += 180;
+	if (spc.y0 != 0 && spc.x0 != 0)
+		ligne(spc, mlx, win);
 	return(0);
 }
 
-int ft_pixel_put_h (t_list const *lst, void *mlx, void *win)
+int ft_pixel_put_h (t_list const *lst, void *mlx, void *win, str_cmd event)
 {
 	proj_dots spc;
+	int yoo;
 
 	spc.x0 = 0;
 	spc.y0 = 0;
+	yoo = 0;
 	while ((lst = lst->next) != NULL)
 	{
 
@@ -63,14 +65,15 @@ int ft_pixel_put_h (t_list const *lst, void *mlx, void *win)
 		spc.yo = ((structure *)lst->content)->coord_y;
 		spc.zo = ((structure *)lst->content)->height;
 		spc.x1 = (((0.71) * (spc.xo - spc.yo) * 20));
-		spc.y1 = (((0.41) * (spc.xo + spc.yo) + 0.82 * spc.zo) * 20);
+		spc.y1 = (((0.41) * (spc.xo + spc.yo) + 0.82 * -spc.zo) * (event.zoom * 20));
 		spc.x1 += 500;
-		spc.y1 += 50;
-		if (spc.y0 != 0 && spc.x0 != 0)
-			ligne(spc.x0, spc.y0, spc.x1, spc.y1, mlx, win);
-		ft_pixel_put_v(lst, spc, mlx, win);
+		spc.y1 += 180;
+		if (spc.y0 != 0 && spc.x0 != 0 && yoo == spc.yo)
+			ligne(spc, mlx, win);
+		ft_pixel_put_v(lst, spc, mlx, win, event);
 		spc.x0 = spc.x1;
 		spc.y0 = spc.y1;
+		yoo = spc.yo;
 	}
 	return (0);
 }

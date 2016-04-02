@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 01:58:15 by yismail           #+#    #+#             */
-/*   Updated: 2016/03/22 19:55:21 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/02 17:11:39 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,8 @@ int main (int argc, char **argv)
 	first = NULL;
 	list = NULL;
 	list = ft_lstnew(content, sizeof(structure));
-	first = list; // ah bon?
+	first = list;
 	ft_parsing (argc, argv, &list);
-	//ft_lstiter(first->next, &ft_putlist);
 	ft_window(first);
 	return (0);
 }
