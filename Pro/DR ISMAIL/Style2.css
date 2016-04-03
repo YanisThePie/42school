@@ -1,13 +1,12 @@
 @font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light.woff2'), url(http://fonts.gstatic.com/s/roboto/v15/0eC6fl06luXEYWpBSJvXCIX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
+    font-family: 'Roboto';
+    src:
+    	 url('Roboto-Light.ttf') format('truetype');
 }
 .all
 {
-	margin-left: 4%;
-	margin-right: 4%;
+	margin-top: 6%;
+	margin-bottom: 6%;
 }
 
 body
@@ -22,17 +21,18 @@ body
 
 header
 {
-	border-radius: 5px;
-	box-shadow: 0px 2px 2px #1c1a19;
+	box-shadow: 0px 1px 1px #1c1a19;
 	position: fixed;
-	left: 0; right: 0; top: 0;
+	left: 0; right:0; top: 0;
 	z-index: 2;
-	height: 150px;
+	height: 200px;
 	background-color: white;
 }
 
 .head_img
 {
+	-webkit-border-radius:5px;
+    -moz-border-radius:5px;
 	border-radius: 5px;
 	left: 2%;
 	padding-bottom: 0px;
@@ -40,16 +40,15 @@ header
 }
 .list_head
 {
-	padding-top: 1em;
-	padding-bottom: 1em;
+	padding-top: 3.2em;
 }
 .list_head a
 {
-	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-family: 'Roboto', "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 	text-decoration: none;
 	margin-right: 2%;
-	font-size: 1.0em;
-	margin-left: 9%;
+	font-size: 1.2em;
+	margin-left: 8%;
 	color: black;
 } 
 
@@ -68,9 +67,8 @@ header
 .img_top
 {
 	display: block;
-	width: 65%;
+	width: 100%;
 	position: relative;
-	left: 15%;
 }
 
 .div_img_top
@@ -90,4 +88,34 @@ nav
 	margin-top: 10px;
 	display: inline-block;
 	width: 60%;
+}
+
+.div_list_novatrice
+{
+	margin-top: 7%;
+}
+
+#list_novatrice
+{
+	display: flex;
+	justify-content: center;
+}
+
+#list_novatrice a
+{
+	display: block;
+	margin: 3%;
+	text-decoration: none;
+	color: black;
+	background-color: #DCDCDC;
+	font-family: 'Roboto',Arial,sans-serif;
+	overflow:hidden;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:50px;
+    -webkit-box-shadow: #B3B3B3 8px 8px 8px;
+    -moz-box-shadow: #B3B3B3 8px 8px 8px; 
+    box-shadow: #B3B3B3 8px 8px 8px;
+    width:100px;
+    height:100px;
 }
