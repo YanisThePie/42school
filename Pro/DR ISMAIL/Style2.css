@@ -107,7 +107,6 @@ nav
 	margin: 3%;
 	text-decoration: none;
 	color: black;
-	background-color: #DCDCDC;
 	font-family: 'Roboto',Arial,sans-serif;
 	overflow:hidden;
     -webkit-border-radius:50px;
@@ -116,6 +115,12 @@ nav
     -webkit-box-shadow: #B3B3B3 8px 8px 8px;
     -moz-box-shadow: #B3B3B3 8px 8px 8px; 
     box-shadow: #B3B3B3 8px 8px 8px;
-    width:100px;
-    height:100px;
+    width:50px;
+    height:50px;
 }
+
+a.p1
+{
+	background-color: black;
+}
+background-color: #DCDCDC;
