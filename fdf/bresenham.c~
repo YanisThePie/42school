@@ -3,8 +3,6 @@
 
 void ligne_n1(bresen br, void *mlx, void *win)
 {
-  (void)mlx;
-  (void)win;
 	br.cumul = br.dx / 2 ;
 	br.i = 1;
 	while (br.i <= br.dx)
@@ -55,6 +53,6 @@ void ligne(proj_dots spc, void *mlx, void *win)
 	mlx_pixel_put(mlx, win, br.x, br.y, 0x0000FF00);
 	if (br.dx > br.dy) 
 		ligne_n1(br, mlx, win);
-	else
+    else 
 		ligne_n2(br, mlx, win);
 }

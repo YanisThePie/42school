@@ -38,7 +38,7 @@ int ft_window (t_list const *lst)
 	mlx = mlx_init ();
 	win = mlx_new_window(mlx, 1200, 1200, "mlx 42");
 	tmp = lst;
-	ft_pixel_put(tmp, mlx, win, event);
+	ft_pixel_put_h(tmp, mlx, win, event);
 	mlx_key_hook(win, my_key_funct, 0);
 	mlx_loop(mlx);
 	return(0);

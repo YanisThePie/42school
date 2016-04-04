@@ -71,5 +71,5 @@ int ft_parsing (int argc, char **argv, t_list **list);
 void ft_putlist(t_list *elem);
 void ligne(proj_dots spc, void *mlx, void *win);//
 int ft_window (t_list const *lst);
-int ft_pixel_put(t_list const *lst, void *mlx, void *win, str_cmd event);
+int ft_pixel_put_h (t_list const *lst, void *mlx, void *win, str_cmd event);
 #endif
