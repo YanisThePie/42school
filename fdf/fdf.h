@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 00:05:57 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/02 17:28:32 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/06 18:47:15 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ typedef struct
 	int x1;
 	int y1;
 	int x0;
-	int y0; 
+	int y0;
+	int yoo;
 }					proj_dots;
 
 typedef struct

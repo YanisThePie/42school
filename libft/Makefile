@@ -6,7 +6,7 @@
 #    By: yismail <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/02 13:28:30 by yismail           #+#    #+#              #
-#    Updated: 2016/01/06 19:34:21 by yismail          ###   ########.fr        #
+#    Updated: 2016/04/06 20:53:25 by yismail          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,9 +17,11 @@ SRCS = ft_itoa.c \
 	ft_lstdelone.c\
 	ft_lstmap.c\
 	ft_lstdel.c\
+	get_next_line.c\
 	ft_lstadd.c\
 	ft_lstiter.c\
 	ft_listisempty.c\
+	ft_freetab.c\
 	ft_nbrlen.c \
 	ft_putendl_fd.c \
 	ft_strndup.c \
@@ -90,6 +92,8 @@ OBJECTS = ft_itoa.o \
 	ft_islow.o \
 	ft_isupp.o \
 	ft_strndup.o \
+	ft_freetab.o\
+	get_next_line.o\
     ft_strcat_free.o \
     ft_strjoin_free.o \
     ft_strcpy_free.o \

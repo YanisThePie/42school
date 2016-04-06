@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 22:13:47 by yismail           #+#    #+#             */
-/*   Updated: 2016/03/22 18:25:20 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/06 22:46:00 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,15 @@ void range_this_shit (t_list **list, int x, int y, char *z)
 	temp = *list;
 	new = (t_list*)malloc(sizeof(t_list));
 	new -> next= NULL;
-	while (temp->next)
-		temp = temp->next;
+	if (*list == NULL)
+		*list = new;
+	else
+	{
+		while (temp->next)
+			temp = temp->next;
+		temp->next = new;
+	}
 	fill_list(x, y, z, &new);
-	temp->next = new;
 }
 
 void ft_split (char *line, int y, t_list **list)
@@ -57,6 +62,7 @@ void ft_split (char *line, int y, t_list **list)
 		range_this_shit (list, x, y, line_spl[x]);
 		x++;
 	}
+	freetab(line_spl);
 }
 
 int ft_parsing (int argc, char **argv, t_list **list)
@@ -75,6 +81,7 @@ int ft_parsing (int argc, char **argv, t_list **list)
 		// ici gestion d'erreur si pas un nombre
 		ft_split(line, coord_y, list);
 		coord_y++;
+		free(line);
 	}
 	
 	if (ret < 0)

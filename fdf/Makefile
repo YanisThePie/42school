@@ -17,12 +17,13 @@ $(NAME): $(OBJS)
 	make -C libft
 	make -C minilibx_macos
 	$(CC) $(FLAGS) -o  $(NAME) $^ ./libft/libft.a
-	gcc $(FLAGS) -o $(NAME) $(OBJS) -framework OpenGL -framework AppKit -L ./libft -lft -L minilibx_macos -lmlx
+	gcc $(FLAGS) -o $(NAME) $(OBJS)  -L./libft -lft -framework OpenGL -framework AppKit -L ./libft -lft -L minilibx_macos -lmlx
 
 clean:
 	rm $(OBJS)
 
 fclean: clean
 	rm $(NAME)
+	rm *~
 
 re: fclean all

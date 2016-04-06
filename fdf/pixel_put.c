@@ -28,14 +28,11 @@ t_list const *lst_pos_max (t_list const *lst)
 
 int ft_pixel_put_v(t_list const *lst, void *mlx, void *win, proj_dots *spc)
 {
-  t_list const        *tmp;
-  int i;
-  static int xoo = 0;
-  
-  i = 0;
+	t_list const        *tmp;
+
   tmp = lst_pos_max(lst);
-  spc->x0 = spc->x1;
-  spc->y0 = spc->y1;
+  spc->x0 = spc->x1; // reprend la valeur du point h
+  spc->y0 = spc->y1; // idem
   if (tmp != NULL)
     {
       spc->xo = ((structure *)tmp->content)->coord_x;
@@ -48,18 +45,11 @@ int ft_pixel_put_v(t_list const *lst, void *mlx, void *win, proj_dots *spc)
   spc->y1 += 180;
   if (spc->y0 != 0 && spc->x0 != 0)
     ligne(*spc, mlx, win);
-  xoo = spc->xo;
   return(0);
 }
 
 int ft_pixel_put_h (t_list const *lst, void *mlx, void *win, proj_dots *spc)
 {
-  int yoo;
-
-  spc->x0 = 0;
-  spc->y0 = 0;
-  yoo = 0;
-  
   spc->xo = ((structure *)lst->content)->coord_x;
   spc->yo = ((structure *)lst->content)->coord_y;
   spc->zo = ((structure *)lst->content)->height;
@@ -67,11 +57,11 @@ int ft_pixel_put_h (t_list const *lst, void *mlx, void *win, proj_dots *spc)
   spc->y1 = (((0.41) * (spc->xo + spc->yo) + 0.82 * -spc->zo) * (/*event.zoom*/20));
   spc->x1 += 500;
   spc->y1 += 180;
-  if (spc->y0 != 0 && spc->x0 != 0 && yoo == spc->yo)
-    ligne(*spc, mlx, win);
+  if (spc->y0 != 0 && spc->x0 != 0 && spc->yoo == spc->yo)
+	  ligne(*spc, mlx, win);
   spc->x0 = spc->x1;
   spc->y0 = spc->y1;
-  yoo = spc->yo;
+  spc->yoo = spc->yo;
   return (0);
 }
 
@@ -83,10 +73,13 @@ int ft_pixel_put(t_list const *lst, void *mlx, void *win, str_cmd event)
   t_list const *tmp;
 
   tmp = lst;
+  spc.x0 = 0;
+  spc.y0 = 0;
+  spc.yoo = 0;
   while ((tmp = tmp->next) != NULL)
     {
-      //ft_pixel_put_h (tmp, mlx, win, &spc);
-      ft_pixel_put_v (tmp, mlx, win, &spc);
+		ft_pixel_put_h (tmp, mlx, win, &spc);
+		ft_pixel_put_v (tmp, mlx, win, &spc);
     }
   return (0);
 }
