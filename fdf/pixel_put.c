@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 00:46:33 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/07 05:23:31 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/07 07:24:52 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int				ft_pixel_put_v(t_list const *lst,
 		spc->zo = ((structure *)tmp->content)->height;
 	}
 	spc->x1 = ((0.71) * (spc->xo - spc->yo) * 20);
-	spc->y1 = (((0.41) * (spc->xo + spc->yo) + 0.82 * -spc->zo) * (/*event.zoom */20));
+	spc->y1 = (((0.41) * (spc->xo + spc->yo) + 0.82 * -spc->zo) * (/*spc->event.zoom */20));
 	spc->x1 += 500;
 	spc->y1 += 180;
 	color(spc);
@@ -68,7 +68,7 @@ int				ft_pixel_put_h(t_list const *lst, void *mlx, void *win, proj_dots *spc)
 	spc->yo = ((structure *)lst->content)->coord_y;
 	spc->zo = ((structure *)lst->content)->height;
 	spc->x1 = (((0.71) * (spc->xo - spc->yo) * 20));
-	spc->y1 = (((0.41) * (spc->xo + spc->yo) + 0.82 * -spc->zo) * (/*event.zoom*/20));
+	spc->y1 = (((0.41) * (spc->xo + spc->yo) + 0.82 * -spc->zo) * (/*spc->event.zoom */ 20));
 	spc->x1 += 500;
 	spc->y1 += 180;
 	color(spc);
@@ -82,22 +82,23 @@ int				ft_pixel_put_h(t_list const *lst, void *mlx, void *win, proj_dots *spc)
 }
 
 int				ft_pixel_put(t_list const *lst, void *mlx, 
-							void *win, str_cmd event)
+							void *win, proj_dots env)
 {
-	(void)event;
 	proj_dots		spc;
 	t_list const	*tmp;
 
+	spc = env;
 	tmp = lst;
 	spc.x0 = 0;
 	spc.y0 = 0;
 	spc.yoo = 0;
 	spc.zoo = 0;
-	while ((tmp = tmp->next) != NULL)
+	while (tmp != NULL)
 	{
 		ft_pixel_put_h(tmp, mlx, win, &spc);
 		spc.zoo = spc.zo;
 		ft_pixel_put_v(tmp, mlx, win, &spc);
+		tmp = tmp->next;
 	}
 	return (0);
 }

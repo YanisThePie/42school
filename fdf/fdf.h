@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 00:05:57 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/07 05:21:49 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/07 07:00:29 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ typedef struct
 
 typedef struct
 {
+    int zoom;
+    int alt;
+    int move;
+    int rotate;
+}                   str_cmd;
+typedef struct
+{
 	int xo; 
 	int yo;
 	int zo;
@@ -42,6 +49,7 @@ typedef struct
 	int zoo;
 	int color;
 	int color_new;
+	str_cmd event;
 }					proj_dots;
 
 typedef struct
@@ -56,13 +64,6 @@ typedef struct
 	int y;
 }                   bresen;
 
-typedef struct
-{
-    int zoom;
-	int alt;
-	int move;
-	int rotate;
-}                   str_cmd;
 /*
 typedef struct		s_list
 {
@@ -75,8 +76,8 @@ int		ft_parsing (int argc, char **argv, t_list **list);
 void	ft_putlist(t_list *elem);
 void	ligne(proj_dots spc, void *mlx, void *win);//
 int		ft_window (t_list const *lst);
-int		ft_pixel_put(t_list const *lst, void *mlx, void *win, str_cmd event);
+int		ft_pixel_put(t_list const *lst, void *mlx, void *win, proj_dots env);
 void	color (proj_dots *spc);
-int     my_key_funct(int keycode, void *param);
-void    ft_set_event(str_cmd *event);
+int     my_key_funct(int keycode, proj_dots *spc);
+void    ft_set_event(proj_dots *env);
 #endif

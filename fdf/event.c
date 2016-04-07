@@ -6,35 +6,33 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 01:15:43 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/07 05:24:55 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/07 07:00:51 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int     my_key_funct(int keycode, void *param)
+int     my_key_funct(int keycode, proj_dots *spc)
 {
-    (void)param;
     ft_putstr("the key is ");
     ft_putnbr(keycode);
     ft_putchar('\n');
     if (keycode == 53)
         exit(EXIT_SUCCESS);
 
-    /*if (keycode = 24)
-        event.zoom++;
-    if (keycode = 27)
-        event.zoom--;
-	*/	
+    if (keycode == 24)
+        spc->event.zoom++;
+    if (keycode == 27)
+        spc->event.zoom--;	
     return (0);
 }
 
-void    ft_set_event(str_cmd *event)
+void    ft_set_event(proj_dots *env)
 {
-    event->zoom = 1;
-    event->alt = 1;
-    event->move = 1;
-    event->rotate = 1;
+    env->event.zoom = 1;
+    env->event.alt = 1;
+    env->event.move = 1;
+    env->event.rotate = 1;
 }
 
 void	color (proj_dots *spc)
