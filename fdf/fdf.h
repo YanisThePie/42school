@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 00:05:57 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/07 07:00:29 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/07 09:53:32 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ typedef struct
 {
     int zoom;
     int alt;
-    int move;
-    int rotate;
+    int move_y;
+	int move_x;
+    int rotate_y;
 }                   str_cmd;
 typedef struct
 {
@@ -50,6 +51,9 @@ typedef struct
 	int color;
 	int color_new;
 	str_cmd event;
+	void	*mlx;
+	void	*win;
+	t_list	const *tmp;
 }					proj_dots;
 
 typedef struct

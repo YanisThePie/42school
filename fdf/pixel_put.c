@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 00:46:33 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/07 07:24:52 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/07 10:05:47 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int				ft_pixel_put_v(t_list const *lst,
 		spc->yo = ((structure *)tmp->content)->coord_y;
 		spc->zo = ((structure *)tmp->content)->height;
 	}
-	spc->x1 = ((0.71) * (spc->xo - spc->yo) * 20);
-	spc->y1 = (((0.41) * (spc->xo + spc->yo) + 0.82 * -spc->zo) * (/*spc->event.zoom */20));
+	spc->x1 = ((0.71) * (spc->xo - spc->yo) * (spc->event.zoom + 20) + (4 * spc->event.move_x));
+	spc->y1 = ((((0.41) * (spc->xo + spc->yo) + 0.82 * -spc->zo) * (spc->event.zoom + 20)) + (4 * spc->event.move_y)) * (0.25 * spc->event.rotate_y);
 	spc->x1 += 500;
 	spc->y1 += 180;
 	color(spc);
@@ -62,13 +62,16 @@ int				ft_pixel_put_v(t_list const *lst,
 	return(0);
 }
 
-int				ft_pixel_put_h(t_list const *lst, void *mlx, void *win, proj_dots *spc)
+int				ft_pixel_put_h(t_list const *tmp, void *mlx, void *win, proj_dots *spc)
 {
+	t_list const	*lst;
+
+	lst = tmp;
 	spc->xo = ((structure *)lst->content)->coord_x;
 	spc->yo = ((structure *)lst->content)->coord_y;
 	spc->zo = ((structure *)lst->content)->height;
-	spc->x1 = (((0.71) * (spc->xo - spc->yo) * 20));
-	spc->y1 = (((0.41) * (spc->xo + spc->yo) + 0.82 * -spc->zo) * (/*spc->event.zoom */ 20));
+	spc->x1 = (((0.71) * (spc->xo - spc->yo) * (spc->event.zoom + 20))) + (4 * spc->event.move_x);
+	spc->y1 = (((0.41) * (spc->xo + spc->yo) + 0.82 * -spc->zo) * (spc->event.zoom + 20) + (4 * spc->event.move_y)) * (0.25 * spc->event.rotate_y);
 	spc->x1 += 500;
 	spc->y1 += 180;
 	color(spc);

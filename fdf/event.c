@@ -6,24 +6,37 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 01:15:43 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/07 07:00:51 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/07 10:02:46 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int     my_key_funct(int keycode, proj_dots *spc)
+int     my_key_funct(int keycode, proj_dots *env)
 {
     ft_putstr("the key is ");
     ft_putnbr(keycode);
     ft_putchar('\n');
     if (keycode == 53)
         exit(EXIT_SUCCESS);
-
     if (keycode == 24)
-        spc->event.zoom++;
+        env->event.zoom++;
     if (keycode == 27)
-        spc->event.zoom--;	
+        env->event.zoom--;
+	if (keycode == 126)
+		env->event.move_y--;
+	if (keycode == 125)
+		env->event.move_y++;
+	if (keycode == 124)
+		env->event.move_x++;
+	if (keycode == 123)
+		env->event.move_x--;
+	if (keycode == 1)
+		env->event.rotate_y++;
+	if (keycode == 13)
+		env->event.rotate_y--;
+	mlx_clear_window(env->mlx, env->win);
+	ft_pixel_put(env->tmp, env->mlx, env->win, *env);
     return (0);
 }
 
@@ -31,8 +44,9 @@ void    ft_set_event(proj_dots *env)
 {
     env->event.zoom = 1;
     env->event.alt = 1;
-    env->event.move = 1;
-    env->event.rotate = 1;
+    env->event.move_y = 1;
+	env->event.move_x = 1;
+    env->event.rotate_y = 1;
 }
 
 void	color (proj_dots *spc)
