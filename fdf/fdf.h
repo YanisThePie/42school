@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 00:05:57 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/06 18:47:15 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/07 05:21:49 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ typedef struct
 	int x0;
 	int y0;
 	int yoo;
+	int zoo;
+	int color;
+	int color_new;
 }					proj_dots;
 
 typedef struct
@@ -68,9 +71,12 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 */
-int ft_parsing (int argc, char **argv, t_list **list);
-void ft_putlist(t_list *elem);
-void ligne(proj_dots spc, void *mlx, void *win);//
-int ft_window (t_list const *lst);
-int ft_pixel_put(t_list const *lst, void *mlx, void *win, str_cmd event);
+int		ft_parsing (int argc, char **argv, t_list **list);
+void	ft_putlist(t_list *elem);
+void	ligne(proj_dots spc, void *mlx, void *win);//
+int		ft_window (t_list const *lst);
+int		ft_pixel_put(t_list const *lst, void *mlx, void *win, str_cmd event);
+void	color (proj_dots *spc);
+int     my_key_funct(int keycode, void *param);
+void    ft_set_event(str_cmd *event);
 #endif

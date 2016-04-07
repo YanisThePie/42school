@@ -4,7 +4,8 @@ SRCS = main.c \
 	listing.c \
 	window.c  \
 	pixel_put.c\
-	bresenham.c
+	bresenham.c\
+	event.c
 CFLAGS = -Wall -Wextra -Werror -ggdb -g
 FLAGS = -framework OpenGL -framework AppKit -L ./libft -lft -L minilibx_macos -lmlx
 OBJS = $(SRCS:.c=.o)
@@ -24,6 +25,5 @@ clean:
 
 fclean: clean
 	rm $(NAME)
-	rm *~
 
 re: fclean all
