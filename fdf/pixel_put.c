@@ -6,36 +6,39 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 00:46:33 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/12 13:00:23 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/12 16:57:33 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_list const	*lst_pos_max(t_list const *lst)
+t_list const    *lst_pos_max(t_list const *lst)
 {
-	t_list const	*tmp;
-	static int		x_max = 0;
-	static int		cpt;
-	int				i;
+    t_list const    *tmp;
+    static int      x_max = 0;
+    static int      cpt;
+    int             i;
 
-	i = 0;
-	cpt = 0;
-	tmp = lst;
-	while (tmp != NULL && cpt == 0)
-	{
-		if (x_max < ((t_stru *)tmp->content)->coord_x)
-			x_max = ((((t_stru *)tmp->content)->coord_x));
-		tmp = tmp->next;
-	}
-	tmp = lst;
-	while (tmp != NULL && i <= x_max)
-	{
-		i++;
-		tmp = tmp->next;
-	}
-	cpt++;
-	return (tmp);
+    i = 0;
+    cpt = 0;
+    tmp = lst;
+    while (tmp != NULL && cpt == 0)
+    {
+        if (x_max < ((t_stru *)tmp->content)->coord_x)
+            x_max = ((((t_stru *)tmp->content)->coord_x));
+        tmp = tmp->next;
+    }
+    tmp = lst;
+    while (tmp != NULL && i <= x_max)
+    {
+        i++;
+        tmp = tmp->next;
+        if ( tmp != NULL && ((t_stru *)tmp->content)->coord_x 
+		== (((t_stru *)lst->content)->coord_x))
+            return (tmp);
+    }
+    cpt++;
+    return (lst);
 }
 
 int				ft_pixel_put_v(t_list const *lst,
