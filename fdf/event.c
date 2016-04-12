@@ -6,21 +6,18 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 01:15:43 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/12 10:14:01 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/12 13:01:09 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int			my_key_funct(int keycode, proj_dots *env)
+int			my_key_funct(int keycode, t_projdots *env)
 {
-	ft_putstr("keycode is");
-	ft_putnbr(keycode);
-	if (keycode == 29)
+	if (keycode == 29 && env->event.alt <= 50)
 		env->event.alt += 1;
-	if (keycode == 25)
-		if (env->event.alt > 0)
-			env->event.alt -= 1;
+	if (keycode == 25 && env->event.alt > 0)
+		env->event.alt -= 1;
 	if (keycode == 53)
 		exit(EXIT_SUCCESS);
 	if ((keycode == 24) && (env->event.zoom <= 15))
@@ -31,6 +28,10 @@ int			my_key_funct(int keycode, proj_dots *env)
 		env->event.move_y--;
 	if (keycode == 125)
 		env->event.move_y++;
+	if (keycode == 123)
+		env->event.move_x--;
+	if (keycode == 124)
+		env->event.move_x++;
 	if (keycode == 1 && env->event.rotate_y <= 5)
 		env->event.rotate_y++;
 	if (keycode == 13 && env->event.rotate_y >= -5)
@@ -40,22 +41,23 @@ int			my_key_funct(int keycode, proj_dots *env)
 	return (0);
 }
 
-void		ft_set_event(proj_dots *env)
+void		ft_set_event(t_projdots *env)
 {
 	env->event.zoom = 1;
 	env->event.alt = 1;
 	env->event.move_y = 1;
+	env->event.move_x = 1;
 	env->event.rotate_y = 3;
 	env->event.z_min = 100;
 	env->event.z_max = -100;
 	env->event.alt = 0;
 }
 
-int			colors(int zo, proj_dots *spc)
+int			colors(int zo, t_projdots *spc)
 {
-	color	col_min;
-	color	col_max;
-	color	col_fin;
+	t_color	col_min;
+	t_color	col_max;
+	t_color	col_fin;
 	int		int_col_fin;
 
 	col_min.r = 250;

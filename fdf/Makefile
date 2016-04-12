@@ -1,4 +1,4 @@
-NAME = execut
+NAME = fdf
 CC = gcc
 SRCS = main.c \
 	listing.c \
@@ -15,7 +15,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C libft
+	make -C ./libft
 	make -C minilibx_macos
 	$(CC) $(FLAGS) -o  $(NAME) $^ ./libft/libft.a
 	gcc $(FLAGS) -o $(NAME) $(OBJS)  -L./libft -lft -framework OpenGL -framework AppKit -L ./libft -lft -L minilibx_macos -lmlx

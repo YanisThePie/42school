@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 22:13:47 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/12 10:16:57 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/12 13:11:40 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	fill_list(int coord_x, int coord_y, char *coord_z, t_list **list)
 {
 	long int	height;
-	structure	*content;
+	t_stru		*content;
 
-	content = (structure*)malloc(sizeof(structure));
+	content = (t_stru*)malloc(sizeof(t_stru));
 	content->coord_x = coord_x;
 	content->coord_y = coord_y;
 	height = ft_atoi(coord_z);

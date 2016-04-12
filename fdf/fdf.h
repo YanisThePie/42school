@@ -6,11 +6,11 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 00:05:57 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/12 04:52:41 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/12 12:57:47 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FDF_H
+#ifndef FDF_H
 # define FDF_H
 
 # include <fcntl.h>
@@ -18,80 +18,74 @@
 # include <sys/uio.h>
 # include <unistd.h>
 # include "./libft/libft.h"
-#include <math.h>
-#include <stdio.h>
-#include "./minilibx_macos/mlx.h"
+# include <math.h>
+# include <stdio.h>
+# include "./minilibx_macos/mlx.h"
 
-typedef struct
+typedef	struct		s_color
 {
-    int             r;
-    int             g;
-    int             b;
-}                   color;
+	int				r;
+	int				g;
+	int				b;
+}					t_color;
 
-typedef struct
+typedef	struct		s_stru
 {
 	int				coord_x;
 	int				coord_y;
 	int				height;
-}					structure;
+}					t_stru;
 
-typedef struct
+typedef	struct		s_strcmd
 {
-    int zoom;
-    int alt;
-    int move_y;
-	int move_x;
-    int rotate_y;
-	int z_min;
-	int z_max;
-}                   str_cmd;
-typedef struct
+	int				zoom;
+	int				alt;
+	int				move_y;
+	int				move_x;
+	int				rotate_y;
+	int				z_min;
+	int				z_max;
+}					t_strcmd;
+typedef	struct		s_projdots
 {
-	int xo; 
-	int yo;
-	int zo;
-	int x1;
-	int y1;
-	int x0;
-	int y0;
-	int yoo;
-	int zoo;
-	int color_act;
-	int color_next;
-	str_cmd event;
-	void	*mlx;
-	void	*win;
-	t_list	const *tmp;
-}					proj_dots;
+	int				xo;
+	int				yo;
+	int				zo;
+	int				x1;
+	int				y1;
+	int				x0;
+	int				y0;
+	int				yoo;
+	int				zoo;
+	int				t_color_act;
+	int				t_color_next;
+	t_strcmd		event;
+	void			*mlx;
+	void			*win;
+	t_list	const	*tmp;
+}					t_projdots;
 
-typedef struct
+typedef	struct		s_bresen
 {
-    int dx;
-    int dy;
-    int i;
-    int xinc;
-    int yinc;
-    int cumul;
-    int x;
-	int y;
-}                   bresen;
+	int				dx;
+	int				dy;
+	int				i;
+	int				xinc;
+	int				yinc;
+	int				cumul;
+	int				x;
+	int				y;
+}					t_bresen;
 
-/*
-typedef struct		s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
-*/
-int		ft_parsing (int argc, char **argv, t_list **list);
-void	ft_putlist(t_list *elem);
-void	ligne(proj_dots spc, void *mlx, void *win);//
-int		ft_window (t_list const *lst);
-int		ft_pixel_put(t_list const *lst, void *mlx, void *win, proj_dots env);
-int		colors (int zo, proj_dots *spc);
-int     my_key_funct(int keycode, proj_dots *spc);
-void    ft_set_event(proj_dots *env);
-int		color_to_int(color c);
+int					ft_parsing (int argc, char **argv, t_list **list);
+void				ft_putlist(t_list *elem);
+void				ligne(t_projdots spc, void *mlx, void *win);
+int					ft_window (t_list const *lst);
+int					ft_pixel_put(t_list const *lst, void *mlx,
+					void *win, t_projdots env);
+int					colors (int zo, t_projdots *spc);
+int					my_key_funct(int keycode, t_projdots *spc);
+void				ft_set_event(t_projdots *env);
+int					color_to_int(t_color c);
+t_list const		*change_alt(t_list const *tmp);
 #endif

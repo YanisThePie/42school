@@ -5,39 +5,39 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/07 00:33:18 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/12 10:09:59 by yismail          ###   ########.fr       */
+/*   Created: 2016/04/12 12:33:16 by yismail           #+#    #+#             */
+/*   Updated: 2016/04/12 12:33:19 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		color_to_int(color c)
+int		color_to_int(t_color c)
 {
 	return ((c.r & 0xff) << 16) | ((c.g & 0xff) << 8) | (c.b & 0xff);
 }
 
-color	calcul_delta(int color_act, int color_next, int n)
+t_color	calcul_delta(int t_color_act, int t_color_next, int n)
 {
-	color delta;
+	t_color delta;
 
-	delta.r = ((color_next >> 16 & 0xff) - (color_act >> 16 & 0xff)) / n;
-	delta.g = ((color_next >> 8 & 0xff) - (color_act >> 8 & 0xff)) / n;
-	delta.b = ((color_next & 0xff) - (color_act & 0xff)) / n;
+	delta.r = ((t_color_next >> 16 & 0xff) - (t_color_act >> 16 & 0xff)) / n;
+	delta.g = ((t_color_next >> 8 & 0xff) - (t_color_act >> 8 & 0xff)) / n;
+	delta.b = ((t_color_next & 0xff) - (t_color_act & 0xff)) / n;
 	return (delta);
 }
 
-void	ligne_n1(bresen br, void *mlx, void *win, proj_dots spc)
+void	ligne_n1(t_bresen br, void *mlx, void *win, t_projdots spc)
 {
-	color n1;
-	color d;
+	t_color n1;
+	t_color d;
 
-	d.r = (spc.color_act >> 16) & 0xff;
-	d.g = (spc.color_act >> 8) & 0xff;
-	d.b = spc.color_act & 0xff;
+	d.r = (spc.t_color_act >> 16) & 0xff;
+	d.g = (spc.t_color_act >> 8) & 0xff;
+	d.b = spc.t_color_act & 0xff;
 	br.cumul = br.dx / 2;
 	br.i = 1;
-	n1 = calcul_delta(spc.color_act, spc.color_next, br.dx - br.i);
+	n1 = calcul_delta(spc.t_color_act, spc.t_color_next, br.dx - br.i);
 	while (br.i <= br.dx)
 	{
 		br.x += br.xinc;
@@ -55,17 +55,17 @@ void	ligne_n1(bresen br, void *mlx, void *win, proj_dots spc)
 	}
 }
 
-void	ligne_n2(bresen br, void *mlx, void *win, proj_dots spc)
+void	ligne_n2(t_bresen br, void *mlx, void *win, t_projdots spc)
 {
-	color n2;
-	color d;
+	t_color n2;
+	t_color d;
 
-	d.r = (spc.color_act >> 16) & 0xff;
-	d.g = (spc.color_act >> 8) & 0xff;
-	d.b = spc.color_act & 0xff;
+	d.r = (spc.t_color_act >> 16) & 0xff;
+	d.g = (spc.t_color_act >> 8) & 0xff;
+	d.b = spc.t_color_act & 0xff;
 	br.cumul = br.dy / 2;
 	br.i = 1;
-	n2 = calcul_delta(spc.color_act, spc.color_next, br.dy - br.i);
+	n2 = calcul_delta(spc.t_color_act, spc.t_color_next, br.dy - br.i);
 	while (br.i <= br.dy)
 	{
 		br.y += br.yinc;
@@ -83,9 +83,9 @@ void	ligne_n2(bresen br, void *mlx, void *win, proj_dots spc)
 	}
 }
 
-void	ligne(proj_dots spc, void *mlx, void *win)
+void	ligne(t_projdots spc, void *mlx, void *win)
 {
-	bresen br;
+	t_bresen br;
 
 	br.x = spc.x0;
 	br.y = spc.y0;
@@ -95,7 +95,7 @@ void	ligne(proj_dots spc, void *mlx, void *win)
 	br.yinc = (br.dy > 0) ? 1 : -1;
 	br.dx = abs(br.dx);
 	br.dy = abs(br.dy);
-	mlx_pixel_put(mlx, win, br.x, br.y, spc.color_act);
+	mlx_pixel_put(mlx, win, br.x, br.y, spc.t_color_act);
 	if (br.dx > br.dy)
 		ligne_n1(br, mlx, win, spc);
 	else

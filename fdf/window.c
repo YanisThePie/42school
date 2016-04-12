@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 00:38:44 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/12 10:15:38 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/12 12:09:44 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,24 @@
 #include "./minilibx_macos/mlx.h"
 #include "fdf.h"
 
-int		ft_window(t_list const *lst)
+t_list const	*change_alt(t_list const *tmp)
 {
-	proj_dots		env;
+	t_list			const *first;
+
+	first = tmp;
+	while (tmp != NULL)
+	{
+		if ((((t_stru *)tmp->content)->height) > 0)
+			(((t_stru *)tmp->content)->height) =
+			((((t_stru *)tmp->content)->height));
+		tmp = tmp->next;
+	}
+	return (first);
+}
+
+int				ft_window(t_list const *lst)
+{
+	t_projdots		env;
 
 	ft_set_event(&env);
 	env.mlx = mlx_init();
