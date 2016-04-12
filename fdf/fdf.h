@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 00:05:57 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/07 09:53:32 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/12 04:52:41 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@
 
 typedef struct
 {
+    int             r;
+    int             g;
+    int             b;
+}                   color;
+
+typedef struct
+{
 	int				coord_x;
 	int				coord_y;
 	int				height;
@@ -36,6 +43,8 @@ typedef struct
     int move_y;
 	int move_x;
     int rotate_y;
+	int z_min;
+	int z_max;
 }                   str_cmd;
 typedef struct
 {
@@ -48,8 +57,8 @@ typedef struct
 	int y0;
 	int yoo;
 	int zoo;
-	int color;
-	int color_new;
+	int color_act;
+	int color_next;
 	str_cmd event;
 	void	*mlx;
 	void	*win;
@@ -81,7 +90,8 @@ void	ft_putlist(t_list *elem);
 void	ligne(proj_dots spc, void *mlx, void *win);//
 int		ft_window (t_list const *lst);
 int		ft_pixel_put(t_list const *lst, void *mlx, void *win, proj_dots env);
-void	color (proj_dots *spc);
+int		colors (int zo, proj_dots *spc);
 int     my_key_funct(int keycode, proj_dots *spc);
 void    ft_set_event(proj_dots *env);
+int		color_to_int(color c);
 #endif

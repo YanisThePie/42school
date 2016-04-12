@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 00:46:33 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/07 10:05:47 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/12 06:35:06 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,12 @@ int				ft_pixel_put_v(t_list const *lst,
 	spc->y1 = ((((0.41) * (spc->xo + spc->yo) + 0.82 * -spc->zo) * (spc->event.zoom + 20)) + (4 * spc->event.move_y)) * (0.25 * spc->event.rotate_y);
 	spc->x1 += 500;
 	spc->y1 += 180;
-	color(spc);
+	spc->color_act = colors(spc->zo, spc);
+	//spc->color_next = colors(spc->zo, spc);
+	if (tmp && tmp->next != NULL)
+		spc->color_next = colors(((structure *)tmp->next->content)->height, spc);
+	else
+		spc->color_next = 0x878787;
 	if (spc->y0 != 0 && spc->x0 != 0)
 		ligne(*spc, mlx, win);
 	return(0);
@@ -74,7 +79,11 @@ int				ft_pixel_put_h(t_list const *tmp, void *mlx, void *win, proj_dots *spc)
 	spc->y1 = (((0.41) * (spc->xo + spc->yo) + 0.82 * -spc->zo) * (spc->event.zoom + 20) + (4 * spc->event.move_y)) * (0.25 * spc->event.rotate_y);
 	spc->x1 += 500;
 	spc->y1 += 180;
-	color(spc);
+	spc->color_act = colors(spc->zo, spc);
+    if (tmp && tmp->next != NULL)
+		spc->color_next = colors(((structure *)lst->next->content)->height, spc);
+	else
+		spc->color_next= 0x878787;
 	if (spc->y0 != 0 && spc->x0 != 0 && spc->yoo == spc->yo)
 		ligne(*spc, mlx, win);
 	spc->x0 = spc->x1;
@@ -82,6 +91,36 @@ int				ft_pixel_put_h(t_list const *tmp, void *mlx, void *win, proj_dots *spc)
 	spc->yoo = spc->yo;
 	spc->zoo = spc->zo;
 	return (0);
+}
+
+void z_max_min(t_list const *tmp, proj_dots *spc)
+{
+	t_list const *lst;
+
+	lst = tmp;
+
+	while (lst != NULL)
+	{
+		if ((((structure *)lst->content)->height) > spc->event.z_max)
+			spc->event.z_max = (((structure *)lst->content)->height);
+		if ((((structure *)lst->content)->height) < spc->event.z_min)
+			spc->event.z_min = (((structure *)lst->content)->height);
+		lst = lst->next;
+	}
+}
+
+t_list const *change_alt(t_list const *tmp, proj_dots *spc)
+{
+	t_list  const *first;
+
+	first = tmp;
+	while (tmp != NULL)
+    {
+		if ((((structure *)tmp->content)->height) != 0)
+			(((structure *)tmp->content)->height) = ((((structure *)tmp->content)->height)) + spc->event.alt;
+        tmp = tmp->next;
+    }
+	return (first);
 }
 
 int				ft_pixel_put(t_list const *lst, void *mlx, 
@@ -96,6 +135,8 @@ int				ft_pixel_put(t_list const *lst, void *mlx,
 	spc.y0 = 0;
 	spc.yoo = 0;
 	spc.zoo = 0;
+	z_max_min(tmp, &spc);
+	tmp = change_alt(tmp, &spc);
 	while (tmp != NULL)
 	{
 		ft_pixel_put_h(tmp, mlx, win, &spc);
