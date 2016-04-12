@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 00:46:33 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/12 06:35:06 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/12 08:42:36 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,13 @@ int				ft_pixel_put_v(t_list const *lst,
 	{
 		spc->xo = ((structure *)tmp->content)->coord_x;
 		spc->yo = ((structure *)tmp->content)->coord_y;
-		spc->zo = ((structure *)tmp->content)->height;
+		spc->zo = ((structure *)tmp->content)->height + ((((structure *)tmp->content)->height > 0) ? spc->event.alt : 0);
 	}
-	spc->x1 = ((0.71) * (spc->xo - spc->yo) * (spc->event.zoom + 20) + (4 * spc->event.move_x));
+	spc->x1 = ((0.71) * (spc->xo - spc->yo) * (spc->event.zoom + 20));
 	spc->y1 = ((((0.41) * (spc->xo + spc->yo) + 0.82 * -spc->zo) * (spc->event.zoom + 20)) + (4 * spc->event.move_y)) * (0.25 * spc->event.rotate_y);
 	spc->x1 += 500;
 	spc->y1 += 180;
 	spc->color_act = colors(spc->zo, spc);
-	//spc->color_next = colors(spc->zo, spc);
 	if (tmp && tmp->next != NULL)
 		spc->color_next = colors(((structure *)tmp->next->content)->height, spc);
 	else
@@ -74,8 +73,8 @@ int				ft_pixel_put_h(t_list const *tmp, void *mlx, void *win, proj_dots *spc)
 	lst = tmp;
 	spc->xo = ((structure *)lst->content)->coord_x;
 	spc->yo = ((structure *)lst->content)->coord_y;
-	spc->zo = ((structure *)lst->content)->height;
-	spc->x1 = (((0.71) * (spc->xo - spc->yo) * (spc->event.zoom + 20))) + (4 * spc->event.move_x);
+	spc->zo = ((structure *)lst->content)->height + ((((structure *)tmp->content)->height > 0) ? spc->event.alt : 0);
+	spc->x1 = (((0.71) * (spc->xo - spc->yo) * (spc->event.zoom + 20)));
 	spc->y1 = (((0.41) * (spc->xo + spc->yo) + 0.82 * -spc->zo) * (spc->event.zoom + 20) + (4 * spc->event.move_y)) * (0.25 * spc->event.rotate_y);
 	spc->x1 += 500;
 	spc->y1 += 180;
@@ -113,11 +112,12 @@ t_list const *change_alt(t_list const *tmp, proj_dots *spc)
 {
 	t_list  const *first;
 
+	(void)spc;
 	first = tmp;
 	while (tmp != NULL)
     {
-		if ((((structure *)tmp->content)->height) != 0)
-			(((structure *)tmp->content)->height) = ((((structure *)tmp->content)->height)) + spc->event.alt;
+		if ((((structure *)tmp->content)->height) > 0)
+			(((structure *)tmp->content)->height) = ((((structure *)tmp->content)->height));// + spc->event.alt;
         tmp = tmp->next;
     }
 	return (first);

@@ -6,18 +6,18 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 00:33:18 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/12 03:00:20 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/12 10:09:59 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int color_to_int(color c)
+int		color_to_int(color c)
 {
 	return ((c.r & 0xff) << 16) | ((c.g & 0xff) << 8) | (c.b & 0xff);
 }
 
-color calcul_delta(int color_act, int color_next, int n)
+color	calcul_delta(int color_act, int color_next, int n)
 {
 	color delta;
 
@@ -57,12 +57,12 @@ void	ligne_n1(bresen br, void *mlx, void *win, proj_dots spc)
 
 void	ligne_n2(bresen br, void *mlx, void *win, proj_dots spc)
 {
-	color n2; 
+	color n2;
 	color d;
 
 	d.r = (spc.color_act >> 16) & 0xff;
-    d.g= (spc.color_act >> 8)& 0xff;
-    d.b= spc.color_act & 0xff;
+	d.g = (spc.color_act >> 8) & 0xff;
+	d.b = spc.color_act & 0xff;
 	br.cumul = br.dy / 2;
 	br.i = 1;
 	n2 = calcul_delta(spc.color_act, spc.color_next, br.dy - br.i);

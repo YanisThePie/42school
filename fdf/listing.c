@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 22:13:47 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/11 23:48:15 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/12 10:16:57 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 void	fill_list(int coord_x, int coord_y, char *coord_z, t_list **list)
 {
-	int			height;
+	long int	height;
 	structure	*content;
 
 	content = (structure*)malloc(sizeof(structure));
 	content->coord_x = coord_x;
 	content->coord_y = coord_y;
 	height = ft_atoi(coord_z);
-	content->height = height;
+	if (height <= (-2147483648) || height >= (2147483647))
+		exit(EXIT_FAILURE);
+	content->height = (int)height;
 	(*list)->content = (void*)content;
 }
 
@@ -59,6 +61,23 @@ void	ft_split(char *line, int y, t_list **list)
 	freetab(line_spl);
 }
 
+int		check_entry(char *line)
+{
+	int i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '-')
+			i++;
+		if ((line[i] < 48 && line[i] > 57) && (line[i] != ' ') &&
+		(line[i] != '\0' && line[i] != '\n'))
+			exit(EXIT_FAILURE);
+		i++;
+	}
+	return (0);
+}
+
 int		ft_parsing(int argc, char **argv, t_list **list)
 {
 	char	*line;
@@ -67,18 +86,19 @@ int		ft_parsing(int argc, char **argv, t_list **list)
 	int		coord_y;
 
 	if (argc != 2)
-		return (-1);
+		exit(EXIT_FAILURE);
 	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		exit(EXIT_FAILURE);
 	coord_y = 0;
 	while ((ret = (get_next_line(fd, &line)) > 0))
 	{
-		//ici gestion d'erreur si pas un nombre
+		check_entry(line);
 		ft_split(line, coord_y, list);
 		coord_y++;
 		free(line);
 	}
 	if (ret < 0)
 		return (-1);
-// gerer les valeurs d'int trop hautes et les negatifs dansune fonction d'erreur.
 	return (0);
 }

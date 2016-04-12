@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 17:13:04 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/06 20:54:33 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/12 09:37:28 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char				*ft_itoa(int n);
 size_t				ft_nbrlen (int n);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putchar (char c);
-int					ft_atoi(const char *str);
+long int			ft_atoi(const char *str);
 char				*ft_strndup(char *str, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				ft_bzero(void *s, size_t n);
