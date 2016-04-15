@@ -10,8 +10,9 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('#fullpage').fullpage({
-    sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke',],
+    sectionsColor: ['#F2F2F2', '#4BBFC3', '#7BAABE', 'whitesmoke',],
     slidesNavigation : true,
+    recordHistory : true,
 	css3: true,
 	autoScrolling : false
 	});
@@ -22,7 +23,7 @@ $(document).ready(function() {
 		$(document).ready(function() {
 			$('.pxBackground').parallax();
 			$('.pxSprite').parallax({
-				'coeff' : 0.7,
+				'coeff' : 0.3,
 				'type' : 'sprite'
 			});
 		});
@@ -32,26 +33,60 @@ $(document).ready(function() {
 			font-size: 6em;
 			text-align: center;
 		}
+
+		.section .slide{
+			color: white;
+		}
+
 		.section span{
 		position: relative;
   		vertical-align: middle;
-  		bottom: 500px;
+  		bottom: 50px;
+  		color: white;
 		}
-	#parallaxWrapper {
-	position:relative;
-	top: 0px; bottom: 0px;/* Référence aux enfants en absolute */
-	width:400px; height: 800px; }
+#fp-nav ul li a span, 
+.fp-slidesNav ul li a span {
+    background: white;
+    width: 10px;
+    height: 10px;
+    margin: -4px 0 0 -4px;
+}
+      
+#fp-nav ul li a.active span, 
+.fp-slidesNav ul li a.active span, 
+#fp-nav ul li:hover a.active span, 
+.fp-slidesNav ul li:hover a.active span {
+    width: 17px;
+    height: 17px;
+    margin: -8px 0px 0px -8px;
+    background: grey;
+    box-sizing: border-box;
+    border: 1px solid white;
+}
 
+.fp-slidesNav ul li:hover a span,
+#fp-nav ul li:hover a span{
+    width: 12px;
+    height: 12px;
+    margin: -4px 0 0 -4px;
+}
+
+	#parallaxWrapper {
+		position:fixed; z-index:99;
+		width:500px; height:2230px;
+		top:0%; left:50%; margin-left:-860px;
+		background-position:0 0;
+	}
 #parallaxWrapper [class*="px"] { /* Cible tous les enfants contenant la chaine "px" */
 	visibility:hidden; /* Plugin feature ! (voir les explications) */
 	position:absolute; }
 
 #parallaxWrapper .pxBackground {
 	top:0; left:0; bottom:0; right:0;  /* Alternative à top:0; left:0; width:100%; height:100%; */
-	background:#f2f2f2; no-repeat; }
+	 }
 
 #parallaxWrapper .pxSprite {
-	top:-125px; right:100px; /* Position initiale de l’élément */
+	top:-150px; right:100px; /* Position initiale de l’élément */
 	width:200px; height:200px;
 	background:url(sprite.png) no-repeat; }
 </style>
@@ -59,20 +94,18 @@ $(document).ready(function() {
 
 <body>
 	<div id="fullpage">
-    	<div class="section">
-    		<div id= "parallaxWrapper">
-				<div class="pxBackground"></div>
+		<div class="section pxBackground" style="background-image: url(nebula.jpg); height: auto; width: 100%;"><span>Space</span>
+			<div id= "parallaxWrapper">
 				<div class="pxSprite"></div>
 			</div>
-			<span>Section 1</span>
 		</div>
-    		<div class="section">
-        		<div class="slide">Slide 1</div>
-    			<div class="slide">Slide 2</div>
-    			<div class="slide">Slide 3</div>
-    		</div>
-    		<div class="section">Section 3</div>
-    		<div class="section">Section 4</div>
+    	<div class="section" style="background-image: url(planet.jpg); height: 100%; width: 100%;">Is Never</div>
+    		<div class="section pxBackground" style="background-image: url(ciel.jpg); height: 100%; width: 100%;">
+       		<div class="slide">Ever...</div>
+   			<div class="slide">Ever..</div>
+   			<div class="slide">Ever.</div>
+   		</div>    		
+   		<div class="section">Over</div>
 	</div>
 </body>
 
