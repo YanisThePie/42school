@@ -1,3 +1,5 @@
+
+
 @font-face {
     font-family: 'Roboto';
     src:
@@ -92,7 +94,7 @@ nav
 
 .div_list_novatrice
 {
-	margin-top: 7%;
+	margin-top: 2%;
 }
 
 #list_novatrice
@@ -117,6 +119,17 @@ nav
     box-shadow: #B3B3B3 8px 8px 8px;
     width:50px;
     height:50px;
+}
+
+.class_arrow
+{
+	position: fixed;
+	z-index: 3;
+	position: absolute;
+	position: fixed;
+	right: 1px;
+	top: 52%;
+	width: 7em;
 }
 
 a.p1

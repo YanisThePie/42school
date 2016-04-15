@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="vendors/jquery.easings.min.js"></script>
+<script type="text/javascript" src="jquery.fullPage.js"></script>
+<script src="jquery.parallax.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#fullpage').fullpage({
+    sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke',],
+    slidesNavigation : true,
+	css3: true,
+	autoScrolling : false
+	});
+	$.fn.fullpage.setAllowScrolling(true, 'down, right');
+});
+</script>
+<script>
+		$(document).ready(function() {
+			$('.pxBackground').parallax();
+			$('.pxSprite').parallax({
+				'coeff' : 0.7,
+				'type' : 'sprite'
+			});
+		});
+	</script>
+<style type="text/css">
+		.section{
+			font-size: 6em;
+			text-align: center;
+		}
+		.section span{
+		position: relative;
+  		vertical-align: middle;
+  		bottom: 500px;
+		}
+	#parallaxWrapper {
+	position:relative;
+	top: 0px; bottom: 0px;/* Référence aux enfants en absolute */
+	width:400px; height: 800px; }
+
+#parallaxWrapper [class*="px"] { /* Cible tous les enfants contenant la chaine "px" */
+	visibility:hidden; /* Plugin feature ! (voir les explications) */
+	position:absolute; }
+
+#parallaxWrapper .pxBackground {
+	top:0; left:0; bottom:0; right:0;  /* Alternative à top:0; left:0; width:100%; height:100%; */
+	background:#f2f2f2; no-repeat; }
+
+#parallaxWrapper .pxSprite {
+	top:-125px; right:100px; /* Position initiale de l’élément */
+	width:200px; height:200px;
+	background:url(sprite.png) no-repeat; }
+</style>
+</head>
+
+<body>
+	<div id="fullpage">
+    	<div class="section">
+    		<div id= "parallaxWrapper">
+				<div class="pxBackground"></div>
+				<div class="pxSprite"></div>
+			</div>
+			<span>Section 1</span>
+		</div>
+    		<div class="section">
+        		<div class="slide">Slide 1</div>
+    			<div class="slide">Slide 2</div>
+    			<div class="slide">Slide 3</div>
+    		</div>
+    		<div class="section">Section 3</div>
+    		<div class="section">Section 4</div>
+	</div>
+</body>
+
+</html>
