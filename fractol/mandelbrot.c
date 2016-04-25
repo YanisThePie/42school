@@ -8,8 +8,8 @@ void complex_module (t_form *form, t_env *env)
 		form->tmp = form->z_r;
 		form->z_r = (form->z_r * form->z_r) -
 		(form->z_i * form->z_i) + form->c_r;
-		form->z_i = (2 * form->z_i * form->tmp + form->c_i);
-		form->i = form->i + 1;
+		form->z_i = 2 * form->z_i * form->tmp + form->c_i;
+		form->i += 1;
 	}
 	if (form->i == form->iteration_max)
 		*(unsigned int *)(env->data + form->y* env->sizeline
