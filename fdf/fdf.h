@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include "./libft/libft.h"
 # include <math.h>
-# include <stdio.h>
+# include <unistd.h> 
 # include "./minilibx_macos/mlx.h"
 
 typedef	struct		s_color

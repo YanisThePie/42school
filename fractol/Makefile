@@ -1,6 +1,7 @@
 NAME = fractol
 CC = gcc
 SRCS = main.c \
+		mandelbrot.c
 
 CFLAGS = -Wall -Wextra -Werror -ggdb -g
 FLAGS = -framework OpenGL -framework AppKit -L ./libft -lft -L minilibx_macos -lmlx
