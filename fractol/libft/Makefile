@@ -16,6 +16,7 @@ SRCS = ft_itoa.c \
 	ft_lstnew.c\
 	ft_lstdelone.c\
 	ft_lstmap.c\
+	color_to_int.c\
 	ft_lstdel.c\
 	get_next_line.c\
 	ft_lstadd.c\
@@ -91,6 +92,7 @@ OBJECTS = ft_itoa.o \
 	ft_listisempty.o\
 	ft_islow.o \
 	ft_isupp.o \
+	color_to_int.o \
 	ft_strndup.o \
 	ft_freetab.o\
 	get_next_line.o\

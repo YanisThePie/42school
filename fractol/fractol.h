@@ -31,16 +31,16 @@ typedef struct	s_form
 	int image_x;
 	int image_y;
 	int iteration_max;
-	int zoom_x;
-	int zoom_y;
+	double zoom_x;
+	double zoom_y;
 	int x;
 	int y;
-	int c_r;
-	int c_i;
-	int z_r;
-	int z_i;
+	double c_r;
+	double c_i;
+	double z_r;
+	double z_i;
 	int i;
-	int tmp;
+	double tmp;
 	
 }				t_form;
 

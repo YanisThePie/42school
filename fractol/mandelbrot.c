@@ -2,6 +2,9 @@
 
 void complex_module (t_form *form, t_env *env)
 {
+	t_color clr;
+	int clr_int;
+
 	while (((form->z_r * form->z_r) + (form->z_i * form->z_i)) < 4
 	&& form->i < form->iteration_max)
 	{
@@ -13,10 +16,16 @@ void complex_module (t_form *form, t_env *env)
 	}
 	if (form->i == form->iteration_max)
 		*(unsigned int *)(env->data + form->y* env->sizeline
-		+ 4* form->x) = 0xff0000;
+		   + 4* form->x) = 0x00000;
 	else
+	{
+		clr.r = 0;
+		clr.g = 0;
+		clr.b = (form->i * 255 / form->iteration_max);
+		clr_int = color_to_int (clr);
 		*(unsigned int *)(env->data + form->y* env->sizeline
-						  + 4* form->x) = 0xffffff;
+						 + 4* form->x) = clr_int;
+	}
 		
 }
 
@@ -48,8 +57,8 @@ int mandelbrot(t_env *env)
 	form.x2 = 0.6;
 	form.y1 = -1.2;
 	form.y2 = 1.2;
-	form.image_x = 270;
-	form.image_y = 240;
+	form.image_x = 1000;
+	form.image_y = 1000;
 	form.iteration_max = 50;
 	form.x = 0;
 	form.y = 0;
