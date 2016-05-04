@@ -14,7 +14,10 @@ typedef struct  s_set
 {
 	int img_x;
 	int img_y;
-	void *keep_ad;
+	int coef_iter;
+	double coef_zoom;
+	int mse_h_x;
+	int mse_h_y;
 }			t_set;
 
 typedef struct	s_env
@@ -27,7 +30,7 @@ typedef struct	s_env
 	int		bpp;
 	int		sizeline;
 	int		endian;
-	t_set	setup;
+	t_set	set;
 	
 }				t_env;
 
