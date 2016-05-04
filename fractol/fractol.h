@@ -10,15 +10,24 @@
 # include "./minilibx_macos/mlx.h"
 # include <unistd.h>
 
+typedef struct  s_set
+{
+	int img_x;
+	int img_y;
+	void *keep_ad;
+}			t_set;
+
 typedef struct	s_env
 {
 	void	*mlx;
 	void	*win;
 	void	*img;
 	char	*data;
+	char	*name;
 	int		bpp;
 	int		sizeline;
 	int		endian;
+	t_set	setup;
 	
 }				t_env;
 
@@ -45,6 +54,8 @@ typedef struct	s_form
 }				t_form;
 
 int mandelbrot(t_env *env);
-
+int ft_event(t_env *env);
+void ft_new_img(t_env *env);
+void ft_put_pixel_img(t_env *env, t_form *form, int clr_int);
 
 #endif

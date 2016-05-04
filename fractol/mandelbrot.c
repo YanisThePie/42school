@@ -15,18 +15,21 @@ void complex_module (t_form *form, t_env *env)
 		form->i += 1;
 	}
 	if (form->i == form->iteration_max)
-		*(unsigned int *)(env->data + form->y* env->sizeline
-		   + 4* form->x) = 0x00000;
-	else
+		ft_put_pixel_img(env, form, 0x00000000);
+		/**(unsigned int *)(env->data + form->y* env->sizeline
+						  + 4* form->x) = 0x000000;
+		*/
+		else
 	{
 		clr.r = 0;
 		clr.g = 0;
 		clr.b = (form->i * 255 / form->iteration_max);
 		clr_int = color_to_int (clr);
-		*(unsigned int *)(env->data + form->y* env->sizeline
-						 + 4* form->x) = clr_int;
+		ft_put_pixel_img(env, form, clr_int);
+		/**(unsigned int *)(env->data + form->y * env->sizeline
+			  + 4* form->x) = clr_int;
+		*/
 	}
-		
 }
 
 void nested_loop(t_form *form, t_env *env)
@@ -45,7 +48,7 @@ void nested_loop(t_form *form, t_env *env)
 				complex_module(form, env);
 				form->y++;
 			}
-		form->x++;
+			form->x++;
 	}
 }
 
@@ -57,9 +60,9 @@ int mandelbrot(t_env *env)
 	form.x2 = 0.6;
 	form.y1 = -1.2;
 	form.y2 = 1.2;
-	form.image_x = 1000;
-	form.image_y = 1000;
-	form.iteration_max = 50;
+	form.image_x = 1200;
+	form.image_y = 1200;
+	form.iteration_max = 50; //+ env->coef_iter;
 	form.x = 0;
 	form.y = 0;
 	form.zoom_x = form.image_x/(form.x2 - form.x1);
