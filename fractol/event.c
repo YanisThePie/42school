@@ -23,7 +23,7 @@ int mouse_click( int keycode, int x, int y, t_env *env)
 	env->set.mse_h_x = (double)x;
 	env->set.mse_h_y = (double)y;
     ft_new_img(env);
-    mandelbrot(env);
+    choose_fract(env);
 	return(0);
 }
 
@@ -54,7 +54,7 @@ int my_key_funct(int keycode, t_env *env)
 	if (keycode == 15)
 		ft_set(env);
 	ft_new_img(env);
-	mandelbrot(env);
+	choose_fract(env);
 	return(0);
 }
 

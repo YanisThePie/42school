@@ -12,13 +12,13 @@
 
 typedef struct  s_set
 {
-	int img_x;
-	int img_y;
-	int coef_iter;
-	double coef_zoom;
-	double mse_h_x;
-	double mse_h_y;
-	int key_zm;
+	int		img_x;
+	int		img_y;
+	int		coef_iter;
+	double	coef_zoom;
+	double	mse_h_x;
+	double	mse_h_y;
+	int		key_zm;
 }			t_set;
 
 typedef struct  s_form
@@ -56,6 +56,7 @@ typedef struct	s_env
 	int		endian;
 	t_set	set;
 	t_form	frm;
+	char    *what_fract;
 	
 }				t_env;
 
@@ -64,5 +65,6 @@ int mandelbrot(t_env *env);
 int ft_event(t_env *env);
 void ft_new_img(t_env *env);
 void ft_put_pixel_img(t_env *env, int clr_int);
-
+int choose_fract(t_env *env);
+int instru_window(t_env *env);
 #endif
