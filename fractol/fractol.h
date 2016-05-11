@@ -52,12 +52,14 @@ typedef struct	s_env
 	char	*name;
 	int		bpp;
 	int		sizeline;
+	int		oct;
 	int		endian;
 	t_set	set;
 	t_form	frm;
 	
 }				t_env;
 
+void ft_set(t_env *env);
 int mandelbrot(t_env *env);
 int ft_event(t_env *env);
 void ft_new_img(t_env *env);

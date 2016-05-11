@@ -1,5 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/11 16:57:16 by yismail           #+#    #+#             */
+/*   Updated: 2016/05/11 17:12:03 by yismail          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
-#include <stdio.h>
+
+void ft_put_pixel_img(t_env *env, int clr_int)
+{
+    if ((env->frm.x >= 0 && env->frm.x <= 1200)
+        && (env->frm.y >= 0 && env->frm.y <= 1200))
+    {
+        ft_memcpy(&(env->data[(env->frm.y * env->sizeline) + 
+		(env->frm.x * env->oct)]), &clr_int, (size_t)(sizeof(int)));
+    }
+}
 
 void complex_module (t_env *env)
 {
@@ -17,11 +38,7 @@ void complex_module (t_env *env)
 	}
 	if (env->frm.i == env->frm.iteration_max)
 		ft_put_pixel_img(env, 0x00000000);
-	/**(unsigned int *)(env->data + env->frm->y* env->sizeline
-					  + 4* env->frm->x) = 0x000000;
-	*/
-		
-		else
+	else
 	{
 		clr.r = 0;
 		clr.g = 0;

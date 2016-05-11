@@ -1,24 +1,28 @@
-#include "fractol.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/11 16:56:53 by yismail           #+#    #+#             */
+/*   Updated: 2016/05/11 17:05:28 by yismail          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void ft_put_pixel_img(t_env *env, int clr_int)
-{
-	//env = env;
-	if ((env->frm.x >= 0 && env->frm.x <= 1200)
-		&& (env->frm.y >= 0 && env->frm.y <= 1200))
-	{
-		ft_memcpy(&(env->data[(env->frm.y * env->sizeline) + (env->frm.x * 4)]),
-		&clr_int, (size_t)(sizeof(int)));
-	}
-}
+#include "fractol.h"
 
 void ft_set(t_env *env)
 {
 	env->set.img_x = 1200;
 	env->set.img_y = 1200;
+    env->frm.image_x = 1200;
+    env->frm.image_y = 1200;
 	env->set.coef_iter = 0;
 	env->set.coef_zoom = 1;
 	env->set.mse_h_x = 0.00;
-	env->set.mse_h_x = 0.00;
+	env->set.mse_h_y = 0.00;
+	env->set.key_zm = 0;
 }
 
 int ft_window()
@@ -32,9 +36,8 @@ int ft_window()
 	env->win = mlx_new_window(env->mlx, 1200, 1200, "fractol");
 	ft_set(env);
 	ft_new_img(env);
-	//env.oct = (env.bpp / 8);
+	env->oct = (env->bpp / 8);
 	mandelbrot(env);
-	//mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	ft_event(env);
 	mlx_loop(env->mlx);
 	return (0);
