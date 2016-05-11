@@ -17,8 +17,8 @@ void ft_set(t_env *env)
 	env->set.img_y = 1200;
 	env->set.coef_iter = 0;
 	env->set.coef_zoom = 1;
-	env->set.mse_h_x = 0;
-	env->set.mse_h_x = 0;
+	env->set.mse_h_x = 0.00;
+	env->set.mse_h_x = 0.00;
 }
 
 int ft_window()

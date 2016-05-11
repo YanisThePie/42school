@@ -16,8 +16,8 @@ typedef struct  s_set
 	int img_y;
 	int coef_iter;
 	double coef_zoom;
-	int mse_h_x;
-	int mse_h_y;
+	double mse_h_x;
+	double mse_h_y;
 }			t_set;
 
 typedef struct	s_env

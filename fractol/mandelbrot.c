@@ -1,4 +1,5 @@
 #include "fractol.h"
+#include <stdio.h>
 
 void complex_module (t_form *form, t_env *env)
 {
@@ -52,15 +53,24 @@ void nested_loop(t_form *form, t_env *env)
 
 int calcul_center (t_env *env, t_form *form)
 {
-	int coord_center_x;
-	int coord_center_y;
+	double coord_center_x;
+	double coord_center_y;
 
-	coord_center_x = (env->set.mse_h_x / 1200) * (form->x2 - form->x1) + form->x1;
+	coord_center_x =  (env->set.mse_h_x / 1200) * (form->x2); //- form->x1) + form->x1;
+	printf("%lf form x2\n", form->x2);
 	coord_center_y = (env->set.mse_h_y / 1200) * (form->y2 - form->y1) + form->y1;
-	form->x1 = coord_center_x - (0.90) * (form->x2 - form->x1) / 2;
+	/*form->x1 = coord_center_x - (0.90) * (form->x2 - form->x1) / 2;
 	form->x2 = coord_center_x + (0.90) * (form->x2 - form->x1) / 2;
     form->y1 = coord_center_y - (0.90) * (form->y2 - form->y1) / 2;
-    form->y2 = coord_center_y + (0.90) * (form->y2 - form->y1) / 2;
+    form->y2 = coord_center_y + (0.90) * (form->y2 - form->y1) / 2;*/
+	printf("%lf form->x1\n", form->x1);
+	ft_putchar('\n');
+	ft_putnbr(form->x2);
+	ft_putchar('\n');
+	ft_putnbr(form->y1);
+	ft_putchar('\n');
+	ft_putnbr(form->y2);
+	ft_putchar('\n');
 	return(0);
 }
 
@@ -69,15 +79,16 @@ int mandelbrot(t_env *env)
 	t_form form;
 
 	ft_bzero(&form, sizeof(t_form));
-	if (env->set.mse_h_x == 0 && env->set.mse_h_y == 0)
+	 if (env->set.mse_h_x == 0 && env->set.mse_h_y == 0)
 	{
 		form.x1 = -2.1;
 		form.x2 = 0.6;
 		form.y1 = -1.2;
 		form.y2 = 1.2;
 	}
-	//else
-		//calcul_center(env, &form);
+	 printf("%lf form x222\n", form.x1);
+	 //else
+	 // calcul_center(env, &form);
 	form.image_x = 1200;
 	form.image_y = 1200;
 	form.iteration_max = 50 + env->set.coef_iter;

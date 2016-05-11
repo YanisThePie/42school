@@ -18,9 +18,12 @@ void ft_new_img(t_env *env)
 
 int mouse_click( int keycode, int x, int y, t_env *env)
 {
-	ft_putnbr(x);
+
+	(void)x;
+	(void)y;
+	//ft_putnbr(x);
 	ft_putchar('\n');
-    ft_putnbr(y);
+    //ft_putnbr(y);
     ft_putchar('\n');
     ft_putnbr(keycode);
     ft_putchar('\n');
@@ -28,8 +31,8 @@ int mouse_click( int keycode, int x, int y, t_env *env)
 		env->set.coef_zoom += 0.10;
 	if (keycode == 5)
 		env->set.coef_zoom -=0.10;
-	//env->set.mse_h_x = x;
-	//env->set.mse_h_y = y;
+	env->set.mse_h_x = (double)x;
+	env->set.mse_h_y = (double)y;
     ft_new_img(env);
     mandelbrot(env);
 	return(0);
@@ -66,7 +69,7 @@ int my_key_funct(int keycode, t_env *env)
 
 int ft_event(t_env *env)
 {
-	mlx_hook(env->win, 6, 0 ,&mouse_pos, env);
+	//mlx_hook(env->win, 6, 0 ,&mouse_pos, env);
 	mlx_key_hook(env->win, my_key_funct, env);
 	mlx_mouse_hook(env->win, mouse_click, env);
 	return(0);
