@@ -1,12 +1,12 @@
 #include "fractol.h"
 
-void ft_put_pixel_img(t_env *env, t_form *form, int clr_int)
+void ft_put_pixel_img(t_env *env, int clr_int)
 {
 	//env = env;
-	if ((form->x >= 0 && form->x <= 1200)
-		&& (form->y >= 0 && form->y <= 1200))
+	if ((env->frm.x >= 0 && env->frm.x <= 1200)
+		&& (env->frm.y >= 0 && env->frm.y <= 1200))
 	{
-		ft_memcpy(&(env->data[(form->y * env->sizeline) + (form->x * 4)]),
+		ft_memcpy(&(env->data[(env->frm.y * env->sizeline) + (env->frm.x * 4)]),
 		&clr_int, (size_t)(sizeof(int)));
 	}
 }

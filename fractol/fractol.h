@@ -18,7 +18,30 @@ typedef struct  s_set
 	double coef_zoom;
 	double mse_h_x;
 	double mse_h_y;
+	int key_zm;
 }			t_set;
+
+typedef struct  s_form
+{
+    double x1;
+    double x2;
+    double y1;
+    double y2;
+    int image_x;
+    int image_y;
+    int iteration_max;
+    double zoom_x;
+    double zoom_y;
+    int x;
+    int y;
+    double c_r;
+    double c_i;
+    double z_r;
+    double z_i;
+    int i;
+    double tmp;
+
+}               t_form;
 
 typedef struct	s_env
 {
@@ -31,34 +54,13 @@ typedef struct	s_env
 	int		sizeline;
 	int		endian;
 	t_set	set;
+	t_form	frm;
 	
 }				t_env;
-
-typedef struct	s_form
-{
-	double x1;
-	double x2;
-	double y1;
-	double y2;
-	int image_x;
-	int image_y;
-	int iteration_max;
-	double zoom_x;
-	double zoom_y;
-	int x;
-	int y;
-	double c_r;
-	double c_i;
-	double z_r;
-	double z_i;
-	int i;
-	double tmp;
-	
-}				t_form;
 
 int mandelbrot(t_env *env);
 int ft_event(t_env *env);
 void ft_new_img(t_env *env);
-void ft_put_pixel_img(t_env *env, t_form *form, int clr_int);
+void ft_put_pixel_img(t_env *env, int clr_int);
 
 #endif
