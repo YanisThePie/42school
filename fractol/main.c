@@ -15,13 +15,22 @@
 int choose_fract(t_env *env)
 {
 	if (!strcmp(env->what_fract, "Mandelbrot"))
+	{
 		mandelbrot(env);
+		instru_window(env);
+		return(0);
+	}
+	if (!strcmp(env->what_fract, "Julia"))
+	{
+		julia(env);
+		instru_window(env);
+		return(0);
+	}
 	else
 	{
 		ft_putstr("ERROR\n");
 		(exit(EXIT_FAILURE));
 	}
-	instru_window(env);
 	return(0);
 }
 
@@ -60,6 +69,7 @@ int instru_window(t_env *env)
     mlx_string_put(env->mlx, env->win, 20, 40, 16777215, "iterations = +/-");
     mlx_string_put(env->mlx, env->win, 20, 60, 16777215, "Restore image = R");
     mlx_string_put(env->mlx, env->win, 20, 80, 16777215, "exit = Esc");
+	mlx_string_put(env->mlx, env->win, 1100, 60, 16777215, ft_itoa(env->frm.iteration_max));
 	return(0);
 }
 

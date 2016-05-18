@@ -12,20 +12,8 @@
 
 #include "fractol.h"
 
-void ft_put_pixel_img(t_env *env, int clr_int)
-{
-    if ((env->frm.x >= 0 && env->frm.x <= 1200)
-        && (env->frm.y >= 0 && env->frm.y <= 1200))
-    {
-        ft_memcpy(&(env->data[(env->frm.y * env->sizeline) + 
-		(env->frm.x * env->oct)]), &clr_int, (size_t)(sizeof(int)));
-    }
-}
-
 void complex_module (t_env *env)
 {
-	t_color clr;
-	int clr_int;
 
 	while (((env->frm.z_r * env->frm.z_r) + (env->frm.z_i * env->frm.z_i)) < 4
 	&& env->frm.i < env->frm.iteration_max)
@@ -36,16 +24,7 @@ void complex_module (t_env *env)
 		env->frm.z_i = 2 * env->frm.z_i * env->frm.tmp + env->frm.c_i;
 		env->frm.i += 1;
 	}
-	if (env->frm.i == env->frm.iteration_max)
-		ft_put_pixel_img(env, 0x00000000);
-	else
-	{
-		clr.r = 0;
-		clr.g = 0;
-		clr.b = (env->frm.i * 255 / env->frm.iteration_max);
-		clr_int = color_to_int (clr);
-		ft_put_pixel_img(env, clr_int);
-	}
+	ft_color(env);
 }
 
 void nested_loop(t_env *env)

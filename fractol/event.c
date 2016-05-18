@@ -18,7 +18,7 @@ int mouse_click( int keycode, int x, int y, t_env *env)
 	{
 		env->set.key_zm = 1;
 		env->set.coef_zoom = 1.10;
-		env->set.coef_iter += 1;
+		env->set.coef_iter += 2;
 	}
 	env->set.mse_h_x = (double)x;
 	env->set.mse_h_y = (double)y;
@@ -42,9 +42,6 @@ int mouse_pos(int x, int y)
 int my_key_funct(int keycode, t_env *env)
 {
 	env->set.key_zm = 0;
-	ft_putnbr(keycode);
-	ft_putstr("keycode");
-	ft_putchar('\n');
 	if (keycode == 53)
 		exit(EXIT_SUCCESS);
 	if (keycode == 24)
