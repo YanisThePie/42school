@@ -18,6 +18,8 @@ typedef struct  s_set
 	double	coef_zoom;
 	double	mse_h_x;
 	double	mse_h_y;
+	int		pos_x;
+	int		pos_y;
 	int		key_zm;
 }			t_set;
 
@@ -27,8 +29,8 @@ typedef struct  s_form
     double x2;
     double y1;
     double y2;
-    int image_x;
-    int image_y;
+	int	image_x;
+	int image_y;
     int iteration_max;
     double zoom_x;
     double zoom_y;
@@ -68,7 +70,7 @@ void ft_put_pixel_img(t_env *env, int clr_int);
 int choose_fract(t_env *env);
 int instru_window(t_env *env);
 void ft_put_pixel_img(t_env *env, int clr_int);
-void ft_color(t_env *env);
+int ft_color(t_env *env);
 int julia(t_env *env);
 
 #endif

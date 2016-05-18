@@ -6,11 +6,12 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 17:16:10 by yismail           #+#    #+#             */
-/*   Updated: 2016/05/11 17:16:13 by yismail          ###   ########.fr       */
+/*   Updated: 2016/05/18 19:26:32 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include<stdio.h>
 
 void complex_module_julia (t_env *env)
 {
@@ -29,16 +30,30 @@ void complex_module_julia (t_env *env)
 
 void nested_loop_julia(t_env *env)
 {
+	double my_pos_x = env->set.pos_x;
+	double my_pos_y = env->set.pos_y;
 	env->frm.x = 0;
 	while (env->frm.x < env->frm.image_x)
 	{
 		env->frm.y = 0;
 		while (env->frm.y < env->frm.image_y)
 		{
-			env->frm.c_r = 0.285;
-			env->frm.c_i = 0.01;
-			env->frm.z_r = (env->frm.x / env->frm.zoom_x + env->frm.x1);
-			env->frm.z_i = (env->frm.y / env->frm.zoom_y + env->frm.y1);
+			if (env->set.pos_x != 0 && env->set.pos_y != 0)
+			{
+				env->frm.c_r = ((my_pos_x - 600) / 600);
+				env->frm.c_i = ((my_pos_y - 600) / 600);
+				//env->frm.c_r =  + ((double)env->frm.x - 1200 / 2.0) * 4 / ((double)my_pos_x * 1200);
+				//env->frm.c_i = 0.01 + ((double)env->frm.y - 1200 / 2.0) * 4 / ((double)my_pos_y * 1200);
+				//printf(" cr : %fl\n", env->frm.c_r);
+				//printf(" ci : %fl\n", env->frm.c_i);
+			}
+			else
+			{	
+				env->frm.c_r = 0.285;
+				env->frm.c_i = 0.01;
+			}
+			env->frm.z_r = env->frm.x  / env->frm.zoom_x + env->frm.x1;
+			env->frm.z_i = env->frm.y  / env->frm.zoom_y + env->frm.y1;
 			env->frm.i = 0;
 			complex_module_julia(env);
 			env->frm.y++;

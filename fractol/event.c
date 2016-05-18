@@ -11,7 +11,7 @@ void ft_new_img(t_env *env)
 		ft_bzero(env->data, 4 * 1200 * 1200);
 }
 
-int mouse_click( int keycode, int x, int y, t_env *env)
+int mouse_click(int keycode, int x, int y, t_env *env)
 {
 	env->set.key_zm = 0;
 	if (keycode == 1)
@@ -27,15 +27,13 @@ int mouse_click( int keycode, int x, int y, t_env *env)
 	return(0);
 }
 
-int mouse_pos(int x, int y)
+int mouse_pos(int x, int y, t_env *env)
 {
-	ft_putstr("x: ");
-	ft_putnbr(x);
-	ft_putchar('\n');
-	ft_putstr("y: ");
-	ft_putnbr(y);
-	ft_putchar('\n');
-	ft_putchar('\n');
+	env->set.pos_x = x;
+	env->set.pos_y = y;
+	env->set.key_zm = 0;
+	ft_new_img(env);
+    choose_fract(env);
 	return(0);
 }
 
@@ -57,7 +55,7 @@ int my_key_funct(int keycode, t_env *env)
 
 int ft_event(t_env *env)
 {
-	//mlx_hook(env->win, 6, 0 ,&mouse_pos, env);
+	mlx_hook(env->win, 6, 0 ,&mouse_pos, env);
 	mlx_key_hook(env->win, my_key_funct, env);
 	mlx_mouse_hook(env->win, mouse_click, env);
 	return(0);

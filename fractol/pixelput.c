@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pixelput.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/18 15:28:00 by yismail           #+#    #+#             */
+/*   Updated: 2016/05/18 18:59:12 by yismail          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "fractol.h"
 
 void ft_put_pixel_img(t_env *env, int clr_int)
@@ -10,40 +23,33 @@ void ft_put_pixel_img(t_env *env, int clr_int)
 	}
 }
 
-void ft_color(t_env *env)
+int ft_color(t_env *env)
 {
-	t_color clr;
-	int		clr_int;
-
 	if (env->frm.i == env->frm.iteration_max)
-		ft_put_pixel_img(env, 0xffffff);
-	
+	{
+		ft_put_pixel_img(env, 0x0000ff);
+		return(0);
+	}
 	if (env->frm.i <= env->frm.iteration_max / 4 && env->frm.i >= env->frm.iteration_max /5)
 	{
-		clr.r = (env->frm.i * 255 / env->frm.iteration_max);
-		clr.g = (env->frm.i * 255 / env->frm.iteration_max);
-		clr.b = 0;
-		clr_int = color_to_int (clr);
-		ft_put_pixel_img(env, clr_int);
+		ft_put_pixel_img(env, 0xFE0EEB);
+		return(0);
 	}
 
 	if (env->frm.i < env->frm.iteration_max / 5 && env->frm.i >= env->frm.iteration_max /6)
 	{
-		clr.r = (env->frm.i * 255 / env->frm.iteration_max);
-		clr.g = 0;
-		clr.b = (env->frm.i * 255 / env->frm.iteration_max);
-		clr_int = color_to_int (clr);
-		ft_put_pixel_img(env, clr_int);
+		ft_put_pixel_img(env, 0x610061);
+		return(0);
+		}
+
+	if (env->frm.i <= 3)
+	{
+		ft_put_pixel_img(env, 0x00fff9);
+		return(0);
 	}
 	
-/*	else
-	{
-		clr.r = (env->frm.i * 255 / env->frm.iteration_max);
-		clr.g = (env->frm.i * 255 / env->frm.iteration_max);
-		clr.b = (env->frm.i * 255 / env->frm.iteration_max);
-		clr_int = color_to_int (clr);
-		ft_put_pixel_img(env, clr_int);
-	}
-*/
+	else
+		ft_put_pixel_img(env, 0x00CD00);
+	return (0);
 }
 

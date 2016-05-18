@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 16:57:16 by yismail           #+#    #+#             */
-/*   Updated: 2016/05/11 17:32:49 by yismail          ###   ########.fr       */
+/*   Updated: 2016/05/18 18:29:36 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ int mandelbrot(t_env *env)
 	}
 	 else if (env->set.key_zm  == 1)
 		 calcul_center(env);
-	env->frm.image_x = 1200;
-	env->frm.image_y = 1200;
+	env->set.img_x = 1200;
+	env->set.img_y = 1200;
 	env->frm.iteration_max = 50 + env->set.coef_iter;
 	env->frm.x = 0;
 	env->frm.y = 0;
-	env->frm.zoom_x = env->set.coef_zoom * env->frm.image_x/(env->frm.x2 - env->frm.x1);
-	env->frm.zoom_y = env->set.coef_zoom * env->frm.image_y/(env->frm.y2 - env->frm.y1);
+	env->frm.zoom_x = env->set.coef_zoom * env->set.img_x/(env->frm.x2 - env->frm.x1);
+	env->frm.zoom_y = env->set.coef_zoom * env->set.img_y/(env->frm.y2 - env->frm.y1);
 	nested_loop(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	return(0);

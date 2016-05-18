@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 16:56:53 by yismail           #+#    #+#             */
-/*   Updated: 2016/05/18 18:31:24 by yismail          ###   ########.fr       */
+/*   Updated: 2016/05/18 16:14:28 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,13 @@ void ft_set(t_env *env)
 {
 	env->set.img_x = 1200;
 	env->set.img_y = 1200;
+    env->frm.image_x = 1200;
+    env->frm.image_y = 1200;
 	env->set.coef_iter = 0;
-	env->frm.image_x = 1200;
-	env->frm.image_y = 1200;
 	env->set.coef_zoom = 1;
 	env->set.mse_h_x = 0.00;
 	env->set.mse_h_y = 0.00;
 	env->set.key_zm = 0;
-	env->set.pos_x = 0;
-	env->set.pos_y = 0;
 }
 
 int instru_window(t_env *env)
