@@ -6,7 +6,7 @@ SRCS = 	main.c \
 		pixelput.c \
 		julia.c
 
-CFLAGS = -Wall -Wextra -Werror -ggdb -g
+CFLAGS = -Wall -Wextra -Werror -Ofast -march=native
 FLAGS = -framework OpenGL -framework AppKit -L ./libft -lft -L minilibx_macos -lmlx
 OBJS = $(SRCS:.c=.o)
 
