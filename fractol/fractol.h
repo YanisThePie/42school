@@ -72,5 +72,6 @@ int instru_window(t_env *env);
 void ft_put_pixel_img(t_env *env, int clr_int);
 int ft_color(t_env *env);
 int julia(t_env *env);
+void nested_loop_julia(t_env *env);
 
 #endif

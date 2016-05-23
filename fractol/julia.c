@@ -28,8 +28,6 @@ void complex_module_julia (t_env *env)
 
 void nested_loop_julia(t_env *env)
 {
-	double my_pos_x = env->set.pos_x;
-	double my_pos_y = env->set.pos_y;
 	env->frm.x = 0;
 	while (env->frm.x < env->frm.image_x)
 	{
@@ -38,8 +36,8 @@ void nested_loop_julia(t_env *env)
 		{
 			if (env->set.pos_x != 0 && env->set.pos_y != 0)
 			{
-				env->frm.c_r = ((my_pos_x - 600) / 600);
-				env->frm.c_i = ((my_pos_y - 600) / 600);
+				env->frm.c_r = (((double)env->set.pos_x - 600) / 600);
+				env->frm.c_i = (((double)env->set.pos_y - 600) / 600);
 			}
 			else
 			{	
@@ -90,6 +88,5 @@ int julia(t_env *env)
 	env->frm.zoom_y = env->set.coef_zoom * env->frm.image_y/(env->frm.y2 - env->frm.y1);
 	nested_loop_julia(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
-	return(0);
-	
+	return(0);	
 }
