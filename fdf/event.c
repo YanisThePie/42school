@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/07 01:15:43 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/12 16:25:07 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/24 16:48:25 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,24 @@ int			colors(int zo, t_projdots *spc)
 	t_color	col_fin;
 	int		int_col_fin;
 
-	col_min.r  = 250;
+	col_min.r = 250;
 	col_min.g = 100;
 	col_min.b = 250;
 	col_max.r = 120;
 	col_max.g = 150;
 	col_max.b = 150;
 	if (spc->event.z_max - spc->event.z_min == 0)
-		return (0xA83044);	
-		col_fin.r = ((col_max.r - col_min.r)
-		/ (spc->event.z_max - spc->event.z_min));
-		col_fin.g = ((col_max.g - col_min.g)
-		/ (spc->event.z_max - spc->event.z_min));
-		col_fin.b = ((col_max.b - col_min.b)
-		/ (spc->event.z_max - spc->event.z_min));
-		int_col_fin = color_to_int(col_fin);
+		return (0xA83044);
+	col_fin.r = ((col_max.r - col_min.r)
+	/ (spc->event.z_max - spc->event.z_min));
+	col_fin.g = ((col_max.g - col_min.g)
+	/ (spc->event.z_max - spc->event.z_min));
+	col_fin.b = ((col_max.b - col_min.b)
+	/ (spc->event.z_max - spc->event.z_min));
+	int_col_fin = color_to_int(col_fin);
 	if (int_col_fin < 0)
 		return (zo * (-int_col_fin));
 	if (zo != 0)
 		return (zo * (int_col_fin));
-	else
-		return (0xA83044);
+	return (0xA83044);
 }
