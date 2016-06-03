@@ -6,10 +6,14 @@ int main (int argc, char **argv)
 	DIR *dir;
 	struct dirent *pdirent;
 
-	dir = opendir(argv[1]);
+	if (argv[1] == NULL)
+		dir = opendir(".");
+	else
+		dir = opendir(argv[1]);
+
 	if (dir == NULL)
 	{
-		ft_putstr("cannot open directory");
+		perror("");
 		return(0);
 	}
 	while ((pdirent = readdir(dir)) != NULL)
