@@ -6,13 +6,13 @@
 #    By: jaustry <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 22:12:34 by jaustry           #+#    #+#              #
-#    Updated: 2016/02/11 19:18:29 by yismail          ###   ########.fr        #
+#    Updated: 2016/06/07 15:55:14 by yismail          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = 	ft_ls
 CC = gcc
-SRCS =	openandprint.c\
+SRCS =	open.c \
 		usestat.c
 
 CFLAGS = -Wall -Wextra -Werror -ggdb

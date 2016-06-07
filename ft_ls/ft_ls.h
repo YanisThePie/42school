@@ -9,3 +9,12 @@
 #include <grp.h>
 
 int usestat (char *d_name);
+
+typedef struct s_toprint
+{
+	char	*perm;
+	char	*uid;
+	char	*gid;
+	char	*time;
+	char	*name;
+}		t_toprint;
