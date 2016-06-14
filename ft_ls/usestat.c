@@ -12,6 +12,15 @@
 
 #include "ft_ls.h"
 
+void ft_print_loption(struct s_toprint l_option)
+{
+	ft_putnstr(l_option.perm);
+	ft_putnstr(l_option.uid);
+	ft_putnstr(l_option.gid);
+	ft_putstrlen(l_option.time, 12);
+	ft_putendl(l_option.name);
+}
+
 void ft_infos (struct stat buf, char *d_name, struct s_toprint *l_option)
 {
     struct passwd *pw;
@@ -54,5 +63,6 @@ int usestat (char *d_name)
     lstat(d_name, &buf);
     ft_perm(buf, &l_option);
     ft_infos(buf, d_name, &l_option);
+	ft_print_loption(l_option);
     return(0);
 }

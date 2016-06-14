@@ -46,6 +46,7 @@ int					ft_isupp(int c);
 int					color_to_int(t_color c);
 t_list				*ft_lstnew(void const *content, size_t content_size);
 char				*ft_strjoin_free(char *s1, char const *s2);
+void				ft_putstrlen(char *c, size_t len);
 char				*ft_strcpy_free(char *dest, const char *src);
 char				*ft_strcat_free(char *dest, const char *src);
 int					ft_listisempty (t_list *list);

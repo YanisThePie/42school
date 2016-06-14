@@ -10,5 +10,5 @@ void ft_putnstr(char *c)
 		ft_putchar(c[i]);
 		i++;
 	}
-	ft_putchar('\n');
+	ft_putchar(' ');
 }
