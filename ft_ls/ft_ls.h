@@ -12,7 +12,7 @@ int usestat (char *d_name);
 
 typedef struct s_toprint
 {
-	char	*perm;
+	char	perm[10];
 	char	*uid;
 	char	*gid;
 	char	*time;

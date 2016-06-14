@@ -5,7 +5,9 @@ int main (int argc, char **argv)
 	(void)argc;
 	DIR *dir;
 	struct dirent *pdirent;
+	struct dirent dup;
 
+	ft_bzero(&dup, sizeof(struct dirent));
 	if (argv[1] == NULL)
 		dir = opendir(".");
 	else
@@ -16,7 +18,10 @@ int main (int argc, char **argv)
 		return(0);
 	}
 	while((pdirent = readdir(dir)) != NULL)
-		  usestat(pdirent->d_name);
+	{
+		ft_memcpy(&dup, pdirent, sizeof(struct dirent))
+		usestat(dup->d_name);
+	}
 	closedir (dir);
 }
 

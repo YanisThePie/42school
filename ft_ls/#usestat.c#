@@ -55,7 +55,7 @@ void ft_perm (struct stat *buf, char *perm_buffer)
     struct stat buf;
 	struct s_toprint l_option;
 
-	//ft_bzero(&buf, sizeof(struct stat));
+	ft_bzero(&buf, sizeof(struct stat));
 	ft_bzero(&l_option, sizeof(struct s_toprint));
     lstat(d_name, &buf);
     ft_perm(&buf, l_option.perm);
