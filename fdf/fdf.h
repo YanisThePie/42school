@@ -22,13 +22,6 @@
 # include <stdio.h>
 # include "./minilibx_macos/mlx.h"
 
-typedef	struct		s_color
-{
-	int				r;
-	int				g;
-	int				b;
-}					t_color;
-
 typedef	struct		s_stru
 {
 	int				coord_x;

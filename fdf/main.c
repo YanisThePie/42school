@@ -17,9 +17,7 @@ int		main(int argc, char **argv)
 	t_list	*list;
 	t_list	*next;
 	t_list	*first;
-	void	*content;
-
-	content = NULL;
+	
 	first = NULL;
 	list = NULL;
 	ft_parsing(argc, argv, &list);

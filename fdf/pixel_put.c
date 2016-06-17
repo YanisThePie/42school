@@ -60,7 +60,8 @@ int				ft_pixel_put_v(t_list const *lst,
 	event.zoom + 20)) + (4 * spc->event.move_x);
 	spc->y1 = ((((0.41) * (spc->xo + spc->yo) + 0.82 * -spc->zo) * (spc->
 	event.zoom + 20)) + (4 * spc->event.move_y)) * (0.25 * spc->event.rotate_y);
-	(spc->x1 += 500) && (spc->y1 += 180);
+	(spc->x1 += 500);
+	(spc->y1 += 180);
 	spc->t_color_act = colors(spc->zo, spc);
 	if (tmp && tmp->next != NULL)
 		spc->t_color_next = colors(((t_stru *)tmp->next->content)->height, spc);

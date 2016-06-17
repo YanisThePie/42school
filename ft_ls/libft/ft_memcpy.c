@@ -21,12 +21,11 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	i = 0;
 	str = (char *)src;
 	str2 = (char *)dest;
-	
 	while (n >8)
-	{
-		*(uint64_t*)dest++ = *(uint64_t*)src++;
-		n -= 8;
-	}
+	  {
+	    *(uint64_t*)dest++ = *(uint64_t*)src++;
+	    n -= 8;
+	  }
 	while (i < n)
 	{
 		str2[i] = str[i];

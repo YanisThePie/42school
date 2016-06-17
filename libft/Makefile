@@ -21,6 +21,7 @@ SRCS = ft_itoa.c \
 	ft_putnstr.c\
 	get_next_line.c\
 	ft_lstadd.c\
+	ft_putstrlen.c\
 	ft_lstiter.c\
 	ft_listisempty.c\
 	ft_freetab.c\
@@ -100,6 +101,7 @@ OBJECTS = ft_itoa.o \
 	get_next_line.o\
     ft_strcat_free.o \
     ft_strjoin_free.o \
+	ft_putstrlen.o \
     ft_strcpy_free.o \
     ft_putendl_fd.o \
     ft_putchar.o \

@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 17:13:04 by yismail           #+#    #+#             */
-/*   Updated: 2016/05/24 15:10:03 by yismail          ###   ########.fr       */
+/*   Updated: 2016/04/12 09:37:28 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <unistd.h>
+# include <stdint.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -28,12 +29,12 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct		s_color
+typedef struct      s_color
 {
-	int				r;
-	int				g;
-	int				b;
-}					t_color;
+	int             r;
+	int             g;
+	int             b;
+}                   t_color;
 
 int					get_next_line (int const fd, char **line);
 void				freetab(char **tab);
@@ -46,11 +47,13 @@ int					ft_isupp(int c);
 int					color_to_int(t_color c);
 t_list				*ft_lstnew(void const *content, size_t content_size);
 char				*ft_strjoin_free(char *s1, char const *s2);
+void				ft_putstrlen(char *c, size_t len);
 char				*ft_strcpy_free(char *dest, const char *src);
 char				*ft_strcat_free(char *dest, const char *src);
 int					ft_listisempty (t_list *list);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
+void				ft_putnstr(char *c);
 size_t				ft_nbrlen (int n);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putchar (char c);
