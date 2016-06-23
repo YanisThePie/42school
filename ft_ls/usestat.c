@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 15:52:51 by yismail           #+#    #+#             */
-/*   Updated: 2016/06/23 17:17:25 by yismail          ###   ########.fr       */
+/*   Updated: 2016/06/23 20:16:58 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 void ft_print_loption(struct s_toprint l_option)
 {
 	ft_putnstr(l_option.perm);
+	//ft_putnstr(l_option.links);
 	ft_putnstr(l_option.uid);
 	ft_putnstr(l_option.gid);
 	ft_putstrlen(l_option.time, 12);
+	ft_putchar(' ');
 	ft_putendl(l_option.name);
 }
 
@@ -34,10 +36,15 @@ void ft_infos (struct stat *buf, char *d_name, struct s_toprint *l_option)
         l_option->gid = gr->gr_name;
     l_option->time = (ctime(&buf->st_atime) + 3);
     l_option->name = (d_name);
+	l_option->links = ft_itoa((unsigned int)buf->st_nlink);
+	ft_putstr(l_option->links);
 }
 
-void ft_perm (struct stat buf, char *perm_buffer)
+char *ft_perm (struct stat buf)
 {
+	char *perm_buffer;
+
+	perm_buffer = malloc(sizeof(char) * 10);
     perm_buffer[0] = S_ISREG(buf.st_mode) ? '-' : (S_ISDIR(buf.st_mode) ? 'd' : '#');
     perm_buffer[1] = buf.st_mode & S_IRUSR ? 'r' : '-';
     perm_buffer[2] = buf.st_mode & S_IWUSR ? 'w' : '-';
@@ -48,18 +55,6 @@ void ft_perm (struct stat buf, char *perm_buffer)
     perm_buffer[7] = buf.st_mode & S_IROTH ? 'r' : '-';
     perm_buffer[8] = buf.st_mode & S_IWOTH ? 'w' : '-';
     perm_buffer[9] = buf.st_mode & S_IXOTH ? 'x' : '-';
-}
-
-	int usestat (char *d_name)
-{
-    struct stat buf;
-	struct s_toprint l_option;
-
-	//ft_bzero(&buf, sizeof(struct stat));
-	ft_bzero(&l_option, sizeof(struct s_toprint));
-	lstat(d_name, &buf);
-    ft_perm(buf, l_option.perm);
-    ft_infos(&buf, d_name, &l_option);
-	ft_print_loption(l_option);
-    return(0);
+	perm_buffer[10] = '\0';
+	return(perm_buffer);
 }

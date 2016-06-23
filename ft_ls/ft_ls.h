@@ -12,9 +12,16 @@ int usestat (char *d_name);
 
 typedef struct s_toprint
 {
-	char	perm[10];
+	char	*perm;
 	char	*uid;
 	char	*gid;
 	char	*time;
 	char	*name;
+	char	*links;
 }		t_toprint;
+
+
+void l_option(char *dotslash);
+char *ft_perm (struct stat buf);
+void ft_infos (struct stat *buf, char *d_name, struct s_toprint *l_option);
+void ft_print_loption(struct s_toprint l_option);

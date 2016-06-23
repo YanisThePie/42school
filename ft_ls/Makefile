@@ -6,14 +6,15 @@
 #    By: jaustry <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 22:12:34 by jaustry           #+#    #+#              #
-#    Updated: 2016/06/23 17:24:30 by yismail          ###   ########.fr        #
+#    Updated: 2016/06/23 18:18:09 by yismail          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = 	ft_ls
 CC = gcc
 SRCS =	open.c \
-		usestat.c
+		usestat.c \
+		options.c
 
 CFLAGS = -Wall -Wextra -Werror -ggdb
 OBJS = $(SRCS:.c=.o)
