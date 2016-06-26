@@ -18,10 +18,11 @@ typedef struct s_toprint
 	char	*time;
 	char	*name;
 	char	*links;
+	char	*size;
 }		t_toprint;
 
 
-void l_option(char *dotslash);
-char *ft_perm (struct stat buf);
-void ft_infos (struct stat *buf, char *d_name, struct s_toprint *l_option);
+void l_option(char *dotslash, char *d_name);
+void ft_perm (struct stat buf, struct s_toprint *l_option);
+void ft_infos (struct stat *buf, struct s_toprint *l_option);
 void ft_print_loption(struct s_toprint l_option);
