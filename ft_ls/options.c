@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 18:13:07 by yismail           #+#    #+#             */
-/*   Updated: 2016/06/27 09:59:29 by yismail          ###   ########.fr       */
+/*   Updated: 2016/06/27 10:01:49 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@ void simple_option (char *d_name)
 int R_option(char *dotslash, struct stat *buf, struct s_env env)
 {
 	lstat(dotslash, buf);
-	//ft_putendl(dotslash);
 	if (S_ISREG(buf->st_mode))
 		ft_putchar(9);
 	ft_putendl(env.pdirent->d_name);
-	//ft_putendl(dotslash);
 	if (S_ISDIR(buf->st_mode))
 	{
 		if (access(dotslash, X_OK) == -1)
@@ -35,8 +33,6 @@ int R_option(char *dotslash, struct stat *buf, struct s_env env)
 		env.dir = opendir (dotslash);
 		read_the_path(ft_strjoin(dotslash, "/"), 'R', &env); // change option dynamically
 	}
-	// if (S_ISREG(buf->st_mode))
-        //ft_putendl (env.pdirent->d_name);
 	return (0);
 }
 
