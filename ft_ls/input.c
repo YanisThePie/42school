@@ -6,13 +6,13 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 18:13:43 by yismail           #+#    #+#             */
-/*   Updated: 2016/06/27 06:49:49 by yismail          ###   ########.fr       */
+/*   Updated: 2016/06/27 06:59:13 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int read_the_path(char *path, char option, struct s_env *env)
+int read_the_path(char *path, char option, struct s_env *env) //une seule var env
 {
 	int i;
 
@@ -25,9 +25,9 @@ int read_the_path(char *path, char option, struct s_env *env)
 		{
 			env->dotslash = ft_strjoin(path, env->pdirent->d_name);
 			if (option != '\0')
-				choose_opt(env->dotslash, option, env);
+				choose_opt(env->dotslash, option, *env);
 			else
-				choose_opt(NULL, 's' ,env);
+				choose_opt(NULL, 's' ,*env);
 		}
 	}
 	ft_putchar('\n');
