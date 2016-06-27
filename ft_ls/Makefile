@@ -6,7 +6,7 @@
 #    By: jaustry <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 22:12:34 by jaustry           #+#    #+#              #
-#    Updated: 2016/06/27 04:26:47 by yismail          ###   ########.fr        #
+#    Updated: 2016/06/27 08:37:44 by yismail          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS =	open.c \
 		options.c \
 		input.c
 
-CFLAGS = -Wall -Wextra -Werror -ggdb
+CFLAGS = -Wall -Wextra -Werror -ggdb -g
 OBJS = $(SRCS:.c=.o)
 
 .PHONY: all clean fclean re

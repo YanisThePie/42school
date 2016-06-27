@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 18:13:43 by yismail           #+#    #+#             */
-/*   Updated: 2016/06/27 06:59:13 by yismail          ###   ########.fr       */
+/*   Updated: 2016/06/27 09:37:22 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@ int read_the_path(char *path, char option, struct s_env *env) //une seule var en
 {
 	int i;
 
+	//ft_putendl(path);
 	i = 0;
-	//ft_putstr(path);
     while((env->pdirent = readdir(env->dir)) != NULL)
     {
-		ft_putendl(path);
 		if (!(env->pdirent->d_name[i] == '.' && option != 'a'))
 		{
 			env->dotslash = ft_strjoin(path, env->pdirent->d_name);
@@ -30,8 +29,8 @@ int read_the_path(char *path, char option, struct s_env *env) //une seule var en
 				choose_opt(NULL, 's' ,*env);
 		}
 	}
-	ft_putchar('\n');
-	ft_putendl (path);
+	//ft_putchar('\n');
+	//ft_putendl (path);
 	closedir (env->dir); //probleme closedir -R
 	return (0);
 }
