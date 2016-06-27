@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 18:13:07 by yismail           #+#    #+#             */
-/*   Updated: 2016/06/27 06:14:27 by yismail          ###   ########.fr       */
+/*   Updated: 2016/06/27 06:44:26 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,17 @@ void simple_option (char *d_name)
 	ft_putendl (d_name);
 }
 
-void R_option(char *dotslash, struct stat *buf, struct s_env *env)
+int R_option(char *dotslash, struct stat *buf, struct s_env *env)
 {
 	lstat(dotslash, buf);
-	ft_putnbr(6);
-	ft_putendl(dotslash);
 	if (S_ISDIR(buf->st_mode))
 	{
-		ft_putendl(dotslash);
 		env->dir = opendir (dotslash);
-		read_the_path(ft_strjoin(dotslash, "/"), 'R', env); // change option dynamically
+		return(read_the_path(ft_strjoin(dotslash, "/"), 'R', env)); // change option dynamically
 	}
-	//else if (S_ISREG(buf->st_mode))
-	//	ft_putendl (env->pdirent->d_name);
+    if (S_ISREG(buf->st_mode))
+        ft_putendl (env->pdirent->d_name);
+	return (0);
 }
 
 void l_option(char *dotslash, char *d_name, struct stat *buf)
@@ -45,7 +43,7 @@ void l_option(char *dotslash, char *d_name, struct stat *buf)
     ft_print_loption(l_option);
 }
 
-void choose_opt(char *dotslash, char option, struct s_env *env)
+int choose_opt(char *dotslash, char option, struct s_env *env)
 {
 	struct stat buf;
 
@@ -54,5 +52,6 @@ void choose_opt(char *dotslash, char option, struct s_env *env)
     if (option == 's')
         simple_option(env->pdirent->d_name);
 	if (option == 'R')
-		R_option(dotslash, &buf, env);
+		return(R_option(dotslash, &buf, env));
+	return(0);
 }
