@@ -6,29 +6,30 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 18:13:43 by yismail           #+#    #+#             */
-/*   Updated: 2016/06/27 10:02:35 by yismail          ###   ########.fr       */
+/*   Updated: 2016/06/27 11:00:16 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int read_the_path(char *path, char option, struct s_env *env) //une seule var env
+int read_the_path(char *path, char option, struct s_env env) //une seule var env
 {
 	int i;
 
 	i = 0;
-    while((env->pdirent = readdir(env->dir)) != NULL)
+    while((env.pdirent = readdir(env.dir)) != NULL)
     {
-		if (!(env->pdirent->d_name[i] == '.' && option != 'a'))
+		//ft_putchar(option);
+		if (!(env.pdirent->d_name[i] == '.' && option != 'a'))
 		{
-			env->dotslash = ft_strjoin(path, env->pdirent->d_name);
+			env.dotslash = ft_strjoin(path, env.pdirent->d_name);
 			if (option != '\0')
-				choose_opt(env->dotslash, option, *env);
+				choose_opt(env.dotslash, option, env);
 			else
-				choose_opt(NULL, 's' ,*env);
+				choose_opt(NULL, 's' , env);
 		}
 	}
-	closedir (env->dir); //probleme closedir -R
+	//closedir (env->dir); //probleme closedir -R
 	return (0);
 }
 
@@ -60,11 +61,13 @@ int how_many_flags (char **argv, struct s_env *env)
 		env->dir = opendir ("./");
 		path = "./";
 	}
-	else if (argv[i] != NULL)
-	{
-		path = ft_strjoin(argv[i], "/");
-		env->dir = opendir(path);
-	}
+	else 
+		while(argv[i] != NULL)
+		{
+			path = ft_strjoin(argv[i], "/");
+			env->dir = opendir(path);
+			i++;
+		}
     if (env->dir == NULL)
     {
         perror("");
@@ -73,7 +76,7 @@ int how_many_flags (char **argv, struct s_env *env)
 	k = 0;
 	while (option[k] != '\0')
 	{
-		read_the_path(path, option[k], env);
+		read_the_path(path, option[k], *env);
 		k++;
 	}
 	return(0);
@@ -88,6 +91,6 @@ int no_arg(struct s_env *env)
         return(0);
     }
 	while((env->pdirent = readdir(env->dir)) != NULL)
-		read_the_path ( NULL,'s', env);
+		read_the_path ( NULL,'s', *env);
 	return(0);
 }

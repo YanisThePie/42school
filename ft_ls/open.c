@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 04:27:34 by yismail           #+#    #+#             */
-/*   Updated: 2016/06/27 09:33:33 by yismail          ###   ########.fr       */
+/*   Updated: 2016/06/27 10:53:28 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
  #include "ft_ls.h"
@@ -24,10 +24,11 @@ int main (int argc, char **argv)
     }
     else
     {
+		env.argv = argv;
         if (argv[1][0] != '-') //no arg but path
         {
             env.dir = opendir(argv[1]);
-            read_the_path(argv[1], '\0', &env);
+            read_the_path(argv[1], '\0', env);
         }
         if (argv[1][0] == '-') // arg
             how_many_flags(argv, &env);

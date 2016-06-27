@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 18:13:07 by yismail           #+#    #+#             */
-/*   Updated: 2016/06/27 10:01:49 by yismail          ###   ########.fr       */
+/*   Updated: 2016/06/27 10:38:44 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int R_option(char *dotslash, struct stat *buf, struct s_env env)
 			return(-1);
 		}
 		env.dir = opendir (dotslash);
-		read_the_path(ft_strjoin(dotslash, "/"), 'R', &env); // change option dynamically
+		read_the_path(ft_strjoin(dotslash, "/"), 'R', env); // change option dynamically
 	}
 	return (0);
 }
@@ -52,7 +52,8 @@ void l_option(char *dotslash, char *d_name, struct stat *buf)
 int choose_opt(char *dotslash, char option, struct s_env env)
 {
 	struct stat buf;
-
+	
+	//ft_putchar(option);
     if (option == 'l')
         l_option(dotslash, env.pdirent->d_name, &buf);
     if (option == 's')
