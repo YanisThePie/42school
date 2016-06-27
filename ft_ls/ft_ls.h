@@ -21,8 +21,20 @@ typedef struct s_toprint
 	char	*size;
 }		t_toprint;
 
+typedef struct s_env
+{
+	DIR *dir;
+	char *dotslash;
+	struct dirent *pdirent;
 
-void l_option(char *dotslash, char *d_name);
-void ft_perm (struct stat buf, struct s_toprint *l_option);
+}				t_env;
+
+void l_option(char *dotslash, char *d_name, struct stat *buf);
+void ft_perm (struct stat *buf, struct s_toprint *l_option);
 void ft_infos (struct stat *buf, struct s_toprint *l_option);
 void ft_print_loption(struct s_toprint l_option);
+void simple_option (char *d_name);
+int read_the_path(char *path, char option, struct s_env *env);
+void choose_opt(char *dotslash, char option,struct s_env *env);
+int no_arg(struct s_env *env);
+int how_many_flags (char **argv, struct s_env *env);

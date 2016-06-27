@@ -1,0 +1,23 @@
+6./options.o
+6./libft
+7./libft
+	6./libft/ft_toupper.c
+6./libft/ft_islow.c
+6./libft/ft_striteri.c
+6./libft/ft_strcpy_free.o
+6./libft/ft_strstr.c
+6./libft/ft_putendl_fd.o
+6./libft/ft_lstdelone.o
+6./libft/ft_lstiter.o
+6./libft/ft_strcpy.c
+6./libft/ft_strncat.c
+6./libft/ft_lstadd.c
+6./libft/ft_strnew.o
+6./libft/ft_memchr.o
+6./libft/ft_putstr_fd.c
+6./libft/ft_strmapi.o
+6./libft/ft_strlen.o
+6./libft/ft_putstr_fd.o
+6./libft/dir
+7./libft/dir
+	6./libft/dir/fr

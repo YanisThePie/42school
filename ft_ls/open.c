@@ -5,45 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/23 18:13:43 by yismail           #+#    #+#             */
-/*   Updated: 2016/06/26 19:53:54 by yismail          ###   ########.fr       */
+/*   Created: 2016/06/27 04:27:34 by yismail           #+#    #+#             */
+/*   Updated: 2016/06/27 04:28:01 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+ #include "ft_ls.h"
 
-#include "ft_ls.h"
-
-void choose_opt(char *dotslash, char *argv, char *d_name)
-{
-	if (!strcmp(argv, "-l"))
-		l_option(dotslash, d_name);
-}
 int main (int argc, char **argv)
 {
-	(void)argc;
-	DIR *dir;
-	struct dirent *pdirent;
-	char *full_path;
-	char *dotslash;
+    (void)argc;
+    struct s_env env;
 
-	if (argv[2] == NULL)
-		dir = opendir(".");
-	else
-		dir = opendir(argv[2]);
-	if (dir == NULL)
-	{
-		perror("");
-		return(0);
-	}
-	while((pdirent = readdir(dir)) != NULL)
-	{
-		if (argv[2] != NULL)
-		{	
-			full_path = ft_strjoin(argv[2], "/");
-			dotslash = ft_strjoin(full_path, pdirent->d_name);
-			choose_opt(dotslash, argv[1], pdirent->d_name);
-		}
-		else
-			l_option(pdirent->d_name, pdirent->d_name); // no option, listing ls
-	}
-	closedir (dir);
+    ft_bzero(&env, sizeof(struct s_env));
+    if (argv[1] == NULL) // no arg and no path
+    {
+        no_arg(&env);
+        return(0);
+    }
+    else
+    {
+        if (argv[1][0] != '-') //no arg but path
+        {
+            env.dir = opendir(argv[1]);
+            read_the_path(argv[1], '\0', &env);
+        }
+        if (argv[1][0] == '-') // arg
+            how_many_flags(argv, &env);
+    }
 }
