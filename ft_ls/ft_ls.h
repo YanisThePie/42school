@@ -30,7 +30,7 @@ typedef struct s_env
 
 }				t_env;
 
-void l_option(char *dotslash, char *d_name, struct stat *buf);
+void l_option(char *d_name, struct stat *buf);
 void ft_perm (struct stat *buf, struct s_toprint *l_option);
 void ft_infos (struct stat *buf, struct s_toprint *l_option);
 void ft_print_loption(struct s_toprint l_option);

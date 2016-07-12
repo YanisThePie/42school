@@ -6,33 +6,35 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 18:13:43 by yismail           #+#    #+#             */
-/*   Updated: 2016/07/12 01:57:35 by yismail          ###   ########.fr       */
+/*   Updated: 2016/07/12 03:32:32 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int read_the_path(char *path, char *option, struct s_env env) //une seule var env
+int read_the_path(char *path, char *option, struct s_env env)
 {
 	int i;
 
 	i = 0;
     while((env.pdirent = readdir(env.dir)) != NULL)
     {
-		//ft_putchar(option);
-		//if (!(env.pdirent->d_name[i] == '.' && option != 'a'))
-		//{
-			//ft_putchar(option);
+		if (!(env.pdirent->d_name[i] == '.') && (!(strchr(option, 'a'))))
+		{
 			env.dotslash = ft_strjoin(path, env.pdirent->d_name);
-			if (option[0] != '\0')
+			if (option[0] != '0')
 				choose_opt(env.dotslash, option, env);
 			else
-				choose_opt(NULL, "s" , env);
-			//}
-		//if (option == 'a')
-		//	choose_opt(env.dotslash, option, env);
+				choose_opt(NULL, "0" , env);
+		}
+
+		if (strchr(option, 'a'))
+		{	
+			env.dotslash = ft_strjoin(path, env.pdirent->d_name);
+			choose_opt(env.dotslash, option, env);
+		};
 	}
-	closedir (env.dir); //probleme closedir -R
+	closedir (env.dir);
 	return (0);
 }
 
@@ -58,6 +60,7 @@ int how_many_flags (char **argv, struct s_env *env)
 			j++;
 		}
 		i++;
+		option[k] = '\0';
 	}
 	if (argv[i] == NULL)
 	{
@@ -76,12 +79,7 @@ int how_many_flags (char **argv, struct s_env *env)
         perror("");
         return(0);
     }
-	//k = 0;
-	//while (option[k] != '\0')
-	//{
 		read_the_path(path, option, *env);
-		//k++;
-		//}
 	return(0);
 }
 
@@ -94,6 +92,6 @@ int no_arg(struct s_env *env)
         return(0);
     }
 	while((env->pdirent = readdir(env->dir)) != NULL)
-		read_the_path ( NULL,"s", *env);
+		read_the_path ( NULL,"0", *env);
 	return(0);
 }
