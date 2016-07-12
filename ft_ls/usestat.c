@@ -6,23 +6,11 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 15:52:51 by yismail           #+#    #+#             */
-/*   Updated: 2016/06/27 04:47:49 by yismail          ###   ########.fr       */
+/*   Updated: 2016/07/12 02:01:23 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-void ft_print_loption(struct s_toprint l_option)
-{
-	ft_putnstr(l_option.perm);
-	ft_putnstr(l_option.links);
-	ft_putnstr(l_option.uid);
-	ft_putnstr(l_option.gid);
-	ft_putnstr (l_option.size);
-	ft_putstrlen(l_option.time, 12);
-	ft_putchar(' ');
-	ft_putendl(l_option.name);
-}
 
 void ft_infos (struct stat *buf, struct s_toprint *l_option)
 {
@@ -57,4 +45,5 @@ void ft_perm (struct stat *buf, struct s_toprint *l_option)
     perm_buffer[9] = buf->st_mode & S_IXOTH ? 'x' : '-';
 	perm_buffer[10] = '\0';
 	l_option->perm = perm_buffer;
+	free (perm_buffer);
 }

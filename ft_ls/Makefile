@@ -6,7 +6,7 @@
 #    By: jaustry <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/22 22:12:34 by jaustry           #+#    #+#              #
-#    Updated: 2016/06/27 08:37:44 by yismail          ###   ########.fr        #
+#    Updated: 2016/07/12 01:08:13 by yismail          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ CC = gcc
 SRCS =	open.c \
 		usestat.c \
 		options.c \
-		input.c
+		input.c \
+		sortandprint.c
 
 CFLAGS = -Wall -Wextra -Werror -ggdb -g
 OBJS = $(SRCS:.c=.o)
