@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 18:13:07 by yismail           #+#    #+#             */
-/*   Updated: 2016/07/12 04:47:09 by yismail          ###   ########.fr       */
+/*   Updated: 2016/07/12 05:08:05 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,16 @@ int R_option(char *dotslash, struct stat *buf, struct s_env env, char *option)
             ft_putendl("   ft_ls: Permission denied");
             return(-1);
         }
+		//algo de tri
+		ft_putstr("000");
+		ft_putstr("DOT:");
+		ft_putstr(dotslash);
 	}
 
 	if (S_ISREG(buf->st_mode))
 	{
 		ft_putchar(9);
 	}
-	//print_simple_option(env.pdirent->d_name);
-	//if((env.dir = opendir (dotslash)))
-	//	read_the_path(ft_strjoin(dotslash, "/"), option, env);
 	return (0);
 }
 
@@ -66,7 +67,7 @@ int choose_opt(char *dotslash, char *option, struct s_env env)
 	if ((strchr(option, 'l')))
 		(strchr(option, 'R') && S_ISDIR(buf.st_mode)) ? ft_putchar('\n') : l_option(env.pdirent->d_name, &buf);
 	else if (!(strchr(option, 'l')))
-		ft_putendl(env.pdirent->d_name);
+		(strchr(option, 'R') && S_ISDIR(buf.st_mode)) ? ft_putchar('\n') : ft_putendl(env.pdirent->d_name);
 	return(0);
 }
 	
