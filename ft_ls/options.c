@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 18:13:07 by yismail           #+#    #+#             */
-/*   Updated: 2016/07/12 05:08:05 by yismail          ###   ########.fr       */
+/*   Updated: 2016/07/25 20:15:52 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int R_option(char *dotslash, struct stat *buf, struct s_env env, char *option)
             return(-1);
         }
 		//algo de tri
-		ft_putstr("000");
-		ft_putstr("DOT:");
 		ft_putstr(dotslash);
 	}
 
@@ -41,20 +39,27 @@ int R_option(char *dotslash, struct stat *buf, struct s_env env, char *option)
 void l_option(char *d_name, struct stat *buf)
 {
     struct s_toprint l_option;
+	char *full_str_l = NULL;
 
     ft_bzero(&l_option, sizeof(struct s_toprint));
 	l_option.name = d_name;
-    //lstat(dotslash, buf);
+    lstat(dotslash, buf);
     ft_perm(buf, &l_option);
-	ft_putnstr(l_option.perm);
+	//full_str_l = ft_strdup(l_option.perm);
+	//ft_putnstr(l_option.perm);
     ft_infos(buf, &l_option);
-    ft_putnstr(l_option.links);
-    ft_putnstr(l_option.uid);
-    ft_putnstr(l_option.gid);
-    ft_putnstr (l_option.size);
-    ft_putstrlen(l_option.time, 12);
-    ft_putchar(' ');
-    ft_putendl(l_option.name);
+	//full_str_l = ft_strjoin_free(full_str_l, l_option.links);
+	//full_str_l = ft_strjoin_free(full_str_l, l_option.uid);
+	//full_str_l = ft_strjoin_free(full_str_l, l_option.gid);
+	//full_str_l = ft_strjoin_free(full_str_l, l_option.size);
+	//ft_putstr(full_str_l);
+    //ft_putnstr(l_option.links);
+	// ft_putnstr(l_option.uid);
+    //ft_putnstr(l_option.gid);
+    //ft_putnstr (l_option.size);
+    //ft_putstrlen(l_option.time, 12);
+    //ft_putchar(' ');
+    //ft_putendl(l_option.name);
 }
 
 int choose_opt(char *dotslash, char *option, struct s_env env)

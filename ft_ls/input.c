@@ -6,19 +6,26 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 18:13:43 by yismail           #+#    #+#             */
-/*   Updated: 2016/07/12 03:32:32 by yismail          ###   ########.fr       */
+/*   Updated: 2016/07/25 19:50:11 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
+/*int sort_it(struct s_env env, char *option)
+{
+	
+}*/
+
 int read_the_path(char *path, char *option, struct s_env env)
 {
 	int i;
+	//struct s_list *lst;
 
 	i = 0;
     while((env.pdirent = readdir(env.dir)) != NULL)
     {
+		//sort_it(env, option)
 		if (!(env.pdirent->d_name[i] == '.') && (!(strchr(option, 'a'))))
 		{
 			env.dotslash = ft_strjoin(path, env.pdirent->d_name);
