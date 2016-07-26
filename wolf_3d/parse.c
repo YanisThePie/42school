@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/26 00:04:42 by yismail           #+#    #+#             */
-/*   Updated: 2016/07/26 04:28:56 by yismail          ###   ########.fr       */
+/*   Updated: 2016/07/26 09:46:20 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,29 @@ void    ft_split(char *line, int y, t_env *env)
     freetab(line_spl);
 }*/
 
+char *no_space(char *str)
+{
+	int i;
+	int j;
+	size_t len;
+	char *str2;
+
+	i = 0;
+	j = 0;
+	len = ft_strlen(str);
+	str2 = malloc(sizeof(char) * len + 1);
+	ft_bzero(str2, len + 1);
+	while (str[i] != '\0')
+	{
+		while (str[i] == ' ')
+			i++;
+		str2[j] = str[i];
+		i++;
+		j++;
+	}
+	return(str2);
+}
+
 int     check_entry(char *line)
 {
     int i;
@@ -97,10 +120,8 @@ int     ft_parsing(int argc, char **argv, t_env *env)
     while ((ret = (get_next_line(fd, &line)) > 0))
     {
         check_entry(line);
-		env->worldMap[coord_y] = ft_strdup(line);
-		//ft_putstr(env->worldMap[coord_y]);
-		ft_putchar('\n');
-        //ft_split(line, coord_y, env);
+		env->worldMap[coord_y] = no_space(line);
+		env->frm.sizemap_x = ft_strlen(env->worldMap[coord_y]);
         coord_y++;
         free(line);
     }

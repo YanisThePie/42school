@@ -52,8 +52,14 @@ typedef struct      s_form
     int             x;
     int             y;
     int             i;
-    double          tmp;
 }                   t_form;
+
+typedef struct		s_data
+{
+	int         lineHeight;
+	int			drawStart;
+	int			drawEnd;
+}					t_data;
 
 typedef struct      s_env
 {
@@ -68,9 +74,10 @@ typedef struct      s_env
     int             endian;
 	int				img_x;
 	int				img_y;
-	char			**worldMap;
+	char			*worldMap[99];
     t_setplayer     player;
 	t_form          frm;
+	t_data			draw;
 }                   t_env;
 
 int     ft_parsing(int argc, char **argv, t_env *env);
