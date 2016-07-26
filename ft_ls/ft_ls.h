@@ -27,6 +27,14 @@ typedef struct s_env
 	char *dotslash;
 	struct dirent *pdirent;
 	char		**argv;
+    char    *perm;
+    char    *uid;
+    char    *gid;
+    char    *time;
+    char    *name;
+    char    *links;
+    char    *size;
+	struct stat buf;
 
 }				t_env;
 

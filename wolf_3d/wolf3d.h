@@ -1,0 +1,78 @@
+#ifndef WOLF3D_H
+# define WOLF3D_H
+
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include "./libft/libft.h"
+# include <math.h>
+# include "./minilibx_macos/mlx.h"
+# include <unistd.h>
+
+typedef struct      s_stru
+{
+    int             coord_x;
+    int             coord_y;
+    int             val_int;
+}                   t_stru;
+
+typedef struct      s_setplayer
+{
+    double			posX;
+    double			posY;
+	double			dirX;
+	double			dirY;
+	double			planeX;
+	double			planeY;
+}                   t_setplayer;
+
+typedef struct      s_form
+{
+	int				sizemap_x;
+	int				sizemap_y;
+    double          time;
+    double          oldTime;
+    double          cameraX;
+    double          rayPosX;
+    double          rayPosY;
+	double			rayDirX;
+	double			rayDirY;
+    int             mapX;
+	int				mapY;
+	double			sideDistX;
+	double			sideDistY;
+	double			deltaDistX;
+	double			deltaDistY;
+	double			perpWallDist;
+    int				stepX;
+	int				stepY;
+	int				hit;
+	int				side;
+    int             x;
+    int             y;
+    int             i;
+    double          tmp;
+}                   t_form;
+
+typedef struct      s_env
+{
+    void            *mlx;
+    void            *win;
+    void            *img;
+    char            *data;
+    char            *name;
+    int             bpp;
+    int             sizeline;
+    int             oct;
+    int             endian;
+	int				img_x;
+	int				img_y;
+	char			**worldMap;
+    t_setplayer     player;
+	t_form          frm;
+}                   t_env;
+
+int     ft_parsing(int argc, char **argv, t_env *env);
+int		raycast (t_env *env);
+#endif

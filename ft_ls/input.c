@@ -6,16 +6,31 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 18:13:43 by yismail           #+#    #+#             */
-/*   Updated: 2016/07/25 19:50:11 by yismail          ###   ########.fr       */
+/*   Updated: 2016/07/25 21:38:10 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-/*int sort_it(struct s_env env, char *option)
+struct s_list *list_it(struct s_env env, char *option)
 {
+	struct s_list *list;
+    struct s_list new;
+
 	
-}*/
+
+}
+
+
+struct s_list *sort_it(struct s_env env, char *option)
+{
+    if (!(env.pdirent->d_name[i] == '.') && (!(strchr(option, 'a'))))
+		env.dotslash = ft_strjoin(path, env.pdirent->d_name);
+	if (strchr(option, 'a'))
+		env.dotslash = ft_strjoin(path, env.pdirent->d_name);
+	lstat(dotslash, &env.buf);
+	return((struct s_list*)list_it(env, option));
+}
 
 int read_the_path(char *path, char *option, struct s_env env)
 {
@@ -25,7 +40,8 @@ int read_the_path(char *path, char *option, struct s_env env)
 	i = 0;
     while((env.pdirent = readdir(env.dir)) != NULL)
     {
-		//sort_it(env, option)
+		sort_it(env, option);
+	}
 		if (!(env.pdirent->d_name[i] == '.') && (!(strchr(option, 'a'))))
 		{
 			env.dotslash = ft_strjoin(path, env.pdirent->d_name);
