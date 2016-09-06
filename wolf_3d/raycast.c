@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/26 01:17:09 by yismail           #+#    #+#             */
-/*   Updated: 2016/07/26 11:23:36 by yismail          ###   ########.fr       */
+/*   Updated: 2016/09/06 20:29:54 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,20 @@ void draw_wall(t_env *env, int x)
 {
 	int color;
 
-	env->draw.lineHeight = (int)(env->img_x / env->frm.perpWallDist);
-	env->draw.drawStart = -env->draw.lineHeight / 2 + env->img_x / 2;
+	
+	env->draw.lineHeight = (int)(env->img_y / env->frm.perpWallDist);
+	env->draw.drawStart = -env->draw.lineHeight / 2.f + env->img_y / 2.f;
 	if(env->draw.drawStart < 0)
 		env->draw.drawStart = 0;
-	env->draw.drawEnd = env->draw.lineHeight / 2 + env->img_x / 2;
+	env->draw.drawEnd = env->draw.lineHeight / 2.f + env->img_y / 2.f;
     if(env->draw.drawEnd >= env->img_x)
-		env->draw.drawEnd = env->img_x - 1;
+		env->draw.drawEnd = env->img_y - 1.f;
+	
+	env->worldMap[env->frm.mapX][env->frm.mapY] == 1.f ? color = 0xFF0000 : (env->worldMap[env->frm.mapX][env->frm.mapY] == 2.f) ? 0x008000 : (env->worldMap[env->frm.mapX][env->frm.mapY] == 3.f) ? 0x0000FF : (env->worldMap[env->frm.mapX][env->frm.mapY] == 4.f) ? 0xFFFFFF : (env->worldMap[env->frm.mapX][env->frm.mapY] > 4.f) ? 0xFFFF00 : ft_putstr("problem");
 
-	env->worldMap[env->frm.mapX][env->frm.mapY] == 1 ? color = 0xFF0000 : (env->worldMap[env->frm.mapX][env->frm.mapY] == 2) ? 0x008000 : (env->worldMap[env->frm.mapX][env->frm.mapY] == 3) ? 0x0000FF : (env->worldMap[env->frm.mapX][env->frm.mapY] == 4) ? 0xFFFFFF : (env->worldMap[env->frm.mapX][env->frm.mapY] > 4) ? 0xFFFF00 : ft_putstr("problem");
-
-	if (env->frm.side == 1)
-		color = color / 2;
-	ft_putstr("X :");
-	ft_putnbr(x);
-	ft_putchar('\n');
-    ft_putstr("drawStart");
-    ft_putnbr(env->draw.drawStart);
-    ft_putchar('\n');
-    ft_putstr("drawend");
-    ft_putnbr(env->draw.drawEnd);
-    ft_putchar('\n');
-	if (x <= env->draw.drawStart && x >= env->draw.drawEnd)
+	if (env->frm.side == 1.f)
+		color = color / 2.f;
+	while (x >= env->draw.drawStart && x <= env->draw.drawEnd)
 		{
 			ft_putchar('c');
         ft_memcpy(&(env->data[(env->frm.y * env->sizeline) + (env->frm.x * env->oct)]), &color, (size_t)(sizeof(int)));
@@ -71,15 +63,36 @@ void wall_detection(t_env *env)
 		{
 			env->frm.sideDistY += env->frm.deltaDistY;
 			env->frm.mapY += env->frm.stepY;
-			env->frm.side = 1;
+			env->frm.side = 1.f;
 		}
 		if (env->worldMap[env->frm.mapX][env->frm.mapY] > 0)
-			env->frm.hit = 1;
+			env->frm.hit = 1.f;
 	}
 	if (env->frm.side == 0)
-		env->frm.perpWallDist = (env->frm.mapX - env->frm.rayPosX + (1 - env->frm.stepX) / 2) / env->frm.rayDirX;
+	{	
+		ft_putchar('w');
+		env->frm.perpWallDist = ((double)env->frm.mapX - env->frm.rayPosX + (1.f - env->frm.stepX) / 2.f) / env->frm.rayDirX;// probleme ici!!
+		ft_putstr("mapx");
+		printf("%d\n", env->frm.mapX);
+		ft_putchar('\n');
+		ft_putstr("rayPosx");
+		printf("%lf\n", env->frm.rayPosX);
+		ft_putchar('\n');
+		ft_putstr("stepX");
+		printf("%lf\n", env->frm.stepX);
+		ft_putchar('\n');
+		ft_putstr("rayDirX");
+		printf("%lf\n", env->frm.rayDirX);
+		ft_putchar('\n');
+		ft_putstr("PERPWALLDIST");
+		printf("%lf\n", env->frm.perpWallDist); 
+		ft_putnbr(env->frm.perpWallDist);
+		ft_putchar('\n');
+	}
 	else
-		env->frm.perpWallDist = (env->frm.mapY - env->frm.rayPosY + (1 - env->frm.stepY) / 2) /env->frm.rayDirY;
+	{
+		ft_putchar('q');
+		env->frm.perpWallDist = (env->frm.mapY - env->frm.rayPosY + (1.f - env->frm.stepY) / 2.f) /env->frm.rayDirY;}
 }
 
 void ray_dir(t_env *env, int x)
@@ -90,12 +103,12 @@ void ray_dir(t_env *env, int x)
 	env->frm.rayDirX = env->player.dirX + env->player.planeX * env->frm.cameraX;
 	env->frm.rayDirY = env->player.dirY + env->player.planeY * env->frm.cameraX;
 	env->frm.mapX = (int)env->frm.rayPosX;
-	env->frm.mapX = (int)env->frm.rayPosX;
-	env->frm.deltaDistX = sqrt(1 + (env->frm.rayDirY * env->frm.rayDirY) / (env->frm.rayDirX * env->frm.rayDirX));
-	env->frm.deltaDistY = sqrt(1 + (env->frm.rayDirX * env->frm.rayDirX) / (env->frm.rayDirY * env->frm.rayDirY));
+	env->frm.mapY = (int)env->frm.rayPosY;
+	env->frm.deltaDistX = sqrt(1.f + (env->frm.rayDirY * env->frm.rayDirY) / (env->frm.rayDirX * env->frm.rayDirX));
+	env->frm.deltaDistY = sqrt(1.f + (env->frm.rayDirX * env->frm.rayDirX) / (env->frm.rayDirY * env->frm.rayDirY));
 	env->frm.hit = 0;
-	env->frm.rayDirX < 0 ? ((env->frm.stepX = -1) && (env->frm.sideDistX = env->frm.rayPosX - env->frm.mapX * env->frm.deltaDistX)) : ((env->frm.stepX = 1) && (env->frm.sideDistX = (env->frm.mapX + 1.0 - env->frm.rayPosX) * env->frm.deltaDistX));
-	env->frm.rayDirY < 0 ? ((env->frm.stepY = -1) && (env->frm.sideDistY = env->frm.rayPosY - env->frm.mapY * env->frm.deltaDistY)) : ((env->frm.stepY = 1) && (env->frm.sideDistY = (env->frm.mapY + 1.0 - env->frm.rayPosY) * env->frm.deltaDistY));
+	env->frm.rayDirX < 0 ? ((env->frm.stepX = -1.f) && (env->frm.sideDistX = env->frm.rayPosX - env->frm.mapX * env->frm.deltaDistX)) : ((env->frm.stepX = 1.f) && (env->frm.sideDistX = (env->frm.mapX + 1.0 - env->frm.rayPosX) * env->frm.deltaDistX));
+	env->frm.rayDirY < 0 ? ((env->frm.stepY = -1.f) && (env->frm.sideDistY = env->frm.rayPosY - env->frm.mapY * env->frm.deltaDistY)) : ((env->frm.stepY = 1.f) && (env->frm.sideDistY = (env->frm.mapY + 1.0 - env->frm.rayPosY) * env->frm.deltaDistY));
 }
 
 void vector_calc(t_env *env)

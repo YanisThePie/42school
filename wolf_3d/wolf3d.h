@@ -9,6 +9,7 @@
 # include <math.h>
 # include "./minilibx_macos/mlx.h"
 # include <unistd.h>
+#include <stdio.h>
 
 typedef struct      s_stru
 {
@@ -45,20 +46,20 @@ typedef struct      s_form
 	double			deltaDistX;
 	double			deltaDistY;
 	double			perpWallDist;
-    int				stepX;
-	int				stepY;
-	int				hit;
-	int				side;
+    double				stepX;
+	double				stepY;
+	double				hit;
+	double				side;
     int             x;
     int             y;
-    int             i;
+    double             i;
 }                   t_form;
 
 typedef struct		s_data
 {
-	int         lineHeight;
-	int			drawStart;
-	int			drawEnd;
+	double         lineHeight;
+	double			drawStart;
+	double			drawEnd;
 }					t_data;
 
 typedef struct      s_env
