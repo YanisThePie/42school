@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/25 22:52:32 by yismail           #+#    #+#             */
-/*   Updated: 2016/07/26 07:43:51 by yismail          ###   ########.fr       */
+/*   Updated: 2016/09/27 18:35:42 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void    ft_put_pixel_img(t_env *env, int clr_int)
     if ((env->frm.x >= 0 && env->frm.x <= 1200)
         && (env->frm.y >= 0 && env->frm.y <= 1200))
     {
-        ft_memcpy(&(env->data[(env->frm.y * env->sizeline) + (env->frm.x * env->oct)]), &clr_int, (size_t)(sizeof(int)));
+        ft_memcpy(&(env->data[((int)env->frm.y * env->sizeline) + ((int)env->frm.x * env->oct)]), &clr_int, (size_t)(sizeof(int)));
     }
 }
 

@@ -13,9 +13,9 @@
 
 typedef struct      s_stru
 {
-    int             coord_x;
-    int             coord_y;
-    int             val_int;
+    double             coord_x;
+    double             coord_y;
+    double            val_int;
 }                   t_stru;
 
 typedef struct      s_setplayer
@@ -30,8 +30,8 @@ typedef struct      s_setplayer
 
 typedef struct      s_form
 {
-	int				sizemap_x;
-	int				sizemap_y;
+	double				sizemap_x;
+	double				sizemap_y;
     double          time;
     double          oldTime;
     double          cameraX;
@@ -39,8 +39,8 @@ typedef struct      s_form
     double          rayPosY;
 	double			rayDirX;
 	double			rayDirY;
-    int             mapX;
-	int				mapY;
+	double            mapX;
+	double				mapY;
 	double			sideDistX;
 	double			sideDistY;
 	double			deltaDistX;
@@ -50,8 +50,8 @@ typedef struct      s_form
 	double				stepY;
 	double				hit;
 	double				side;
-    int             x;
-    int             y;
+  double             x;
+  double             y;
     double             i;
 }                   t_form;
 
