@@ -102,6 +102,24 @@ int     check_entry(char *line)
     return (0);
 }
 
+int *ft_table_atoi(char *src, int sizemap)
+{
+	int *dest;
+	int cpt;
+
+	dest = malloc(sizeof(int) * sizemap);
+	cpt = 0;
+	while (sizemap)
+	{
+		dest[cpt] = (src[cpt] - 48);
+		cpt++;
+		sizemap--;
+	}
+
+	
+	return(dest);
+}
+
 int     ft_parsing(int argc, char **argv, t_env *env)
 {
     char    *line;
@@ -110,7 +128,6 @@ int     ft_parsing(int argc, char **argv, t_env *env)
     int     coord_y;
 
 	(void)argv;
-	(void)argc;
     if (argc != 2)
 	  exit(EXIT_FAILURE);
     fd = open(argv[1], O_RDONLY);
@@ -120,8 +137,9 @@ int     ft_parsing(int argc, char **argv, t_env *env)
     while ((ret = (get_next_line(fd, &line)) > 0))
     {
         check_entry(line);
-		env->worldMap[coord_y] = no_space(line);
-		env->frm.sizemap_x = ft_strlen(env->worldMap[coord_y]);
+		env->worldMapchar[coord_y] = no_space(line);
+		env->frm.sizemap_x = ft_strlen(env->worldMapchar[coord_y]);
+		env->worldMap[coord_y] = ft_table_atoi(env->worldMapchar[coord_y], env->frm.sizemap_x);
         coord_y++;
         free(line);
     }

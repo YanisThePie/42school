@@ -10,6 +10,11 @@
 # include "./minilibx_macos/mlx.h"
 # include <unistd.h>
 #include <stdio.h>
+#include <time.h>
+
+
+#define VITESSE_DEPLACEMENT 5   /* En nombre de carres par seconde */
+#define VITESSE_ROTATION 3      /* En radians par seconde */
 
 typedef struct      s_stru
 {
@@ -26,12 +31,16 @@ typedef struct      s_setplayer
 	double			dirY;
 	double			planeX;
 	double			planeY;
+	double			movespeed;
+	double			rotspeed;
+	double			oldDirX;
+	double			oldPlaneX;
 }                   t_setplayer;
 
 typedef struct      s_form
 {
-	double				sizemap_x;
-	double				sizemap_y;
+	int				sizemap_x;
+	int				sizemap_y;
     double          time;
     double          oldTime;
     double          cameraX;
@@ -39,8 +48,8 @@ typedef struct      s_form
     double          rayPosY;
 	double			rayDirX;
 	double			rayDirY;
-	double            mapX;
-	double				mapY;
+	double            mapX;//c'est quoi?
+	double				mapY;//c'est quoi?
 	double			sideDistX;
 	double			sideDistY;
 	double			deltaDistX;
@@ -75,7 +84,8 @@ typedef struct      s_env
     int             endian;
 	int				img_x;
 	int				img_y;
-	char			*worldMap[99];
+	char			*worldMapchar[99];
+	int				*worldMap[99];
     t_setplayer     player;
 	t_form          frm;
 	t_data			draw;
@@ -83,4 +93,7 @@ typedef struct      s_env
 
 int     ft_parsing(int argc, char **argv, t_env *env);
 int		raycast (t_env *env);
+int     ft_event(t_env *env);
+void    ft_new_img(t_env *env);
+void set_player(t_env *env);
 #endif

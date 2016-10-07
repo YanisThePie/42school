@@ -2,7 +2,8 @@ NAME = Wolf3d
 CC = gcc
 SRCS = 	main.c \
 		parse.c \
-		raycast.c
+		raycast.c\
+		event.c
 
 CFLAGS = -Wall -Wextra -Werror -Ofast -march=native
 FLAGS = -framework OpenGL -framework AppKit -L ./libft -lft -L minilibx_macos -lmlx
