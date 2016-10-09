@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/26 01:17:09 by yismail           #+#    #+#             */
-/*   Updated: 2016/09/27 19:39:42 by yismail          ###   ########.fr       */
+/*   Updated: 2016/10/09 19:52:57 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void draw_wall(t_env *env, int x)
     if(env->draw.drawEnd >= env->img_y)
 		env->draw.drawEnd = env->img_y - 1;
 	env->worldMap[(int)env->frm.mapX][(int)env->frm.mapY] == 1 ? color = 0xFF0000 : (env->worldMap[(int)env->frm.mapX][(int)env->frm.mapY] == 2) ? 0x008000 : (env->worldMap[(int)env->frm.mapX][(int)env->frm.mapY] == 3) ? 0x0000FF : (env->worldMap[(int)env->frm.mapX][(int)env->frm.mapY] == 4) ? 0xFFFFFF : (env->worldMap[(int)env->frm.mapX][(int)env->frm.mapY] > 4) ? 0xFFFF00 : ft_putstr("problem");
-	if (env->frm.side == 1.f)
-		color = color / 2;
+	if (env->frm.side == 1)
+	color = color / 2;
 
 	y = env->draw.drawStart;
 	while (y <= env->draw.drawEnd)
@@ -64,7 +64,7 @@ void wall_detection(t_env *env)
 
 void ray_dir(t_env *env, double x)
 {
-	env->frm.cameraX = 2 * x / (env->img_x - 1);
+	env->frm.cameraX = 2 * x / (double)(env->img_x) - 1;
 	env->frm.rayPosX = env->player.posX;
 	env->frm.rayPosY = env->player.posY;
 	env->frm.rayDirX = env->player.dirX + env->player.planeX * env->frm.cameraX;
@@ -74,8 +74,8 @@ void ray_dir(t_env *env, double x)
 	env->frm.deltaDistX = sqrt(1 + (env->frm.rayDirY * env->frm.rayDirY) / (env->frm.rayDirX * env->frm.rayDirX));
 	env->frm.deltaDistY = sqrt(1 + (env->frm.rayDirX * env->frm.rayDirX) / (env->frm.rayDirY * env->frm.rayDirY));
 	env->frm.hit = 0;
-	env->frm.rayDirX < 0 ? ((env->frm.stepX = -1.f) && (env->frm.sideDistX = env->frm.rayPosX - env->frm.mapX * env->frm.deltaDistX)) : ((env->frm.stepX = 1.f) && (env->frm.sideDistX = (env->frm.mapX + 1.f - env->frm.rayPosX) * env->frm.deltaDistX));
-	env->frm.rayDirY < 0 ? ((env->frm.stepY = -1.f) && (env->frm.sideDistY = env->frm.rayPosY - env->frm.mapY * env->frm.deltaDistY)) : ((env->frm.stepY = 1.f) && (env->frm.sideDistY = (env->frm.mapY + 1.f - env->frm.rayPosY) * env->frm.deltaDistY));
+	env->frm.rayDirX < 0 ? ((env->frm.stepX = -1) && (env->frm.sideDistX = env->frm.rayPosX - env->frm.mapX * env->frm.deltaDistX)) : ((env->frm.stepX = 1) && (env->frm.sideDistX = (env->frm.mapX + 1 - env->frm.rayPosX) * env->frm.deltaDistX));
+	env->frm.rayDirY < 0 ? ((env->frm.stepY = -1) && (env->frm.sideDistY = env->frm.rayPosY - env->frm.mapY * env->frm.deltaDistY)) : ((env->frm.stepY = 1) && (env->frm.sideDistY = (env->frm.mapY + 1 - env->frm.rayPosY) * env->frm.deltaDistY));
 }
 
 void vector_calc(t_env *env)

@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 14:56:29 by yismail           #+#    #+#             */
-/*   Updated: 2016/05/24 15:00:17 by yismail          ###   ########.fr       */
+/*   Updated: 2016/10/09 19:53:51 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,61 +55,41 @@ int		mouse_pos(int x, int y, t_env *env)
 	}*/
 
 
-void CalculateFrameRate(t_env *env)
-{
-	static float framesPerSecond    = 0.0f;       // This will store our fps
-	static float lastTime   = 0.0f;       // This will hold the time from the last frame
-	float currentTime = time(NULL) * 0.001f;
-	++framesPerSecond;
-	if( currentTime - lastTime > 1.0f )
-	{
-		lastTime = currentTime;
-		fprintf(stderr, "\nCurrent Frames Per Second: %d\n\n", (int)framesPerSecond);
-		framesPerSecond = 0;
-	}
-	//env->player.movespeed = framesPerSecond * 5.0;
-	//env->player.rotspeed = framesPerSecond * 3.0;
-	
-	env->player.movespeed = 1 * 5;
-	env->player.rotspeed = 1 * 3;
-}
-
 int		my_key_funct(int keycode, t_env *env)
 {
-	ft_putnbr(keycode);
-	CalculateFrameRate(env);
 	if (keycode == 126)
 	{
-		if (env->worldMap[(int)(env->player.posX + env->player.dirX * env->player.movespeed)][(int)env->player.posY] == 0)
-			env->player.posX += env->player.dirX * env->player.movespeed;
-		if (env->worldMap[(int)(env->player.posX)][(int)(env->player.posY + env->player.dirY * env->player.movespeed)] == 0)
-			env->player.posY += env->player.dirY * env->player.movespeed;
+		if (env->worldMap[(int)(env->player.posX + env->player.dirX * 1)][(int)env->player.posY] == 0)
+			env->player.posX += env->player.dirX;
+		if (env->worldMap[(int)(env->player.posX)][(int)(env->player.posY + env->player.dirY * 1)] == 0)
+			env->player.posY += env->player.dirY;
+		printf("posX : %f\n dirX: %f\n posY: %f\n dirY: %f\n\n\n", env->player.posX, env->player.dirX, env->player.posY, env->player.dirY); 
 	}	
 	if (keycode == 125)
 	{
-		if (env->worldMap[(int)(env->player.posX - env->player.dirX * env->player.movespeed)][(int)env->player.posY] == 0)
-			env->player.posX -= env->player.dirX * env->player.movespeed;
-		if (env->worldMap[(int)(env->player.posX)][(int)(env->player.posY - env->player.dirY * env->player.movespeed)] == 0)
-			env->player.posY -= env->player.dirY * env->player.movespeed;
+		if (env->worldMap[(int)(env->player.posX - env->player.dirX)][(int)env->player.posY] == 0)
+			env->player.posX -= env->player.dirX ;
+		if (env->worldMap[(int)(env->player.posX)][(int)(env->player.posY - env->player.dirY)] == 0)
+			env->player.posY -= env->player.dirY ;
 	}
 	if (keycode == 124)
 	{
 		env->player.oldDirX = env->player.dirX;
-		env->player.dirX = env->player.dirX * cos(-env->player.rotspeed) - env->player.dirY * sin(-env->player.rotspeed);
-		env->player.dirY = env->player.oldDirX * sin(-env->player.rotspeed) + env->player.dirY * cos(-env->player.rotspeed);
+		env->player.dirX = env->player.dirX * cos(0.09) - env->player.dirY * sin(-0.09);
+		env->player.dirY = env->player.oldDirX * sin(-0.09) + env->player.dirY * cos(0.09);
 		env->player.oldPlaneX = env->player.planeX;
-		env->player.planeX = env->player.planeX * cos(-env->player.rotspeed) - env->player.planeY * sin(-env->player.rotspeed);
-		env->player.planeY = env->player.oldPlaneX * sin(-env->player.rotspeed) + env->player.planeY * cos(-env->player.rotspeed);
+		env->player.planeX = env->player.planeX * cos(0.09) - env->player.planeY * sin(-0.09);
+		env->player.planeY = env->player.oldPlaneX * sin(-0.09) + env->player.planeY * cos(0.09);
 		
 	}
 	if (keycode == 123)
 	{
 		env->player.oldDirX = env->player.dirX;
-		env->player.dirX = env->player.dirX * cos(-env->player.rotspeed) - env->player.dirY * sin(env->player.rotspeed);
-		env->player.dirY = env->player.oldDirX * sin(env->player.rotspeed) + env->player.dirY * cos(env->player.rotspeed);
+		env->player.dirX = env->player.dirX * cos(0.09) - env->player.dirY * sin(0.09);
+		env->player.dirY = env->player.oldDirX * sin(0.09) + env->player.dirY * cos(0.09);
 		env->player.oldPlaneX = env->player.planeX;
-		env->player.planeX = env->player.planeX * cos(env->player.rotspeed) - env->player.planeY * sin(-env->player.rotspeed);
-		env->player.planeY = env->player.oldPlaneX * sin(env->player.rotspeed) + env->player.planeY * cos(env->player.rotspeed);
+		env->player.planeX = env->player.planeX * cos(0.09) - env->player.planeY * sin(0.09);
+		env->player.planeY = env->player.oldPlaneX * sin(0.09) + env->player.planeY * cos(0.09);
 
 	}
 	
@@ -120,8 +100,6 @@ int		my_key_funct(int keycode, t_env *env)
 
 int		ft_event(t_env *env)
 {
-	env->frm.time = 0;
-	env->frm.oldTime = 0;
 	//mlx_hook(env->win, 6, 0, &mouse_pos, env);
 	mlx_key_hook(env->win, my_key_funct, env);
 	//mlx_mouse_hook(env->win, mouse_click, env);
