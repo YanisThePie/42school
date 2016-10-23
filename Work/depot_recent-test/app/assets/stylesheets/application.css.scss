@@ -19,16 +19,15 @@
 
 
 
+
 .logo_img_work{
-  position: relative;
-  left: -110px;
+  float: none;
+  left: -50px;
   top: 55px;
   width: 250px;
 }
 
 .title_work{
-  display: block;
-  left: 20px;
  top: 80px;
  font-size: 25px;
  font-family: 'Didot LT Std Italic';
@@ -36,7 +35,7 @@
 
 .div-work{
   position: relative;
-  top:350px;
+  top:25vh;
 }
 
 .pick{
@@ -112,6 +111,7 @@ position:relative;
 
 		a{
 		color: #b6a083;
+    font-size: 1.5vh;
 		font-style: normal;
 		padding-right: 5vw;
 	}

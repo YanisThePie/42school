@@ -22,8 +22,8 @@
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><% if current_user %>
           <div class="well well-sm">
-            Admin: <strong><%= current_user.admin? %></strong><br>
-            <%= link_to 'Toggle admin rights', user_path(current_user), method: :patch, class: 'btn btn-info' %>
+            Admin: <strong><%= user.admin? %></strong><br>
+            <%= link_to 'Toggle admin rights', user, method: :patch, data: { confirm: 'Are you sure?' }, class: 'btn btn-info' %>
           </div>
           <% end %></td>
       </tr>
