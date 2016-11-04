@@ -157,7 +157,7 @@ background-size: cover;
 
 .img-fluid{
 position:relative;
-top:-50px;
+top:-2vw;
 overflow:hidden;
 width:100%;
 z-index:2
