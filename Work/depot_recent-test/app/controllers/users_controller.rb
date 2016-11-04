@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :admin_only
+  skip_before_action :admin_only, only: [:new, :create]
   skip_before_action :authorize, only: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 

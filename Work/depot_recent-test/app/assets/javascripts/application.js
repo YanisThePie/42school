@@ -21,4 +21,5 @@
 //= require bootstrap/dropdown
 //= require underscore
 //= require gmaps/google
+//= require paraxify.js
 //= require_tree .
