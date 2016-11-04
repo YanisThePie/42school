@@ -122,6 +122,14 @@ font-size: 28px;
 z-index: 200;
 }
 
+.sect-overlap .text-center-align {
+text-align: center;
+}
+
+.txt-center{
+  text-align: center;
+}
+
 
                                                                     /*  NORMAL DEVICE ONLY*/
 
