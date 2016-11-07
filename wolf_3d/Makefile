@@ -3,7 +3,8 @@ CC = gcc
 SRCS = 	main.c \
 		parse.c \
 		raycast.c\
-		event.c
+		event.c\
+		draw.c
 
 CFLAGS = -Wall -Wextra -Werror -Ofast -march=native
 FLAGS = -framework OpenGL -framework AppKit -L ./libft -lft -L minilibx_macos -lmlx

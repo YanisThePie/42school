@@ -96,4 +96,5 @@ int		raycast (t_env *env);
 int     ft_event(t_env *env);
 void    ft_new_img(t_env *env);
 void set_player(t_env *env);
+void draw_wall(t_env *env, int x);
 #endif

@@ -6,61 +6,11 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/26 00:04:42 by yismail           #+#    #+#             */
-/*   Updated: 2016/07/26 09:46:20 by yismail          ###   ########.fr       */
+/*   Updated: 2016/11/07 11:31:50 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-/*void    fill_list(int coord_x, int coord_y, char *val)
-{
-    long int    val_int;
-    t_stru      *content;
-
-    content = (t_stru*)malloc(sizeof(t_stru));
-    content->coord_x = coord_x;
-    content->coord_y = coord_y;
-    val_int = ft_atoi(val);
-    if (val_int <= (-2147483648) || val_int >= (2147483647))
-        exit(EXIT_FAILURE);
-    content->val_int = (int)val_int;
-    (*list)->content = (void*)content;
-}
-
-void    range_this_shit(t_list **list, int x, int y, char *val)
-{
-    t_list *new;
-    t_list *temp;
-
-    temp = *list;
-    new = (t_list*)malloc(sizeof(t_list));
-    new->next = NULL;
-    if (*list == NULL)
-        *list = new;
-    else
-    {
-        while (temp->next)
-            temp = temp->next;
-        temp->next = new;
-    }
-    fill_list(x, y, val, &new);
-}
-
-void    ft_split(char *line, int y, t_env *env)
-{
-    char    **line_spl;
-    int     x;
-
-    line_spl = ft_strsplit(line, ' ');
-    x = 0;
-    while (line_spl[x] != NULL)
-    {
-        range_this_shit(list, x, y, line_spl[x]);
-        x++;
-    }
-	env->frm.sizemap_x = x;
-    freetab(line_spl);
-}*/
 
 char *no_space(char *str)
 {
