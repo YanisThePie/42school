@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 14:56:29 by yismail           #+#    #+#             */
-/*   Updated: 2016/11/07 11:58:09 by yismail          ###   ########.fr       */
+/*   Updated: 2016/11/07 16:07:15 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,21 @@
 
 int		my_key_funct(int keycode, t_env *env)
 {
+	ft_putnbr(keycode);
+
 	if (keycode == 126)
 	{
 		if (env->worldMap[(int)(env->player.posX + env->player.dirX * 1)][(int)env->player.posY] == 0)
-			env->player.posX += env->player.dirX;
+			env->player.posX += env->player.dirX * 1;
 		if (env->worldMap[(int)(env->player.posX)][(int)(env->player.posY + env->player.dirY * 1)] == 0)
-			env->player.posY += env->player.dirY;
-		printf("posX : %f\n dirX: %f\n posY: %f\n dirY: %f\n\n\n", env->player.posX, env->player.dirX, env->player.posY, env->player.dirY); 
+			env->player.posY += env->player.dirY * 1; 
 	}	
 	if (keycode == 125)
 	{
-		if (env->worldMap[(int)(env->player.posX - env->player.dirX)][(int)env->player.posY] == 0)
-			env->player.posX -= env->player.dirX ;
+		if (env->worldMap[(int)(env->player.posX - env->player.dirX * 1)][(int)env->player.posY] == 0)
+			env->player.posX -= env->player.dirX * 1 ;
 		if (env->worldMap[(int)(env->player.posX)][(int)(env->player.posY - env->player.dirY)] == 0)
-			env->player.posY -= env->player.dirY ;
+			env->player.posY -= env->player.dirY * 1 ;
 	}
 	if (keycode == 124)
 	{
