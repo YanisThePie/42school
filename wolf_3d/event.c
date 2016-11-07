@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 14:56:29 by yismail           #+#    #+#             */
-/*   Updated: 2016/11/07 16:07:15 by yismail          ###   ########.fr       */
+/*   Updated: 2016/11/07 18:26:50 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,39 @@
 
 int		my_key_funct(int keycode, t_env *env)
 {
-	ft_putnbr(keycode);
 
 	if (keycode == 126)
 	{
-		if (env->worldMap[(int)(env->player.posX + env->player.dirX * 1)][(int)env->player.posY] == 0)
-			env->player.posX += env->player.dirX * 1;
-		if (env->worldMap[(int)(env->player.posX)][(int)(env->player.posY + env->player.dirY * 1)] == 0)
-			env->player.posY += env->player.dirY * 1; 
+		if (env->worldMap[(int)(env->player.posX + env->player.dirX * 0.06)][(int)env->player.posY] == 0)
+			env->player.posX += env->player.dirX * 0.06;
+		if (env->worldMap[(int)(env->player.posX)][(int)(env->player.posY + env->player.dirY * 0.06)] == 0)
+			env->player.posY += env->player.dirY * 0.06; 
 	}	
 	if (keycode == 125)
 	{
-		if (env->worldMap[(int)(env->player.posX - env->player.dirX * 1)][(int)env->player.posY] == 0)
-			env->player.posX -= env->player.dirX * 1 ;
-		if (env->worldMap[(int)(env->player.posX)][(int)(env->player.posY - env->player.dirY)] == 0)
-			env->player.posY -= env->player.dirY * 1 ;
+		if (env->worldMap[(int)(env->player.posX - env->player.dirX * 0.06)][(int)env->player.posY] == 0)
+			env->player.posX -= env->player.dirX * 0.06 ;
+		if (env->worldMap[(int)(env->player.posX)][(int)(env->player.posY - env->player.dirY * 0.06)] == 0)
+			env->player.posY -= env->player.dirY * 0.06 ;
 	}
 	if (keycode == 124)
 	{
 		env->player.oldDirX = env->player.dirX;
-		env->player.dirX = env->player.dirX * cos(0.09) - env->player.dirY * sin(-0.09);
-		env->player.dirY = env->player.oldDirX * sin(-0.09) + env->player.dirY * cos(0.09);
+		env->player.dirX = env->player.dirX * cos(0.04) - env->player.dirY * sin(-0.04);
+		env->player.dirY = env->player.oldDirX * sin(-0.04) + env->player.dirY * cos(0.04);
 		env->player.oldPlaneX = env->player.planeX;
-		env->player.planeX = env->player.planeX * cos(0.09) - env->player.planeY * sin(-0.09);
-		env->player.planeY = env->player.oldPlaneX * sin(-0.09) + env->player.planeY * cos(0.09);
+		env->player.planeX = env->player.planeX * cos(0.04) - env->player.planeY * sin(-0.04);
+		env->player.planeY = env->player.oldPlaneX * sin(-0.04) + env->player.planeY * cos(0.04);
 		
 	}
 	if (keycode == 123)
 	{
 		env->player.oldDirX = env->player.dirX;
-		env->player.dirX = env->player.dirX * cos(0.09) - env->player.dirY * sin(0.09);
-		env->player.dirY = env->player.oldDirX * sin(0.09) + env->player.dirY * cos(0.09);
+		env->player.dirX = env->player.dirX * cos(0.04) - env->player.dirY * sin(0.04);
+		env->player.dirY = env->player.oldDirX * sin(0.04) + env->player.dirY * cos(0.04);
 		env->player.oldPlaneX = env->player.planeX;
-		env->player.planeX = env->player.planeX * cos(0.09) - env->player.planeY * sin(0.09);
-		env->player.planeY = env->player.oldPlaneX * sin(0.09) + env->player.planeY * cos(0.09);
+		env->player.planeX = env->player.planeX * cos(0.04) - env->player.planeY * sin(0.04);
+		env->player.planeY = env->player.oldPlaneX * sin(0.04) + env->player.planeY * cos(0.04);
 
 	}
 	
