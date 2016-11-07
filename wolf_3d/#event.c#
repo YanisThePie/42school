@@ -112,7 +112,6 @@ int     loop_hook(t_env *env)
 		}
 		else
 		{
-			//ft_bzero(env->data, 4 * 1200 * 1200);
 			mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 			mlx_do_sync(env->mlx);
 		}

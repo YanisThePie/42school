@@ -17,7 +17,7 @@ void draw_wall(t_env *env, int x)
 {
 	int y;
 	int color;
-// creuser ici!
+	
 	env->draw.lineHeight = abs((int)(env->img_y / env->frm.perpWallDist));
 	env->draw.drawStart = -env->draw.lineHeight / 2 + env->img_y / 2;
 	if(env->draw.drawStart < 0)
@@ -27,8 +27,9 @@ void draw_wall(t_env *env, int x)
 		env->draw.drawEnd = env->img_y - 1;
 	env->worldMap[(int)env->frm.mapX][(int)env->frm.mapY] == 1 ? color = 0xFF0000 : (env->worldMap[(int)env->frm.mapX][(int)env->frm.mapY] == 2) ? 0x008000 : (env->worldMap[(int)env->frm.mapX][(int)env->frm.mapY] == 3) ? 0x0000FF : (env->worldMap[(int)env->frm.mapX][(int)env->frm.mapY] == 4) ? 0xFFFFFF : (env->worldMap[(int)env->frm.mapX][(int)env->frm.mapY] > 4) ? 0xFFFF00 : ft_putstr("problem");
 	if (env->frm.side == 1)
-	color = color / 2;
-
+		color = color / 2;
+	//else
+	//	color = 0xFFFFFF;
 	y = env->draw.drawStart;
 	while (y <= env->draw.drawEnd)
 	{
@@ -74,8 +75,8 @@ void ray_dir(t_env *env, double x)
 	env->frm.deltaDistX = sqrt(1 + (env->frm.rayDirY * env->frm.rayDirY) / (env->frm.rayDirX * env->frm.rayDirX));
 	env->frm.deltaDistY = sqrt(1 + (env->frm.rayDirX * env->frm.rayDirX) / (env->frm.rayDirY * env->frm.rayDirY));
 	env->frm.hit = 0;
-	env->frm.rayDirX < 0 ? ((env->frm.stepX = -1) && (env->frm.sideDistX = env->frm.rayPosX - env->frm.mapX * env->frm.deltaDistX)) : ((env->frm.stepX = 1) && (env->frm.sideDistX = (env->frm.mapX + 1 - env->frm.rayPosX) * env->frm.deltaDistX));
-	env->frm.rayDirY < 0 ? ((env->frm.stepY = -1) && (env->frm.sideDistY = env->frm.rayPosY - env->frm.mapY * env->frm.deltaDistY)) : ((env->frm.stepY = 1) && (env->frm.sideDistY = (env->frm.mapY + 1 - env->frm.rayPosY) * env->frm.deltaDistY));
+	env->frm.rayDirX < 0 ? ((env->frm.stepX = -1) && (env->frm.sideDistX = (env->frm.rayPosX - env->frm.mapX) * env->frm.deltaDistX)) : ((env->frm.stepX = 1) && (env->frm.sideDistX = (env->frm.mapX + 1.0 - env->frm.rayPosX) * env->frm.deltaDistX));
+	env->frm.rayDirY < 0 ? ((env->frm.stepY = -1) && (env->frm.sideDistY = (env->frm.rayPosY - env->frm.mapY) * env->frm.deltaDistY)) : ((env->frm.stepY = 1) && (env->frm.sideDistY = (env->frm.mapY + 1.0 - env->frm.rayPosY) * env->frm.deltaDistY));
 }
 
 void vector_calc(t_env *env)
