@@ -13,9 +13,10 @@
 //= require jquery
 //= require fonts_trial.js
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery.turbolinks
 //= require bootstrap-sprockets
 //= require jquery.vide.js
+//= require jquery.scrollme.js
 //= require bootstrap-select
 //= require bootstrap/alert
 //= require bootstrap/dropdown

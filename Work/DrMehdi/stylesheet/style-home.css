@@ -1,0 +1,320 @@
+                                                                              /*  NORMAL DEVICE */
+
+@media screen and (min-width: 992px) {
+
+body { font: 12px/20px sans-serif; margin:0;padding:0; background-image:url(images/image_de_fond.png);}
+
+html,body{
+  height: 100%;
+  width: 100%;
+}
+
+header{
+  position: relative;
+  top:0;
+height: 100%;
+max-height:100vh;
+width: 100%;
+max-width: 100%;
+}
+
+
+.logo{
+  width: 10vw;
+}
+
+video {
+  position: relative;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  background: #000;
+  cursor: pointer;
+  margin: auto;
+  height: 100%;
+  max-height:100%;
+  max-width: 100%;
+ }
+
+
+#bar {
+  position: relative;
+  bottom: 3vw;
+  cursor: pointer;
+  background: #000;
+  color: #CCC;
+  height:3px;
+  margin-right:15%;
+  margin-left: 15%;
+}
+#bar span {
+  display: block;
+  text-align: center;
+  float: left;
+  font-family: 'Didot LT Std Bold Italic';
+  font-size: 16px;
+  height: 28px;
+  overflow: hidden;
+  padding: 6px 3px;
+  line-height: 14px;
+}
+#bar span:hover {color: #FFF; }
+#bar span:nth-child(1) {border-left: none;}
+
+.time-sprite{
+  background:url(../src/sprite.jpg);
+}
+
+.arrow{
+  max-width: 60px;
+  position: relative;
+  bottom: 4.2vh;
+  left: -3.5%;
+}
+
+.center-div{
+  color: #000634;
+position: relative;
+margin-top:3%;
+margin-bottom: 8%;
+}
+.center-div h1 {
+position: relative;  z-index:10;
+margin-top: 50px;
+margin-bottom: 80px;
+font-size: 20px;
+}
+.center-div img{
+height: auto;
+max-width: 100%;
+}
+.center-div h2 {
+position: absolute; top:190px; left: -60px; z-index:10;
+font-size: 18px;
+}
+
+.center-div h3 {
+position: absolute; top:450px; left: -60px; z-index:10;
+font-size: 18px;
+}
+
+.center-div p {
+position: absolute; top:240px; left: -60px; z-index:10;
+text-align: left;
+font-size: 15px;
+}
+
+.center-div .p2 {
+position: absolute; top:480px; left: -60px; z-index:10;
+text-align: left;
+font-size: 15px;
+}
+
+.what-is-surgery p{
+  color: #000634;
+  text-align: center;
+  font-family: 'Didot LT Std Bold Italic';
+  font-size: 16px;
+  margin-bottom: 50px;
+}
+
+.interventions{
+  position: relative;
+  color: #000634;
+  margin-bottom: 120px;
+}
+
+.interventions img{
+  margin-top: -100px;
+}
+
+.cabinet-medical{
+  color: #000634;
+position: relative;
+margin-top:3%;
+margin-bottom: 8%;
+}
+.cabinet-medical h2 {
+  position: absolute; top:-40px; left: -90px; z-index:10;
+  font-size: 18px;
+}
+.cabinet-medical img{
+margin-top: -10%;
+width: 100%;
+height: 100%;
+}
+
+.cabinet-medical p {
+position: absolute; top: 0; left: -90px; z-index:10;
+text-align: left;
+font-size: 15px;
+}
+
+.form-style-8{
+    font-family: 'Open Sans Condensed', arial, sans;
+    width: 700px;
+    padding: 30px;
+    background: #FFFFFF;
+    margin: 50px auto;
+
+}
+
+.form-style-8 input[type="text"],
+.form-style-8 input[type="email"],
+.form-style-8 input[type="tel"],
+.form-style-8 input[type="subject"],
+.form-style-8 input[type="message"],
+.form-style-8 textarea,
+.form-style-8 select
+{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    display: block;
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    background: transparent;
+    margin-bottom: 10px;
+    font: 16px Arial, Helvetica, sans-serif;
+    color: black;
+}
+
+}
+
+
+                                                                                  /* MOBILE */
+@media screen and (min-width: 480px) and (max-width: 991px) {
+  body { font: 12px/20px sans-serif; margin:0;padding:0; background-image:url(images/image_de_fond.png);}
+
+  header{
+    position: relative;
+    top:0;
+  width:100vw;
+  max-height:100vh;
+  }
+
+
+  .logo{
+    width: 10vw;
+  }
+
+  video {
+    position: relative;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    background: #000;
+    cursor: pointer;
+    margin: auto;
+    height: 100%;
+    max-height:100%;
+    width:100%;
+   }
+
+
+  #bar {
+    display: none;
+    position: relative;
+    bottom: 3vw;
+    cursor: pointer;
+    background: #000;
+    color: #CCC;
+    height:3px;
+  }
+  #bar span {
+    display: block;
+    text-align: center;
+    float: left;
+    height: 28px;
+    overflow: hidden;
+    padding: 6px 3px;
+    line-height: 14px;
+  }
+  #bar span:hover {color: #FFF;}
+  #bar span:nth-child(1) {border-left: none;}
+
+  .arrow{
+    max-width: 60px;
+    position: relative;
+    bottom: 4.2vh;
+    left: -3.5%;
+  }
+
+  .center-div{
+    color: #000634;
+  margin-top:3%;
+  margin-bottom: 8%;
+  }
+  .center-div h1 {
+  position: relative;  z-index:10;
+  margin-top: 50px;
+  margin-bottom: 80px;
+  font-size: 20px;
+  }
+  .center-div img{
+  width: 100%;
+  height: 100%;
+  }
+  .center-div h2 {
+     z-index:10;
+  font-size: 18px;
+  }
+
+  .center-div h3 {
+     z-index:10;
+  font-size: 18px;
+  }
+
+  .center-div p {
+ z-index:10;
+  text-align: left;
+  font-size: 15px;
+  }
+
+  .center-div .p2 {
+  ; z-index:10;
+  text-align: left;
+  font-size: 15px;
+  }
+
+  .what-is-surgery p{
+    color: #000634;
+    text-align: center;
+    font-family: 'Didot LT Std Bold Italic';
+    font-size: 16px;
+    margin-bottom: 50px;
+  }
+
+  .interventions{
+    position: relative;
+    color: #000634;
+    margin-bottom: 120px;
+  }
+
+  .interventions img{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+  }
+
+  .cabinet-medical{
+    color: #000634;
+  position: relative;
+  margin-top:3%;
+  margin-bottom: 8%;
+  }
+  .cabinet-medical h2 {
+     z-index:10;
+    font-size: 18px;
+
+  }
+  .cabinet-medical img{
+  width: 100%;
+  height: 100%;
+  }
+
+  .cabinet-medical p {
+  position: absolute; z-index:10;
+  text-align: left;
+  font-size: 15px;
+  }
+}

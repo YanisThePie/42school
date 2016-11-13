@@ -82,8 +82,16 @@ width: 100%;
   background-position: top;
   width: 100%;
   height: 100%;
-  padding-bottom: 200px;
+  padding-bottom: 400px;
   z-index: 10;
+
+}
+
+
+.bloc-center{
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
 }
 
 
@@ -104,21 +112,13 @@ top: 0;
 width: 100%;
 }
 
-.sect-overlap h1 {
-  text-align: left;
-position: absolute;
-z-index:10;
-font-family: 'Futura Condensed Medium';
-font-size: 52px;
-z-index:200;
-}
 .sect-overlap p {
 position: absolute;
  z-index:10;
-font-family: 'Didot LT Std Bold Italic';
-line-height:1.7em;
+ font-family: 'Roboto', sans-serif;
+ font-size: 20px;
+ font-weight: 300;
 text-align: left;
-font-size: 28px;
 z-index: 200;
 }
 
@@ -128,6 +128,21 @@ text-align: center;
 
 .txt-center{
   text-align: center;
+}
+
+.wrapper
+{
+
+}
+
+.scrollme
+{
+
+}
+
+.animateme
+{
+
 }
 
 

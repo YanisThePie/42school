@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Le Benefique</title>
+   <title><%= yield(:title) %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -45,12 +45,13 @@
               <% else %>
                 <li class="log-buttons"><p><%= link_to 'Inscription', new_user_path %> / <%= link_to 'Connexion', login_path %></p></li>
               <%end %>
-              <li><%= link_to instagram_path do image_tag("/elem/insta.png", onmouseover: "this.src='#{asset_path('/elem/insta-hover.png')}'", onmouseout: "this.src='#{asset_path('/elem/insta.png')}'", width: '25') end %> &nbsp&nbsp&nbsp&nbsp
+              <li><%= link_to instagram_path do image_tag("/elem/insta.png", onmouseover: "this.src='#{asset_path('/elem/insta-hover.png')}'", onmouseout: "this.src='#{asset_path('/elem/insta.png')}'", width: '25') end %>
                   <%= link_to facebook_path do image_tag("/elem/facebook.png", onmouseover: "this.src='#{asset_path('/elem/facebook-hover.png')}'", onmouseout: "this.src='#{asset_path('/elem/facebook.png')}'", width: '13') end %>
               </li>
         </ul>
   </li>
 </section>
+<h1 class="top-title-menu"><%= yield(:title) %></h1>
 </div>
 <div id="flash">
   <% flash.each do |key, value| %>
