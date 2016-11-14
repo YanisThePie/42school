@@ -23,4 +23,6 @@
 //= require underscore
 //= require gmaps/google
 //= require paraxify.js
+//= require blind-img.js
+//= require smooth-scroll.js
 //= require_tree .
