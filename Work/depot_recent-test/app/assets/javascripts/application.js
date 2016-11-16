@@ -11,18 +11,14 @@
 // about supported directives.
 //
 //= require jquery
-//= require fonts_trial.js
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require bootstrap-sprockets
 //= require jquery.vide.js
-//= require jquery.scrollme.js
 //= require bootstrap-select
 //= require bootstrap/alert
 //= require bootstrap/dropdown
 //= require underscore
 //= require gmaps/google
 //= require paraxify.js
-//= require blind-img.js
-//= require smooth-scroll.js
 //= require_tree .
