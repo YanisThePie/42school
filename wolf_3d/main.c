@@ -42,9 +42,8 @@ void	ft_set_img_win(t_env *env)
 	env->img_y = 1200;
 }
 
-int		ft_window(int argc, char **argv)
+int		ft_window(int argc, char **argv, t_env *env)
 {
-	t_env *env;
 
 	env = (t_env*)malloc(sizeof(t_env));
 	env->mlx = mlx_init();
@@ -64,6 +63,11 @@ int		ft_window(int argc, char **argv)
 
 int		main(int argc, char **argv)
 {
-	ft_window(argc, argv);
+	t_env *env;
+
+	env = NULL;
+	ft_window(argc, argv, env);
+	free(env);
+	
 	return (0);
 }
