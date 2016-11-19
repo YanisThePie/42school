@@ -6,18 +6,19 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/26 00:04:42 by yismail           #+#    #+#             */
-/*   Updated: 2016/11/07 11:31:50 by yismail          ###   ########.fr       */
+/*   Updated: 2016/11/19 03:46:13 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <dirent.h>
 #include "wolf3d.h"
 
-char *no_space(char *str)
+char	*no_space(char *str)
 {
-	int i;
-	int j;
-	size_t len;
-	char *str2;
+	int		i;
+	int		j;
+	size_t	len;
+	char	*str2;
 
 	i = 0;
 	j = 0;
@@ -32,30 +33,30 @@ char *no_space(char *str)
 		i++;
 		j++;
 	}
-	return(str2);
+	return (str2);
 }
 
-int     check_entry(char *line)
+int		check_entry(char *line)
 {
-    int i;
+	int		i;
 
-    i = 0;
-    while (line[i])
-    {
-        if (line[i] == '-')
-            i++;
-        if ((line[i] < 48 && line[i] > 57) && (line[i] != ' ') &&
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '-')
+			i++;
+		if ((line[i] < 48 && line[i] > 57) && (line[i] != ' ') &&
 			(line[i] != '\0' && line[i] != '\n'))
-            exit(EXIT_FAILURE);
-        i++;
-    }
-    return (0);
+			exit(EXIT_FAILURE);
+		i++;
+	}
+	return (0);
 }
 
-int *ft_table_atoi(char *src, int sizemap)
+int		*ft_table_atoi(char *src, int sizemap)
 {
-	int *dest;
-	int cpt;
+	int		*dest;
+	int		cpt;
 
 	dest = malloc(sizeof(int) * sizemap);
 	cpt = 0;
@@ -65,36 +66,35 @@ int *ft_table_atoi(char *src, int sizemap)
 		cpt++;
 		sizemap--;
 	}
-
-	
-	return(dest);
+	return (dest);
 }
 
-int     ft_parsing(int argc, char **argv, t_env *env)
+int		ft_parsing(int argc, char **argv, t_env *env)
 {
-    char    *line;
-    int     fd;
-    int     ret;
-    int     coord_y;
+	char	*line;
+	int		fd;
+	int		ret;
 
-	(void)argv;
-    if (argc != 2)
-	  exit(EXIT_FAILURE);
-    fd = open(argv[1], O_RDONLY);
-    if (fd == -1)
-	exit(EXIT_FAILURE);
-    coord_y = 0;
-    while ((ret = (get_next_line(fd, &line)) > 0))
-    {
-        check_entry(line);
-		env->worldMapchar[coord_y] = no_space(line);
-		env->frm.sizemap_x = ft_strlen(env->worldMapchar[coord_y]);
-		env->worldMap[coord_y] = ft_table_atoi(env->worldMapchar[coord_y], env->frm.sizemap_x);
-        coord_y++;
-        free(line);
-    }
-	env->frm.sizemap_y = coord_y;
-    if (ret < 0)
-        return (-1);
-    return (0);
+	if (argc != 2)
+		exit(EXIT_FAILURE);
+	if (opendir(argv[1]))
+		exit(EXIT_FAILURE);
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		exit(EXIT_FAILURE);
+	env->stc.crd_y = 0;
+	while ((ret = (get_next_line(fd, &line)) > 0))
+	{
+		check_entry(line);
+		env->worldMapchar[env->stc.crd_y] = no_space(line);
+		env->frm.sizemap_x = ft_strlen(env->worldMapchar[env->stc.crd_y]);
+		env->worldMap[env->stc.crd_y] = ft_table_atoi(env->worldMapchar
+		[env->stc.crd_y], env->frm.sizemap_x);
+		env->stc.crd_y++;
+		free(line);
+	}
+	env->frm.sizemap_y = env->stc.crd_y;
+	if (ret < 0)
+		return (-1);
+	return (0);
 }

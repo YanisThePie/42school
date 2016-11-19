@@ -1,12 +1,12 @@
 NAME = Wolf3d
 CC = gcc
-SRCS = 	main.c \
-		parse.c \
-		raycast.c\
-		event.c\
-		draw.c
+SRCS = 	srcs/main.c \
+		srcs/parse.c \
+		srcs/raycast.c\
+		srcs/event.c\
+		srcs/draw.c
 
-CFLAGS = -Wall -Wextra -Werror -Ofast -march=native
+CFLAGS = -Wall -Wextra -Werror
 FLAGS = -framework OpenGL -framework AppKit -L ./libft -lft -L minilibx_macos -lmlx
 OBJS = $(SRCS:.c=.o)
 
@@ -21,9 +21,12 @@ $(NAME): $(OBJS)
 	gcc $(FLAGS) -o $(NAME) $(OBJS)  -L./libft -lft -framework OpenGL -framework AppKit -L ./libft -lft -L minilibx_macos -lmlx
 
 clean:
-	rm $(OBJS)
+	make clean -C libft/
+	make clean -C minilibx_macos/
+	rm -f $(OBJS)
 
 fclean: clean
-	rm $(NAME)
+		make fclean -C libft/
+		rm -f $(NAME)
 
 re: fclean all

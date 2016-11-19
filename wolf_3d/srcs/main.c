@@ -6,13 +6,13 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/25 22:52:32 by yismail           #+#    #+#             */
-/*   Updated: 2016/11/11 15:07:49 by yismail          ###   ########.fr       */
+/*   Updated: 2016/11/19 01:11:59 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	ft_new_img(t_env *env)
+int		ft_new_img(t_env *env)
 {
 	if (!env->img)
 	{
@@ -22,6 +22,7 @@ void	ft_new_img(t_env *env)
 	}
 	else
 		ft_bzero(env->data, 4 * 1200 * 1200);
+	return (0);
 }
 
 void	set_player(t_env *env)
@@ -44,7 +45,6 @@ void	ft_set_img_win(t_env *env)
 
 int		ft_window(int argc, char **argv, t_env *env)
 {
-
 	env = (t_env*)malloc(sizeof(t_env));
 	env->mlx = mlx_init();
 	env->img = NULL;
@@ -68,6 +68,5 @@ int		main(int argc, char **argv)
 	env = NULL;
 	ft_window(argc, argv, env);
 	free(env);
-	
 	return (0);
 }

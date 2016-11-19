@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/26 01:17:09 by yismail           #+#    #+#             */
-/*   Updated: 2016/11/07 16:29:06 by yismail          ###   ########.fr       */
+/*   Updated: 2016/11/18 23:31:00 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	wall_detection(t_env *env)
 			env->frm.sideDistY += env->frm.deltaDistY;
 			env->frm.mapY += env->frm.stepY;
 			env->frm.side = 1;
+			if (env->frm.stepY == 1)
+				env->frm.side = 3;
 		}
 		if (env->worldMap[(int)env->frm.mapX][(int)env->frm.mapY] > 0)
 			env->frm.hit = 1;
