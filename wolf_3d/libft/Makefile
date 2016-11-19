@@ -6,7 +6,7 @@
 #    By: yismail <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/02 13:28:30 by yismail           #+#    #+#              #
-#    Updated: 2016/04/06 20:53:25 by yismail          ###   ########.fr        #
+#    Updated: 2016/11/19 07:19:28 by yismail          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -15,6 +15,7 @@ NAME = libft.a
 SRCS = ft_itoa.c \
 	ft_lstnew.c\
 	ft_lstdelone.c\
+	get_next_line2.c\
 	ft_lstmap.c\
 	color_to_int.c\
 	ft_lstdel.c\
@@ -89,6 +90,7 @@ OBJECTS = ft_itoa.o \
 	ft_lstadd.o\
 	ft_lstdelone.o\
 	ft_lstdel.o\
+	get_next_line2.o\
 	ft_lstiter.o\
 	ft_lstnew.o\
 	ft_listisempty.o\

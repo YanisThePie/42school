@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 22:12:15 by yismail           #+#    #+#             */
-/*   Updated: 2016/11/19 09:10:43 by yismail          ###   ########.fr       */
+/*   Updated: 2016/11/19 07:49:20 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,58 +18,46 @@ int		return_value(int ret, char **tmp, char *buf)
 		return (-1);
 	if (ret == 0 && *tmp && !*buf)
 	{
-		free(*tmp);
 		*tmp = NULL;
 		return (1);
 	}
 	if ((ret == 0 && !*buf) || (*tmp == NULL && !*buf))
-	{
-		if (*tmp)
-			free(*tmp);
 		return (0);
-	}
-	if (*tmp)
-		free(*tmp);
 	return (1);
-}
-
-int		pos(char **tmp, char **buffer)
-{
-	char	*pos;
-
-	if ((pos = ft_strchr(*buffer, '\n')))
-	{
-		pos[0] = '\0';
-		pos++;
-		if (*tmp)
-			free(*tmp);
-		*tmp = pos[0] == '\0' ? NULL : ft_strdup(pos);
-		return (1);
-	}
-	return (0);
 }
 
 int		f_read(char **buffer, char **tmp, int fd)
 {
 	int		ret;
+	char	*pos;
 	char	buf[BUFF_SIZE + 1];
 
 	buf[0] = '\0';
-	if (pos(tmp, buffer))
+	if ((pos = ft_strchr(*buffer, '\n')))
+	{
+		pos[0] = '\0';
+		pos++;
+		*tmp = pos[0] == '\0' ? NULL : ft_strdup(pos);
 		return (1);
+	}
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
 		*buffer = ft_strjoin_free(*buffer, buf);
-		if (pos(tmp, buffer))
+		if ((pos = ft_strchr(*buffer, '\n')))
+		{
+			pos[0] = '\0';
+			pos++;
+			*tmp = pos[0] == '\0' ? NULL : ft_strdup(pos);
 			return (1);
+		}
 	}
 	return (return_value(ret, tmp, buf));
 }
 
-int		get_next_line(int const fd, char **line)
+int		get_next_line2(int const fd, char **line)
 {
-	static char *tmp;
+	static char *tmp = NULL;
 	char		*buffer;
 	int			ret;
 	char		*cpy;
@@ -77,16 +65,11 @@ int		get_next_line(int const fd, char **line)
 	if (!(buffer = ft_strnew(sizeof(char) * 1)))
 		return (-1);
 	if (fd < 0 || !line)
-	{
-		free(tmp);
-		tmp = NULL;
 		return (-1);
-	}
 	if (tmp && (cpy = buffer))
 	{
 		if (!(buffer = ft_strjoin_free(tmp, buffer)))
 			return (-1);
-		tmp = NULL;
 		free(cpy);
 	}
 	ret = f_read(&buffer, &tmp, fd);

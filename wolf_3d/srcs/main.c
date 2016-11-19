@@ -27,14 +27,14 @@ int		ft_new_img(t_env *env)
 
 void	set_player(t_env *env)
 {
-	env->player.posX = 22;
-	env->player.posY = 12;
-	env->player.dirX = -1;
-	env->player.dirY = 0;
-	env->player.planeX = 0;
-	env->player.planeY = 0.66;
+	env->player.posx = 22;
+	env->player.posy = 12;
+	env->player.dirx = -1;
+	env->player.diry = 0;
+	env->player.planex = 0;
+	env->player.planey = 0.66;
 	env->frm.time = 0;
-	env->frm.oldTime = 0;
+	env->frm.oldtime = 0;
 }
 
 void	ft_set_img_win(t_env *env)

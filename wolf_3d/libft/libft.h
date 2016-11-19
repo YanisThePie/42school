@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 17:13:04 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/12 09:37:28 by yismail          ###   ########.fr       */
+/*   Updated: 2016/11/19 09:10:18 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct      s_color
+typedef struct		s_color
 {
-	int             r;
-	int             g;
-	int             b;
-}                   t_color;
+	int				r;
+	int				g;
+	int				b;
+}					t_color;
 
 int					get_next_line (int const fd, char **line);
+int					get_next_line2(int const fd, char **line);
 void				freetab(char **tab);
 void				ft_lstiter (t_list *lst, void (*f)(t_list *elem));
 void				ft_lstadd(t_list **alst, t_list *new);

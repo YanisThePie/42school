@@ -16,25 +16,25 @@ void	my_key_funct2(int keycode, t_env *env)
 {
 	if (keycode == 123)
 	{
-		env->player.oldDirX = env->player.dirX;
-		env->player.dirX = env->player.dirX * cos(0.04)
-		- env->player.dirY * sin(0.04);
-		env->player.dirY = env->player.oldDirX * sin(0.04)
-		+ env->player.dirY * cos(0.04);
-		env->player.oldPlaneX = env->player.planeX;
-		env->player.planeX = env->player.planeX * cos(0.04)
-		- env->player.planeY * sin(0.04);
-		env->player.planeY = env->player.oldPlaneX * sin(0.04) \
-		+ env->player.planeY * cos(0.04);
+		env->player.olddirx = env->player.dirx;
+		env->player.dirx = env->player.dirx * cos(0.04)
+		- env->player.diry * sin(0.04);
+		env->player.diry = env->player.olddirx * sin(0.04)
+		+ env->player.diry * cos(0.04);
+		env->player.oldplanex = env->player.planex;
+		env->player.planex = env->player.planex * cos(0.04)
+		- env->player.planey * sin(0.04);
+		env->player.planey = env->player.oldplanex * sin(0.04) \
+		+ env->player.planey * cos(0.04);
 	}
 	if (keycode == 126)
 	{
-		if (env->worldMap[(int)(env->player.posX +
-		env->player.dirX * 0.06)][(int)env->player.posY] == 0)
-			env->player.posX += env->player.dirX * 0.06;
-		if (env->worldMap[(int)(env->player.posX)]
-		[(int)(env->player.posY + env->player.dirY * 0.06)] == 0)
-			env->player.posY += env->player.dirY * 0.06;
+		if (env->worldmap[(int)(env->player.posx +
+		env->player.dirx * 0.06)][(int)env->player.posy] == 0)
+			env->player.posx += env->player.dirx * 0.06;
+		if (env->worldmap[(int)(env->player.posx)]
+		[(int)(env->player.posy + env->player.diry * 0.06)] == 0)
+			env->player.posy += env->player.diry * 0.06;
 	}
 	if (keycode == 53)
 		exit(EXIT_SUCCESS);
@@ -45,25 +45,25 @@ int		my_key_funct(int keycode, t_env *env)
 {
 	if (keycode == 125)
 	{
-		if (env->worldMap[(int)(env->player.posX - env->player.dirX
-		* 0.06)][(int)env->player.posY] == 0)
-			env->player.posX -= env->player.dirX * 0.06;
-		if (env->worldMap[(int)(env->player.posX)][(int)(env->player.posY
-		- env->player.dirY * 0.06)] == 0)
-			env->player.posY -= env->player.dirY * 0.06;
+		if (env->worldmap[(int)(env->player.posx - env->player.dirx
+		* 0.06)][(int)env->player.posy] == 0)
+			env->player.posx -= env->player.dirx * 0.06;
+		if (env->worldmap[(int)(env->player.posx)][(int)(env->player.posy
+		- env->player.diry * 0.06)] == 0)
+			env->player.posy -= env->player.diry * 0.06;
 	}
 	if (keycode == 124)
 	{
-		env->player.oldDirX = env->player.dirX;
-		env->player.dirX = env->player.dirX * cos(0.04)
-		- env->player.dirY * sin(-0.04);
-		env->player.dirY = env->player.oldDirX * sin(-0.04)
-		+ env->player.dirY * cos(0.04);
-		env->player.oldPlaneX = env->player.planeX;
-		env->player.planeX = env->player.planeX * cos(0.04)
-		- env->player.planeY * sin(-0.04);
-		env->player.planeY = env->player.oldPlaneX *
-		sin(-0.04) + env->player.planeY * cos(0.04);
+		env->player.olddirx = env->player.dirx;
+		env->player.dirx = env->player.dirx * cos(0.04)
+		- env->player.diry * sin(-0.04);
+		env->player.diry = env->player.olddirx * sin(-0.04)
+		+ env->player.diry * cos(0.04);
+		env->player.oldplanex = env->player.planex;
+		env->player.planex = env->player.planex * cos(0.04)
+		- env->player.planey * sin(-0.04);
+		env->player.planey = env->player.oldplanex *
+		sin(-0.04) + env->player.planey * cos(0.04);
 	}
 	my_key_funct2(keycode, env);
 	raycast(env);
@@ -75,8 +75,8 @@ int		loop_hook(t_env *env)
 	int		mmx;
 	int		mmy;
 
-	mmx = env->img_x - env->frm.mapX * 4;
-	mmy = env->img_y - env->frm.mapY * 4;
+	mmx = env->img_x - env->frm.mapx * 4;
+	mmy = env->img_y - env->frm.mapy * 4;
 	if (!env->img)
 	{
 		env->img = mlx_new_image(env->mlx, env->img_x, env->img_y);

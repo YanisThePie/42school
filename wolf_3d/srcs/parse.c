@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/26 00:04:42 by yismail           #+#    #+#             */
-/*   Updated: 2016/11/19 04:35:48 by yismail          ###   ########.fr       */
+/*   Updated: 2016/11/19 09:08:43 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		*ft_table_atoi(char *src, int sizemap)
 	int		*dest;
 	int		cpt;
 
+	dest = NULL;
 	dest = malloc(sizeof(int) * sizemap);
 	cpt = 0;
 	while (sizemap)
@@ -74,16 +75,18 @@ int		loop_main(int fd, t_env *env)
 	char	*line;
 	int		ret;
 
+	line = NULL;
 	while ((ret = (get_next_line(fd, &line)) > 0))
 	{
 		check_entry(line);
-		env->worldMapchar[env->stc.crd_y] = no_space(line);
-		env->frm.sizemap_x = ft_strlen(env->worldMapchar[env->stc.crd_y]);
-		env->worldMap[env->stc.crd_y] = ft_table_atoi(env->worldMapchar
+		env->worldmapchar[env->stc.crd_y] = no_space(line);
+		env->frm.sizemap_x = ft_strlen(env->worldmapchar[env->stc.crd_y]);
+		env->worldmap[env->stc.crd_y] = ft_table_atoi(env->worldmapchar
 		[env->stc.crd_y], env->frm.sizemap_x);
 		env->stc.crd_y++;
 		free(line);
 	}
+	free(line);
 	return (ret);
 }
 

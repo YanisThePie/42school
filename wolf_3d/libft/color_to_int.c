@@ -6,13 +6,13 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 20:32:51 by yismail           #+#    #+#             */
-/*   Updated: 2016/04/26 20:33:15 by yismail          ###   ########.fr       */
+/*   Updated: 2016/11/19 09:12:50 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
-int     color_to_int(t_color c)
+int		color_to_int(t_color c)
 {
 	return ((c.r & 0xff) << 16) | ((c.g & 0xff) << 8) | (c.b & 0xff);
 }

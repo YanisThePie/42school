@@ -14,7 +14,7 @@
 
 int		choose_color(t_env *env)
 {
-	if (env->worldMap[(int)env->frm.mapX][(int)env->frm.mapY] == 4)
+	if (env->worldmap[(int)env->frm.mapx][(int)env->frm.mapy] == 4)
 		return (0xFF0000);
 	if (env->frm.side == 1)
 		return (0xBCA9F5);
@@ -31,16 +31,16 @@ void	draw_wall(t_env *env, int x)
 	int color;
 
 	color = 0;
-	env->draw.lineHeight = abs((int)(env->img_y / env->frm.perpWallDist));
-	env->draw.drawStart = -env->draw.lineHeight / 2 + env->img_y / 2;
-	if (env->draw.drawStart < 0)
-		env->draw.drawStart = 0;
-	env->draw.drawEnd = env->draw.lineHeight / 2 + env->img_y / 2;
-	if (env->draw.drawEnd >= env->img_y)
-		env->draw.drawEnd = env->img_y - 1;
+	env->draw.lineheight = abs((int)(env->img_y / env->frm.perpwalldist));
+	env->draw.drawstart = -env->draw.lineheight / 2 + env->img_y / 2;
+	if (env->draw.drawstart < 0)
+		env->draw.drawstart = 0;
+	env->draw.drawend = env->draw.lineheight / 2 + env->img_y / 2;
+	if (env->draw.drawend >= env->img_y)
+		env->draw.drawend = env->img_y - 1;
 	color = choose_color(env);
-	y = env->draw.drawStart;
-	while (y <= env->draw.drawEnd)
+	y = env->draw.drawstart;
+	while (y <= env->draw.drawend)
 	{
 		ft_memcpy(&(env->data[(y * env->sizeline)
 		+ (x * env->oct)]), &color, (size_t)(sizeof(int)));

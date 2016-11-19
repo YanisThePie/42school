@@ -16,23 +16,23 @@ void	side_and_step(t_env *env)
 {
 	while (env->frm.hit == 0)
 	{
-		if (env->frm.sideDistX < env->frm.sideDistY)
+		if (env->frm.sidedistx < env->frm.sidedisty)
 		{
-			env->frm.sideDistX += env->frm.deltaDistX;
-			env->frm.mapX += env->frm.stepX;
+			env->frm.sidedistx += env->frm.deltadistx;
+			env->frm.mapx += env->frm.stepx;
 			env->frm.side = 0;
-			if (env->frm.stepX == 1)
+			if (env->frm.stepx == 1)
 				env->frm.side = 1;
 		}
 		else
 		{
-			env->frm.sideDistY += env->frm.deltaDistY;
-			env->frm.mapY += env->frm.stepY;
+			env->frm.sidedisty += env->frm.deltadisty;
+			env->frm.mapy += env->frm.stepy;
 			env->frm.side = 2;
-			if (env->frm.stepY == 1)
+			if (env->frm.stepy == 1)
 				env->frm.side = 3;
 		}
-		if (env->worldMap[(int)env->frm.mapX][(int)env->frm.mapY] > 0)
+		if (env->worldmap[(int)env->frm.mapx][(int)env->frm.mapy] > 0)
 			env->frm.hit = 1;
 	}
 }
@@ -41,40 +41,40 @@ void	wall_detection(t_env *env)
 {
 	side_and_step(env);
 	if (env->frm.side <= 1)
-		env->frm.perpWallDist = (env->frm.mapX - env->frm.rayPosX +
-		(1 - env->frm.stepX) / 2) / env->frm.rayDirX;
+		env->frm.perpwalldist = (env->frm.mapx - env->frm.rayposx +
+		(1 - env->frm.stepx) / 2) / env->frm.raydirx;
 	else
-		env->frm.perpWallDist = (env->frm.mapY - env->frm.rayPosY +
-		(1 - env->frm.stepY) / 2) / env->frm.rayDirY;
+		env->frm.perpwalldist = (env->frm.mapy - env->frm.rayposy +
+		(1 - env->frm.stepy) / 2) / env->frm.raydiry;
 }
 
 void	ray_dir(t_env *env)
 {
-	env->frm.rayPosX = env->player.posX;
-	env->frm.rayPosY = env->player.posY;
-	env->frm.rayDirX = env->player.dirX +
-	(env->player.planeX * env->frm.cameraX);
-	env->frm.rayDirY = env->player.dirY +
-	(env->player.planeY * env->frm.cameraX);
-	env->frm.mapX = (int)env->frm.rayPosX;
-	env->frm.mapY = (int)env->frm.rayPosY;
-	env->frm.deltaDistX = sqrt((env->frm.rayDirY *
-	env->frm.rayDirY) / (env->frm.rayDirX * env->frm.rayDirX) + 1);
-	env->frm.deltaDistY = sqrt((env->frm.rayDirX *
-	env->frm.rayDirX) / (env->frm.rayDirY * env->frm.rayDirY) + 1);
+	env->frm.rayposx = env->player.posx;
+	env->frm.rayposy = env->player.posy;
+	env->frm.raydirx = env->player.dirx +
+	(env->player.planex * env->frm.camerax);
+	env->frm.raydiry = env->player.diry +
+	(env->player.planey * env->frm.camerax);
+	env->frm.mapx = (int)env->frm.rayposx;
+	env->frm.mapy = (int)env->frm.rayposy;
+	env->frm.deltadistx = sqrt((env->frm.raydiry *
+	env->frm.raydiry) / (env->frm.raydirx * env->frm.raydirx) + 1);
+	env->frm.deltadisty = sqrt((env->frm.raydirx *
+	env->frm.raydirx) / (env->frm.raydiry * env->frm.raydiry) + 1);
 	env->frm.hit = 0;
-	if (env->frm.rayDirX < 0 && (env->frm.stepX = -1))
-		env->frm.sideDistX = (env->frm.rayPosX -
-		env->frm.mapX) * env->frm.deltaDistX;
-	else if ((env->frm.stepX = 1))
-		env->frm.sideDistX = (env->frm.mapX -
-		env->frm.rayPosX + 1) * env->frm.deltaDistX;
-	if (env->frm.rayDirY < 0 && (env->frm.stepY = -1))
-		env->frm.sideDistY = (env->frm.rayPosY -
-		env->frm.mapY) * env->frm.deltaDistY;
-	else if ((env->frm.stepY = 1))
-		env->frm.sideDistY = (env->frm.mapY -
-		env->frm.rayPosY + 1) * env->frm.deltaDistY;
+	if (env->frm.raydirx < 0 && (env->frm.stepx = -1))
+		env->frm.sidedistx = (env->frm.rayposx -
+		env->frm.mapx) * env->frm.deltadistx;
+	else if ((env->frm.stepx = 1))
+		env->frm.sidedistx = (env->frm.mapx -
+		env->frm.rayposx + 1) * env->frm.deltadistx;
+	if (env->frm.raydiry < 0 && (env->frm.stepy = -1))
+		env->frm.sidedisty = (env->frm.rayposy -
+		env->frm.mapy) * env->frm.deltadisty;
+	else if ((env->frm.stepy = 1))
+		env->frm.sidedisty = (env->frm.mapy -
+		env->frm.rayposy + 1) * env->frm.deltadisty;
 }
 
 int		raycast(t_env *env)
@@ -84,7 +84,7 @@ int		raycast(t_env *env)
 	x = 0;
 	while (x < env->img_x)
 	{
-		env->frm.cameraX = (double)(2 * x) / (double)env->img_x - 1;
+		env->frm.camerax = (double)(2 * x) / (double)env->img_x - 1;
 		ray_dir(env);
 		wall_detection(env);
 		draw_wall(env, x);
