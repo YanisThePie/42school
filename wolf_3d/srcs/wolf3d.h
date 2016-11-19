@@ -6,33 +6,33 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:35:53 by yismail           #+#    #+#             */
-/*   Updated: 2016/11/19 03:44:27 by yismail          ###   ########.fr       */
+/*   Updated: 2016/11/19 04:38:29 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
-#include <fcntl.h>
-#include <sys/types.h>
-#include <sys/uio.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/uio.h>
 # include <unistd.h>
 # include "../libft/libft.h"
 # include <math.h>
 # include "../minilibx_macos/mlx.h"
 # include <unistd.h>
-#include <time.h>
+# include <time.h>
 
 typedef struct			s_stru
 {
-    int					crd_x;
-    int					crd_y;
-    double				val_int;
+	int					crd_x;
+	int					crd_y;
+	double				val_int;
 }						t_stru;
 
 typedef struct			s_setplayer
 {
-    double				posX;
-    double				posY;
+	double				posX;
+	double				posY;
 	double				dirX;
 	double				dirY;
 	double				planeX;

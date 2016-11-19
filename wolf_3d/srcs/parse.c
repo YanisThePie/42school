@@ -6,7 +6,7 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/26 00:04:42 by yismail           #+#    #+#             */
-/*   Updated: 2016/11/19 03:46:13 by yismail          ###   ########.fr       */
+/*   Updated: 2016/11/19 04:35:48 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,26 @@ int		*ft_table_atoi(char *src, int sizemap)
 	return (dest);
 }
 
-int		ft_parsing(int argc, char **argv, t_env *env)
+int		loop_main(int fd, t_env *env)
 {
 	char	*line;
+	int		ret;
+
+	while ((ret = (get_next_line(fd, &line)) > 0))
+	{
+		check_entry(line);
+		env->worldMapchar[env->stc.crd_y] = no_space(line);
+		env->frm.sizemap_x = ft_strlen(env->worldMapchar[env->stc.crd_y]);
+		env->worldMap[env->stc.crd_y] = ft_table_atoi(env->worldMapchar
+		[env->stc.crd_y], env->frm.sizemap_x);
+		env->stc.crd_y++;
+		free(line);
+	}
+	return (ret);
+}
+
+int		ft_parsing(int argc, char **argv, t_env *env)
+{
 	int		fd;
 	int		ret;
 
@@ -83,16 +100,7 @@ int		ft_parsing(int argc, char **argv, t_env *env)
 	if (fd == -1)
 		exit(EXIT_FAILURE);
 	env->stc.crd_y = 0;
-	while ((ret = (get_next_line(fd, &line)) > 0))
-	{
-		check_entry(line);
-		env->worldMapchar[env->stc.crd_y] = no_space(line);
-		env->frm.sizemap_x = ft_strlen(env->worldMapchar[env->stc.crd_y]);
-		env->worldMap[env->stc.crd_y] = ft_table_atoi(env->worldMapchar
-		[env->stc.crd_y], env->frm.sizemap_x);
-		env->stc.crd_y++;
-		free(line);
-	}
+	ret = loop_main(fd, env);
 	env->frm.sizemap_y = env->stc.crd_y;
 	if (ret < 0)
 		return (-1);

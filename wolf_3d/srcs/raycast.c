@@ -6,13 +6,13 @@
 /*   By: yismail <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/26 01:17:09 by yismail           #+#    #+#             */
-/*   Updated: 2016/11/19 04:16:47 by yismail          ###   ########.fr       */
+/*   Updated: 2016/11/19 04:25:41 by yismail          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	wall_detection(t_env *env)
+void	side_and_step(t_env *env)
 {
 	while (env->frm.hit == 0)
 	{
@@ -35,18 +35,27 @@ void	wall_detection(t_env *env)
 		if (env->worldMap[(int)env->frm.mapX][(int)env->frm.mapY] > 0)
 			env->frm.hit = 1;
 	}
+}
+
+void	wall_detection(t_env *env)
+{
+	side_and_step(env);
 	if (env->frm.side <= 1)
-		env->frm.perpWallDist = (env->frm.mapX - env->frm.rayPosX + (1 - env->frm.stepX) / 2) / env->frm.rayDirX;
+		env->frm.perpWallDist = (env->frm.mapX - env->frm.rayPosX +
+		(1 - env->frm.stepX) / 2) / env->frm.rayDirX;
 	else
-		env->frm.perpWallDist = (env->frm.mapY - env->frm.rayPosY + (1 - env->frm.stepY) / 2) / env->frm.rayDirY;
+		env->frm.perpWallDist = (env->frm.mapY - env->frm.rayPosY +
+		(1 - env->frm.stepY) / 2) / env->frm.rayDirY;
 }
 
 void	ray_dir(t_env *env)
 {
 	env->frm.rayPosX = env->player.posX;
 	env->frm.rayPosY = env->player.posY;
-	env->frm.rayDirX = env->player.dirX + (env->player.planeX * env->frm.cameraX);
-	env->frm.rayDirY = env->player.dirY + (env->player.planeY * env->frm.cameraX);
+	env->frm.rayDirX = env->player.dirX +
+	(env->player.planeX * env->frm.cameraX);
+	env->frm.rayDirY = env->player.dirY +
+	(env->player.planeY * env->frm.cameraX);
 	env->frm.mapX = (int)env->frm.rayPosX;
 	env->frm.mapY = (int)env->frm.rayPosY;
 	env->frm.deltaDistX = sqrt((env->frm.rayDirY *
